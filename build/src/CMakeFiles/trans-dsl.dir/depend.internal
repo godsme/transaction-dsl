@@ -167,6 +167,28 @@ src/CMakeFiles/trans-dsl.dir/ext/mutex/action/SchedLockAction.cc.o
  ../include/trans-dsl/sched/concept/TransactionContext.h
  ../include/trans-dsl/tsl.h
  ../include/trans-dsl/utils/ActionStatus.h
+ ../src/../../cub/include/cub/base/Assertions.h
+ ../src/../../cub/include/cub/base/BaseTypes.h
+ ../src/../../cub/include/cub/base/Config.h
+ ../src/../../cub/include/cub/base/Default.h
+ ../src/../../cub/include/cub/base/Keywords.h
+ ../src/../../cub/include/cub/base/NullPtr.h
+ ../src/../../cub/include/cub/base/Status.h
+ ../src/../../cub/include/cub/cub.h
+ ../src/../../cub/include/cub/dci/Role.h
+ ../src/../../cub/include/cub/log/log.h
+ ../src/../../event/include/event/concept/Event.h
+ ../src/../../event/include/event/concept/EventId.h
+ ../src/../../event/include/event/event.h
+ /Users/darwin/project/cpp/transaction-dsl/src/ext/mutex/action/SchedLockAction.cc
+src/CMakeFiles/trans-dsl.dir/ext/mutex/impl/AbstractTransMutexScheduler.cc.o
+ ../include/trans-dsl/TslStatus.h
+ ../include/trans-dsl/ext/mutex/concept/TransMutexScheduler.h
+ ../include/trans-dsl/ext/mutex/concept/TransMutextId.h
+ ../include/trans-dsl/ext/mutex/def/TransMutexAvailMsg.h
+ ../include/trans-dsl/ext/mutex/impl/AbstractTransMutexScheduler.h
+ ../include/trans-dsl/ext/mutex/impl/TransMutexAvailNotifier.h
+ ../include/trans-dsl/tsl.h
  ../src/../../cub/include/cub/base/BaseTypes.h
  ../src/../../cub/include/cub/base/Config.h
  ../src/../../cub/include/cub/base/Default.h
@@ -174,16 +196,6 @@ src/CMakeFiles/trans-dsl.dir/ext/mutex/action/SchedLockAction.cc.o
  ../src/../../cub/include/cub/base/Status.h
  ../src/../../cub/include/cub/cub.h
  ../src/../../cub/include/cub/dci/Role.h
- ../src/../../event/include/event/concept/Event.h
- ../src/../../event/include/event/concept/EventId.h
- ../src/../../event/include/event/event.h
- /Users/darwin/project/cpp/transaction-dsl/src/ext/mutex/action/SchedLockAction.cc
-src/CMakeFiles/trans-dsl.dir/ext/mutex/impl/AbstractTransMutexScheduler.cc.o
- ../include/trans-dsl/ext/mutex/concept/TransMutexScheduler.h
- ../include/trans-dsl/ext/mutex/concept/TransMutextId.h
- ../include/trans-dsl/ext/mutex/def/TransMutexAvailMsg.h
- ../include/trans-dsl/ext/mutex/impl/AbstractTransMutexScheduler.h
- ../include/trans-dsl/ext/mutex/impl/TransMutexAvailNotifier.h
  ../src/../../event/include/event/concept/EventId.h
  ../src/../../event/include/event/event.h
  /Users/darwin/project/cpp/transaction-dsl/src/ext/mutex/impl/AbstractTransMutexScheduler.cc
@@ -240,6 +252,8 @@ src/CMakeFiles/trans-dsl.dir/sched/action/LinkedSchedAction.cc.o
  ../src/../../cub/include/cub/base/Status.h
  ../src/../../cub/include/cub/cub.h
  ../src/../../cub/include/cub/dci/Role.h
+ ../src/../../cub/include/cub/repo/list/ListElem.h
+ ../src/../../cub/include/cub/repo/list/apr_ring.h
  ../src/../../event/include/event/event.h
  /Users/darwin/project/cpp/transaction-dsl/src/sched/action/LinkedSchedAction.cc
 src/CMakeFiles/trans-dsl.dir/sched/action/NilFinalAction.cc.o
@@ -319,6 +333,9 @@ src/CMakeFiles/trans-dsl.dir/sched/action/SchedConcurrentAction.cc.o
  ../src/../../cub/include/cub/base/Status.h
  ../src/../../cub/include/cub/cub.h
  ../src/../../cub/include/cub/dci/Role.h
+ ../src/../../cub/include/cub/repo/list/List.h
+ ../src/../../cub/include/cub/repo/list/ListElem.h
+ ../src/../../cub/include/cub/repo/list/apr_ring.h
  ../src/../../event/include/event/event.h
  /Users/darwin/project/cpp/transaction-dsl/src/sched/action/SchedConcurrentAction.cc
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedExclusiveAction.cc.o
@@ -336,6 +353,9 @@ src/CMakeFiles/trans-dsl.dir/sched/action/SchedExclusiveAction.cc.o
  ../src/../../cub/include/cub/base/Status.h
  ../src/../../cub/include/cub/cub.h
  ../src/../../cub/include/cub/dci/Role.h
+ ../src/../../cub/include/cub/repo/list/List.h
+ ../src/../../cub/include/cub/repo/list/ListElem.h
+ ../src/../../cub/include/cub/repo/list/apr_ring.h
  ../src/../../event/include/event/event.h
  /Users/darwin/project/cpp/transaction-dsl/src/sched/action/SchedExclusiveAction.cc
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedLoopAction.cc.o
@@ -423,6 +443,9 @@ src/CMakeFiles/trans-dsl.dir/sched/action/SchedSequentialAction.cc.o
  ../src/../../cub/include/cub/base/Status.h
  ../src/../../cub/include/cub/cub.h
  ../src/../../cub/include/cub/dci/Role.h
+ ../src/../../cub/include/cub/repo/list/List.h
+ ../src/../../cub/include/cub/repo/list/ListElem.h
+ ../src/../../cub/include/cub/repo/list/apr_ring.h
  ../src/../../event/include/event/event.h
  /Users/darwin/project/cpp/transaction-dsl/src/sched/action/SchedSequentialAction.cc
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedSwitchCaseAction.cc.o
@@ -563,6 +586,7 @@ src/CMakeFiles/trans-dsl.dir/sched/concept/Transaction.cc.o
 src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o
  ../include/trans-dsl/sched/concept/TimerId.h
  ../include/trans-dsl/sched/port/PlatformSpecifiedRelativeTimer.h
+ ../include/trans-dsl/tsl.h
  ../include/trans-dsl/utils/RelativeTimer.h
  ../src/../../cub/include/cub/base/BaseTypes.h
  ../src/../../cub/include/cub/base/Status.h
@@ -600,17 +624,32 @@ src/CMakeFiles/trans-dsl.dir/sched/trans/BaseTransactionScheduler.cc.o
  ../src/../../cub/include/cub/base/Status.h
  ../src/../../cub/include/cub/cub.h
  ../src/../../cub/include/cub/dci/Role.h
+ ../src/../../event/include/event/event.h
  /Users/darwin/project/cpp/transaction-dsl/src/sched/trans/BaseTransactionScheduler.cc
 src/CMakeFiles/trans-dsl.dir/sched/trans/SchedTransaction.cc.o
  ../include/trans-dsl/sched/concept/InstanceId.h
  ../include/trans-dsl/sched/concept/Transaction.h
  ../include/trans-dsl/sched/concept/TransactionScheduler.h
  ../include/trans-dsl/sched/trans/SchedTransaction.h
+ ../include/trans-dsl/tsl.h
  ../include/trans-dsl/utils/StopCause.h
+ ../src/../../cub/include/cub/base/BaseTypes.h
+ ../src/../../cub/include/cub/base/Config.h
+ ../src/../../cub/include/cub/base/Default.h
+ ../src/../../cub/include/cub/base/Keywords.h
+ ../src/../../cub/include/cub/base/Status.h
+ ../src/../../cub/include/cub/cub.h
+ ../src/../../cub/include/cub/dci/Role.h
  /Users/darwin/project/cpp/transaction-dsl/src/sched/trans/SchedTransaction.cc
 src/CMakeFiles/trans-dsl.dir/sched/trans/SimpleRuntimeContextInfo.cc.o
  ../include/trans-dsl/sched/concept/RuntimeContextInfo.h
  ../include/trans-dsl/sched/trans/SimpleRuntimeContextInfo.h
+ ../include/trans-dsl/tsl.h
+ ../src/../../cub/include/cub/base/Config.h
+ ../src/../../cub/include/cub/base/Default.h
+ ../src/../../cub/include/cub/base/Keywords.h
+ ../src/../../cub/include/cub/cub.h
+ ../src/../../cub/include/cub/dci/Role.h
  /Users/darwin/project/cpp/transaction-dsl/src/sched/trans/SimpleRuntimeContextInfo.cc
 src/CMakeFiles/trans-dsl.dir/sched/trans/SimpleTransactionContext.cc.o
  ../include/trans-dsl/ext/mutex/concept/TransMutexScheduler.h
@@ -639,6 +678,7 @@ src/CMakeFiles/trans-dsl.dir/sched/trans/SimpleTransactionContext.cc.o
  ../src/../../cub/include/cub/base/Status.h
  ../src/../../cub/include/cub/cub.h
  ../src/../../cub/include/cub/dci/Role.h
+ ../src/../../event/include/event/event.h
  /Users/darwin/project/cpp/transaction-dsl/src/sched/trans/SimpleTransactionContext.cc
 src/CMakeFiles/trans-dsl.dir/sched/trans/SimpleTransactionInfo.cc.o
  ../include/trans-dsl/TslStatus.h
@@ -660,6 +700,12 @@ src/CMakeFiles/trans-dsl.dir/sched/trans/SimpleTransactionInfo.cc.o
 src/CMakeFiles/trans-dsl.dir/sched/trans/SimpleTransactionMode.cc.o
  ../include/trans-dsl/sched/concept/TransactionMode.h
  ../include/trans-dsl/sched/trans/SimpleTransactionMode.h
+ ../include/trans-dsl/tsl.h
+ ../src/../../cub/include/cub/base/Config.h
+ ../src/../../cub/include/cub/base/Default.h
+ ../src/../../cub/include/cub/base/Keywords.h
+ ../src/../../cub/include/cub/cub.h
+ ../src/../../cub/include/cub/dci/Role.h
  /Users/darwin/project/cpp/transaction-dsl/src/sched/trans/SimpleTransactionMode.cc
 src/CMakeFiles/trans-dsl.dir/sched/trans/SimpleTransactionScheduler.cc.o
  ../include/trans-dsl/TslStatus.h
@@ -704,17 +750,43 @@ src/CMakeFiles/trans-dsl.dir/sched/trans/TransMutexSchedulerAdapter.cc.o
  ../include/trans-dsl/ext/mutex/concept/TransMutexScheduler.h
  ../include/trans-dsl/ext/mutex/concept/TransMutextId.h
  ../include/trans-dsl/sched/trans/TransMutexSchedulerAdapter.h
+ ../include/trans-dsl/tsl.h
+ ../src/../../cub/include/cub/base/BaseTypes.h
+ ../src/../../cub/include/cub/base/Config.h
+ ../src/../../cub/include/cub/base/Default.h
+ ../src/../../cub/include/cub/base/Keywords.h
+ ../src/../../cub/include/cub/base/Status.h
+ ../src/../../cub/include/cub/cub.h
+ ../src/../../cub/include/cub/dci/Role.h
  /Users/darwin/project/cpp/transaction-dsl/src/sched/trans/TransMutexSchedulerAdapter.cc
 src/CMakeFiles/trans-dsl.dir/sched/trans/TransactionListenerProxy.cc.o
  ../include/trans-dsl/sched/concept/ActionId.h
  ../include/trans-dsl/sched/concept/TransactionListener.h
  ../include/trans-dsl/sched/trans/TransactionListenerProxy.h
+ ../include/trans-dsl/tsl.h
+ ../src/../../cub/include/cub/base/BaseTypes.h
+ ../src/../../cub/include/cub/base/Config.h
+ ../src/../../cub/include/cub/base/Default.h
+ ../src/../../cub/include/cub/base/Keywords.h
+ ../src/../../cub/include/cub/base/Status.h
+ ../src/../../cub/include/cub/cub.h
+ ../src/../../cub/include/cub/dci/Role.h
+ ../src/../../event/include/event/event.h
  /Users/darwin/project/cpp/transaction-dsl/src/sched/trans/TransactionListenerProxy.cc
 src/CMakeFiles/trans-dsl.dir/sched/trans/UserActionListenerAdapter.cc.o
  ../include/trans-dsl/sched/concept/ActionId.h
  ../include/trans-dsl/sched/concept/TransactionListener.h
  ../include/trans-dsl/sched/concept/UserActionListener.h
  ../include/trans-dsl/sched/trans/UserActionListenerAdapter.h
+ ../include/trans-dsl/tsl.h
+ ../src/../../cub/include/cub/base/BaseTypes.h
+ ../src/../../cub/include/cub/base/Config.h
+ ../src/../../cub/include/cub/base/Default.h
+ ../src/../../cub/include/cub/base/Keywords.h
+ ../src/../../cub/include/cub/base/Status.h
+ ../src/../../cub/include/cub/cub.h
+ ../src/../../cub/include/cub/dci/Role.h
+ ../src/../../event/include/event/event.h
  /Users/darwin/project/cpp/transaction-dsl/src/sched/trans/UserActionListenerAdapter.cc
 src/CMakeFiles/trans-dsl.dir/utils/ActionStatus.cc.o
  ../include/trans-dsl/TslStatus.h
@@ -727,6 +799,7 @@ src/CMakeFiles/trans-dsl.dir/utils/ActionStatus.cc.o
 src/CMakeFiles/trans-dsl.dir/utils/AdaptedTimerInfo.cc.o
  ../include/trans-dsl/sched/concept/TimerId.h
  ../include/trans-dsl/sched/concept/TimerInfo.h
+ ../include/trans-dsl/tsl.h
  ../include/trans-dsl/utils/AdaptedTimerInfo.h
  /Users/darwin/project/cpp/transaction-dsl/src/utils/AdaptedTimerInfo.cc
 src/CMakeFiles/trans-dsl.dir/utils/EventHandlerRegistry.cc.o

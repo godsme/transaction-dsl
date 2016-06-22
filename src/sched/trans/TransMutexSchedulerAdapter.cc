@@ -8,8 +8,9 @@
  *
  */ 
 
-#include "trans-dsl/sched/trans/TransMutexSchedulerAdapter.h"
-#include "base/utils/Assertions.h"
+#include <trans-dsl/sched/trans/TransMutexSchedulerAdapter.h>
+
+TSL_NS_BEGIN
 
 //////////////////////////////////////////////////////////////////////////////////
 TransMutexSchedulerAdapter::TransMutexSchedulerAdapter()
@@ -18,9 +19,9 @@ TransMutexSchedulerAdapter::TransMutexSchedulerAdapter()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-Status TransMutexSchedulerAdapter::lock(TransMutexId mutex)
+cub::Status TransMutexSchedulerAdapter::lock(TransMutexId mutex)
 {
-   return (scheduler != 0) ? scheduler->lock(mutex) : SUCCESS;
+   return (scheduler != 0) ? scheduler->lock(mutex) : TSL_SUCCESS;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -37,3 +38,5 @@ void TransMutexSchedulerAdapter::updateMutexScheduler(TransMutexScheduler& sched
 {
    this->scheduler = &scheduler;
 }
+
+TSL_NS_END

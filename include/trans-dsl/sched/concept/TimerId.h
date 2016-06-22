@@ -11,6 +11,12 @@
 #ifndef TIMERID_H_
 #define TIMERID_H_
 
+#include <trans-dsl/tsl.h>
+
+TSL_NS_BEGIN
+
 typedef unsigned short TimerId;
+
+TSL_NS_END
 
 #endif /* TIMERID_H_ */

@@ -5,10 +5,12 @@
  *      Author: arthur
  */
 
-#include "trans-dsl/sched/trans/SimpleTransactionInfo.h"
+#include <trans-dsl/sched/trans/SimpleTransactionInfo.h>
 #include "trans-dsl/sched/concept/RuntimeContext.h"
 #include "trans-dsl/sched/concept/RuntimeContextInfo.h"
 #include "trans-dsl/utils/ActionStatus.h"
+
+TSL_NS_BEGIN
 
 /////////////////////////////////////////////////////////////////
 SimpleTransactionInfo::SimpleTransactionInfo(InstanceId iid)
@@ -29,12 +31,12 @@ void SimpleTransactionInfo::updateInstanceId(InstanceId iid)
 }
 
 /////////////////////////////////////////////////////////////////
-Status SimpleTransactionInfo::getStatus() const
+cub::Status SimpleTransactionInfo::getStatus() const
 {
    RuntimeContext* context = ROLE(RuntimeContextInfo).getRuntimeContext();
    if(context == 0)
    {
-      return SUCCESS;
+      return TSL_SUCCESS;
    }
 
    if(ActionStatus(context->getStatus()).isFailed())
@@ -42,17 +44,20 @@ Status SimpleTransactionInfo::getStatus() const
       return context->getStatus();
    }
 
-   return SUCCESS;
+   return TSL_SUCCESS;
 }
 
 /////////////////////////////////////////////////////////////////
-Unknown* SimpleTransactionInfo::getUserContext() const
+UserContext* SimpleTransactionInfo::getUserContext() const
 {
    return userContext;
 }
 
 /////////////////////////////////////////////////////////////////
-void SimpleTransactionInfo::updateUserContext(Unknown* userContext)
+void SimpleTransactionInfo::updateUserContext(UserContext* userContext)
 {
    this->userContext = userContext;
 }
+
+TSL_NS_END
+

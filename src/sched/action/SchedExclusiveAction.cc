@@ -12,6 +12,10 @@
 #include "trans-dsl/sched/action/SchedExclusiveAction.h"
 #include "trans-dsl/utils/ActionStatus.h"
 
+TSL_NS_BEGIN
+
+using namespace cub;
+
 ///////////////////////////////////////////////////////////////////////////
 SchedExclusiveAction::SchedExclusiveAction()
   : selectedAction(0)
@@ -34,7 +38,7 @@ Status SchedExclusiveAction::exec(TransactionContext& context)
       }
    }
 
-   return actions.isEmpty() ? SUCCESS : CONTINUE;
+   return actions.isEmpty() ? TSL_SUCCESS : TSL_CONTINUE;
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -44,13 +48,13 @@ void SchedExclusiveAction::interruptOthers(TransactionContext& context)
    {
       if(&(*action) != selectedAction)
       {
-         action->kill(context, SUCCESS);
+         action->kill(context, TSL_SUCCESS);
       }
    }
 }
 
 ///////////////////////////////////////////////////////////////////////////
-Status SchedExclusiveAction::selectAction(TransactionContext& context, const Event& event)
+Status SchedExclusiveAction::selectAction(TransactionContext& context, const ev::Event& event)
 {
    LIST_FOREACH(LinkedSchedAction, action, actions)
    {
@@ -64,11 +68,11 @@ Status SchedExclusiveAction::selectAction(TransactionContext& context, const Eve
       }
    }
 
-   return UNKNOWN_EVENT;
+   return TSL_UNKNOWN_EVENT;
 }
 
 ///////////////////////////////////////////////////////////////////////////
-Status SchedExclusiveAction::handleEvent(TransactionContext& context, const Event& event)
+Status SchedExclusiveAction::handleEvent(TransactionContext& context, const ev::Event& event)
 {
    if(selectedAction == 0)
    {
@@ -114,3 +118,5 @@ void SchedExclusiveAction::addAction(LinkedSchedAction& action)
 {
    actions.pushBack(action);
 }
+
+TSL_NS_END

@@ -11,13 +11,15 @@
 #ifndef TIMERINFO_H_
 #define TIMERINFO_H_
 
-#include <base/dci/InterfaceDef.h>
-#include <base/IntTypes.h>
-#include "trans-dsl/sched/concept/TimerId.h"
+#include <trans-dsl/sched/concept/TimerId.h>
 
-DEF_INTERFACE(TimerInfo, 1304241634)
+TSL_NS_BEGIN
+
+DEFINE_ROLE(TimerInfo)
 {
-   ABSTRACT(WORD32 getTimerLen(const TimerId) const);
+   ABSTRACT(cub::U32 getTimerLen(const TimerId) const);
 };
+
+TSL_NS_END
 
 #endif /* TIMINGINFO_H_ */

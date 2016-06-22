@@ -11,13 +11,17 @@
 #include "trans-dsl/utils/RuntimeContextAutoSwitch.h"
 #include "trans-dsl/utils/ActionStatus.h"
 
+TSL_NS_BEGIN
+
+using namespace cub;
+
 ///////////////////////////////////////////////////////////////////////
 __DECL_STATE_INTERFACE(Procedure);
 
 ///////////////////////////////////////////////////////////////////////
 __DEF_STATE_CLASS(Procedure, Idle)
 {
-   OVERRIDE(Status exec(Procedure& __THIS__, TransactionContext& context))
+   OVERRIDE(cub::Status exec(Procedure& __THIS__, TransactionContext& context))
    {
       ActionStatus status = __THIS__.ROLE(SchedAction).exec(context);
       if(status.isWorking())
@@ -32,7 +36,7 @@ __DEF_STATE_CLASS(Procedure, Idle)
 ///////////////////////////////////////////////////////////////////////
 __DEF_BASE_STATE_CLASS(Procedure, WorkingState)
 {
-   OVERRIDE(Status handleEvent(Procedure& __THIS__, TransactionContext& context, const Event& event))
+   OVERRIDE(Status handleEvent(Procedure& __THIS__, TransactionContext& context, const ev::Event& event))
    {
       ActionStatus status = __THIS__.ROLE(SchedAction).handleEvent(context, event);
       if(status.isWorking())
@@ -69,7 +73,7 @@ __DEF_DERIVED_STATE_CLASS(Procedure, Stopping, WorkingState)
 {
    OVERRIDE(Status stop(Procedure&, TransactionContext&, const Status))
    {
-      return CONTINUE;
+      return TSL_CONTINUE;
    }
 };
 
@@ -89,7 +93,7 @@ __DEF_STATE_CLASS(Procedure, Final)
       return __THIS__.__GOTO_STATE(Done);
    }
 
-   OVERRIDE(Status handleEvent(Procedure& __THIS__, TransactionContext& context, const Event& event))
+   OVERRIDE(Status handleEvent(Procedure& __THIS__, TransactionContext& context, const ev::Event& event))
    {
       ActionStatus status = __THIS__.ROLE(FinalAction).handleEvent(context, event);
       if(status.isWorking())
@@ -102,7 +106,7 @@ __DEF_STATE_CLASS(Procedure, Final)
 
    OVERRIDE(Status stop(Procedure&, TransactionContext&, const Status))
    {
-      return CONTINUE;
+      return TSL_CONTINUE;
    }
 
    OVERRIDE(void kill(Procedure& __THIS__, TransactionContext& context, const Status cause))
@@ -152,14 +156,14 @@ Status Procedure::getFinalStatus() const
       return getStatus();
    }
 
-   return SUCCESS;
+   return TSL_SUCCESS;
 }
 
 ///////////////////////////////////////////////////////////////////////
 void Procedure::doKill(FinalAction& action, TransactionContext& context, Status cause)
 {
    action.kill(context, cause);
-   gotoDoneState(context, SUCCESS);
+   gotoDoneState(context, TSL_SUCCESS);
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -182,7 +186,7 @@ Status Procedure::exec(TransactionContext& context)
 }
 
 ///////////////////////////////////////////////////////////////////////
-Status Procedure::handleEvent(TransactionContext& context, const Event& event)
+Status Procedure::handleEvent(TransactionContext& context, const ev::Event& event)
 {
    __AUTO_SWITCH();
    return state->handleEvent(*this, context, event);
@@ -201,3 +205,6 @@ void Procedure::kill(TransactionContext& context, Status cause)
    __AUTO_SWITCH();
    state->kill(*this, context, cause);
 }
+
+TSL_NS_END
+

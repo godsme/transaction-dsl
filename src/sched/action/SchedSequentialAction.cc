@@ -7,8 +7,12 @@
 
 #include "trans-dsl/sched/action/SchedSequentialAction.h"
 
+TSL_NS_BEGIN
+
+using namespace cub;
+
 ///////////////////////////////////////////////////////////////
-SchedSequentialAction::SchedSequentialAction() : current(0), finalStatus(SUCCESS)
+SchedSequentialAction::SchedSequentialAction() : current(0), finalStatus(TSL_SUCCESS)
 {
 }
 
@@ -30,7 +34,7 @@ Status SchedSequentialAction::forward(TransactionContext& context)
       }
    }
 
-   return SUCCESS;
+   return TSL_SUCCESS;
 }
 
 ///////////////////////////////////////////////////////////////
@@ -60,11 +64,11 @@ Status SchedSequentialAction::exec(TransactionContext& context)
 }
 
 ///////////////////////////////////////////////////////////////
-Status SchedSequentialAction::doHandleEvent(TransactionContext& context, const Event& event)
+Status SchedSequentialAction::doHandleEvent(TransactionContext& context, const ev::Event& event)
 {
    if (current == 0)
    {
-      return UNKNOWN_EVENT;
+      return TSL_UNKNOWN_EVENT;
    }
 
    ActionStatus status = current->handleEvent(context, event);
@@ -77,7 +81,7 @@ Status SchedSequentialAction::doHandleEvent(TransactionContext& context, const E
 }
 
 ///////////////////////////////////////////////////////////////
-Status SchedSequentialAction::handleEvent(TransactionContext& context, const Event& event)
+Status SchedSequentialAction::handleEvent(TransactionContext& context, const ev::Event& event)
 {
    return FINAL_STATUS(doHandleEvent(context, event));
 }
@@ -103,7 +107,7 @@ Status SchedSequentialAction::doStop(TransactionContext& context, const Status c
       return status;
    }
 
-   return SUCCESS;
+   return TSL_SUCCESS;
 }
 
 ///////////////////////////////////////////////////////////////
@@ -123,3 +127,5 @@ void SchedSequentialAction::kill(TransactionContext& context, const Status cause
       current = 0;
    }
 }
+
+TSL_NS_END

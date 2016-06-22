@@ -12,21 +12,26 @@
 #define TRANSACTIONINFO_H_
 
 #include <trans-dsl/sched/concept/InstanceId.h>
-#include <base/Status.h>
-#include <base/dci/Role.h>
-#include <base/dci/Unknown.h>
+#include <cub/base/Status.h>
+#include <cub/dci/Role.h>
+
+TSL_NS_BEGIN
+
+struct UserContext;
 
 DEFINE_ROLE(TransactionInfo)
 {
    ABSTRACT(InstanceId getInstanceId() const);
-   ABSTRACT(Status getStatus() const);
-   ABSTRACT(Unknown* getUserContext() const);
+   ABSTRACT(cub::Status getStatus() const);
+   ABSTRACT(UserContext* getUserContext() const);
 
    template <typename ROLE>
    ROLE* toRole() const
    {
-      return unknown_cast<ROLE>(getUserContext());
+      return dynamic_cast<ROLE*>(getUserContext());
    }
 };
+
+TSL_NS_END
 
 #endif /* TRANSACTIONINFO_H_ */

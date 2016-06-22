@@ -6,7 +6,9 @@
  */
 
 
-#include "trans-dsl/sched/trans/SimpleRuntimeContextInfo.h"
+#include <trans-dsl/sched/trans/SimpleRuntimeContextInfo.h>
+
+TSL_NS_BEGIN
 
 SimpleRuntimeContextInfo::SimpleRuntimeContextInfo()
    : runtimeContext(0)
@@ -27,3 +29,5 @@ RuntimeContext* SimpleRuntimeContextInfo::getRuntimeContext() const
 {
    return runtimeContext;
 }
+
+TSL_NS_END

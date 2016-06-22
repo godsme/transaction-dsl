@@ -6,24 +6,33 @@
  */
 
 
-#include "trans-dsl/sched/action/LinkedSchedAction.h"
+#include <trans-dsl/sched/action/LinkedSchedAction.h>
 
-Status LinkedSchedAction::exec(TransactionContext& context)
+TSL_NS_BEGIN
+
+/////////////////////////////////////////////////////////////////////////////////////////
+cub::Status LinkedSchedAction::exec(TransactionContext& context)
 {
    return ROLE(SchedAction).exec(context);
 }
 
-Status LinkedSchedAction::handleEvent(TransactionContext& context, const Event& event)
+/////////////////////////////////////////////////////////////////////////////////////////
+cub::Status LinkedSchedAction::handleEvent(TransactionContext& context, const ev::Event& event)
 {
    return ROLE(SchedAction).handleEvent(context, event);
 }
 
-Status LinkedSchedAction::stop(TransactionContext& context, const Status cause)
+/////////////////////////////////////////////////////////////////////////////////////////
+cub::Status LinkedSchedAction::stop(TransactionContext& context, const cub::Status cause)
 {
    return ROLE(SchedAction).stop(context, cause);
 }
 
-void LinkedSchedAction::kill(TransactionContext& context, const Status cause)
+/////////////////////////////////////////////////////////////////////////////////////////
+void LinkedSchedAction::kill(TransactionContext& context, const cub::Status cause)
 {
    ROLE(SchedAction).kill(context, cause);
 }
+
+TSL_NS_END
+

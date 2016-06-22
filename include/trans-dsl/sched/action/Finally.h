@@ -13,16 +13,20 @@
 
 #include "trans-dsl/sched/concept/FinalAction.h"
 
+TSL_NS_BEGIN
+
 struct SchedAction;
 
 struct Finally : FinalAction
 {
-   OVERRIDE(Status exec(TransactionContext&));
-   OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-   OVERRIDE(void   kill(TransactionContext&, const Status));
+   OVERRIDE(cub::Status exec(TransactionContext&));
+   OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+   OVERRIDE(void   kill(TransactionContext&, const cub::Status));
 
 private:
    USE_ROLE(SchedAction);
 };
+
+TSL_NS_END
 
 #endif /* FINALLY_H_ */

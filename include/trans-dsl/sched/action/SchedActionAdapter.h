@@ -11,20 +11,24 @@
 #ifndef SCHEDACTIONADAPTER_H_
 #define SCHEDACTIONADAPTER_H_
 
-#include "trans-dsl/sched/concept/SchedAction.h"
+#include <trans-dsl/sched/concept/SchedAction.h>
+
+TSL_NS_BEGIN
 
 struct Action;
 
 ///////////////////////////////////////////////////////////////
 struct SchedActionAdapter: SchedAction
 {
-   OVERRIDE(Status exec(TransactionContext&));
-   OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-   OVERRIDE(Status stop(TransactionContext&, const Status));
-   OVERRIDE(void kill(TransactionContext&, const Status));
+   OVERRIDE(cub::Status exec(TransactionContext&));
+   OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+   OVERRIDE(cub::Status stop(TransactionContext&, const cub::Status));
+   OVERRIDE(void kill(TransactionContext&, const cub::Status));
 
 private:
    USE_ROLE(Action);
 };
+
+TSL_NS_END
 
 #endif /* SCHEDACTIONADAPTER_H_ */

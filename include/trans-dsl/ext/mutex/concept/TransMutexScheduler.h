@@ -11,14 +11,18 @@
 #ifndef TRANSMUTEXSCHEDULER_H_
 #define TRANSMUTEXSCHEDULER_H_
 
+#include <cub/base/Status.h>
+#include <cub/dci/Role.h>
 #include <trans-dsl/ext/mutex/concept/TransMutextId.h>
-#include <base/dci/InterfaceDef.h>
-#include <base/Status.h>
 
-DEF_INTERFACE(TransMutexScheduler, 0x08060921)
+TSL_NS_BEGIN
+
+DEFINE_ROLE(TransMutexScheduler)
 {
-   ABSTRACT(Status lock(TransMutexId));
+   ABSTRACT(cub::Status lock(TransMutexId));
    ABSTRACT(void unlock(TransMutexId));
 };
+
+TSL_NS_END
 
 #endif /* TRANSMUTEXSCHEDULER_H_ */

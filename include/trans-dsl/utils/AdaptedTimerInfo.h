@@ -11,18 +11,22 @@
 #ifndef ADAPTEDTIMERINFO_H_
 #define ADAPTEDTIMERINFO_H_
 
-#include "trans-dsl/sched/concept/TimerInfo.h"
+#include <trans-dsl/sched/concept/TimerInfo.h>
+
+TSL_NS_BEGIN
 
 struct AdaptedTimerInfo : TimerInfo
 {
    AdaptedTimerInfo();
 
-   OVERRIDE(WORD32 getTimerLen(const TimerId) const);
+   OVERRIDE(cub::U32 getTimerLen(const TimerId) const);
 
    void setTimerInfo(const TimerInfo* timerInfo);
 
 private:
    const TimerInfo* timerInfo;
 };
+
+TSL_NS_END
 
 #endif /* ADAPTEDTIMERINFO_H_ */

@@ -12,7 +12,6 @@
 #define ACTIONPATH_H_
 
 #include <base/dci/ListBasedRole.h>
-#include <base/Status.h>
 
 struct TransactionInfo;
 struct SchedAction;

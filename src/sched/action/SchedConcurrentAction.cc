@@ -11,6 +11,10 @@
 #include "trans-dsl/sched/action/SchedConcurrentAction.h"
 #include "trans-dsl/utils/RuntimeContextAutoSwitch.h"
 
+TSL_NS_BEGIN
+
+using namespace cub;
+
 ///////////////////////////////////////////////////////////////////////
 SchedConcurrentAction::SchedConcurrentAction()
   : stopping(false)
@@ -26,7 +30,7 @@ bool SchedConcurrentAction::hasWorkingThreads() const
 ////////////////////////////////////////////////////////////////////
 Status SchedConcurrentAction::getFinalStatus() const
 {
-   return hasWorkingThreads() ? CONTINUE : objectStatus;
+   return hasWorkingThreads() ? TSL_CONTINUE : objectStatus;
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -81,7 +85,7 @@ Status SchedConcurrentAction::doExec(TransactionContext& context)
       }
    }
 
-   return SUCCESS;
+   return TSL_SUCCESS;
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -98,7 +102,7 @@ void SchedConcurrentAction::doStop(TransactionContext& context, const Status cau
 }
 
 ///////////////////////////////////////////////////////////////////////
-Status SchedConcurrentAction::doHandleEvent(TransactionContext& context, const Event& event)
+Status SchedConcurrentAction::doHandleEvent(TransactionContext& context, const ev::Event& event)
 {
    FOREACH_THREAD(thread)
    {
@@ -109,7 +113,7 @@ Status SchedConcurrentAction::doHandleEvent(TransactionContext& context, const E
       }
    }
 
-   return UNKNOWN_EVENT;
+   return TSL_UNKNOWN_EVENT;
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -132,7 +136,7 @@ Status SchedConcurrentAction::exec(TransactionContext& context)
 }
 
 ///////////////////////////////////////////////////////////////////////
-Status SchedConcurrentAction::handleEvent(TransactionContext& context, const Event& event)
+Status SchedConcurrentAction::handleEvent(TransactionContext& context, const ev::Event& event)
 {
    __AUTO_SWITCH();
    return process(doHandleEvent(context, event), context);
@@ -164,3 +168,6 @@ void SchedConcurrentAction::addThread(LinkedActionThread& thread)
 {
    threads.pushBack(thread);
 }
+
+TSL_NS_END
+

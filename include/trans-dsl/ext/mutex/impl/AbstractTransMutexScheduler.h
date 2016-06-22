@@ -11,8 +11,9 @@
 #ifndef ABSTRACTTRANSMUTEXSCHEDULER_H_
 #define ABSTRACTTRANSMUTEXSCHEDULER_H_
 
-#include "trans-dsl/ext/mutex/concept/TransMutexScheduler.h"
-#include <base/dci/Role.h>
+#include <trans-dsl/ext/mutex/concept/TransMutexScheduler.h>
+
+TSL_NS_BEGIN
 
 struct TransMutexAvailNotifier;
 
@@ -20,14 +21,16 @@ struct AbstractTransMutexScheduler : TransMutexScheduler
 {
    AbstractTransMutexScheduler();
 
-   OVERRIDE(Status lock(TransMutexId));
+   OVERRIDE(cub::Status lock(TransMutexId));
    OVERRIDE(void unlock(TransMutexId));
 
 private:
-   BYTE lockBitmap;
+   cub::U8 lockBitmap;
 
 private:
    USE_ROLE(TransMutexAvailNotifier);
 };
+
+TSL_NS_END
 
 #endif /* ABSTRACTTRANSMUTEXSCHEDULER_H_ */

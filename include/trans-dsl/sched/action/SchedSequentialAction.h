@@ -11,35 +11,39 @@
 #ifndef SCHEDSEQUENTIALACTION_H_
 #define SCHEDSEQUENTIALACTION_H_
 
+#include <cub/repo/list/List.h>
 #include "trans-dsl/sched/concept/SchedAction.h"
 #include "trans-dsl/sched/action/LinkedSchedAction.h"
 #include "trans-dsl/utils/ActionStatus.h"
-#include <base/utils/List.h>
+
+TSL_NS_BEGIN
 
 struct SchedSequentialAction: SchedAction
 {
    SchedSequentialAction();
 
-   OVERRIDE(Status exec(TransactionContext&));
-   OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-   OVERRIDE(Status stop(TransactionContext&, const Status));
-   OVERRIDE(void kill(TransactionContext&, const Status));
+   OVERRIDE(cub::Status exec(TransactionContext&));
+   OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+   OVERRIDE(cub::Status stop(TransactionContext&, const cub::Status));
+   OVERRIDE(void kill(TransactionContext&, const cub::Status));
 
    void pushBackAction(LinkedSchedAction&);
 
 private:
-   Status forward(TransactionContext&);
-   Status doHandleEvent(TransactionContext&, const Event&);
-   Status getFinalStatus(const ActionStatus, TransactionContext&);
-   Status doStop(TransactionContext& context, const Status cause);
+   cub::Status forward(TransactionContext&);
+   cub::Status doHandleEvent(TransactionContext&, const ev::Event&);
+   cub::Status getFinalStatus(const ActionStatus, TransactionContext&);
+   cub::Status doStop(TransactionContext& context, const cub::Status cause);
    void moveForward();
 
 private:
-   typedef List<LinkedSchedAction> Actions;
+   typedef cub::List<LinkedSchedAction> Actions;
 
    SchedAction* current;
    Actions actions;
-   Status finalStatus;
+   cub::Status finalStatus;
 };
+
+TSL_NS_END
 
 #endif /* SCHEDSEQUENTIALACTION_H_ */

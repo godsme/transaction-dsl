@@ -6,19 +6,26 @@
  */
 
 
-#include "trans-dsl/utils/AdaptedTimerInfo.h"
+#include <trans-dsl/utils/AdaptedTimerInfo.h>
 
+TSL_NS_BEGIN
+
+////////////////////////////////////////////////////////////////
 AdaptedTimerInfo::AdaptedTimerInfo()
    : timerInfo(0)
 {
 }
 
-WORD32 AdaptedTimerInfo::getTimerLen(const TimerId id) const
+////////////////////////////////////////////////////////////////
+cub::U32 AdaptedTimerInfo::getTimerLen(const TimerId id) const
 {
    return timerInfo == 0 ? 0 : timerInfo->getTimerLen(id);
 }
 
+////////////////////////////////////////////////////////////////
 void AdaptedTimerInfo::setTimerInfo(const TimerInfo* timerInfo)
 {
    this->timerInfo = timerInfo;
 }
+
+TSL_NS_END

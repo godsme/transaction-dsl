@@ -5,19 +5,23 @@
  *      Author: arthur
  */
 
-#include "trans-dsl/sched/action/NilFinalAction.h"
-#include "trans-dsl/sched/concept/TransactionContext.h"
+#include <trans-dsl/sched/action/NilFinalAction.h>
+#include <trans-dsl/sched/concept/TransactionContext.h>
 
-Status NilFinalAction::exec(TransactionContext&)
+TSL_NS_BEGIN
+
+cub::Status NilFinalAction::exec(TransactionContext&)
 {
-   return SUCCESS;
+   return TSL_SUCCESS;
 }
 
-Status NilFinalAction::handleEvent(TransactionContext&, const Event&)
+cub::Status NilFinalAction::handleEvent(TransactionContext&, const ev::Event&)
 {
-   return FATAL_BUG;
+   return TSL_FATAL_BUG;
 }
 
-void NilFinalAction::kill(TransactionContext&, const Status)
+void NilFinalAction::kill(TransactionContext&, const cub::Status)
 {
 }
+
+TSL_NS_END

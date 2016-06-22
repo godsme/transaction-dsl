@@ -13,11 +13,15 @@
 
 #include "trans-dsl/sched/concept/FinalAction.h"
 
+TSL_NS_BEGIN
+
 struct NilFinalAction : FinalAction
 {
-   OVERRIDE(Status exec(TransactionContext&));
-   OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-   OVERRIDE(void   kill(TransactionContext&, const Status));
+   OVERRIDE(cub::Status exec(TransactionContext&));
+   OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+   OVERRIDE(void   kill(TransactionContext&, const cub::Status));
 };
+
+TSL_NS_END
 
 #endif /* NILFINALACTION_H_ */

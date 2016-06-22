@@ -12,9 +12,11 @@
 #define TRANSMUTEXAVAILMSG_H_
 
 #include <trans-dsl/ext/mutex/concept/TransMutextId.h>
-#include "event/concept/EventId.h"
+#include <event/concept/EventId.h>
 
-const EventId EV_MUTEX_UNLOCK = 0xFFFD;
+TSL_NS_BEGIN
+
+const ev::EventId EV_MUTEX_UNLOCK = 0xFFFD;
 
 struct TransMutexAvailMsg
 {
@@ -30,5 +32,8 @@ struct TransMutexAvailMsg
 private:
    TransMutexId id;
 };
+
+TSL_NS_END
+
 
 #endif /* TRANSMUTEXAVAILMSG_H_ */

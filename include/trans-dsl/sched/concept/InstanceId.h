@@ -11,6 +11,12 @@
 #ifndef INSTANCEID_H_
 #define INSTANCEID_H_
 
+#include <trans-dsl/tsl.h>
+
+TSL_NS_BEGIN
+
 typedef unsigned long InstanceId;
+
+TSL_NS_END
 
 #endif /* INSTANCEID_H_ */

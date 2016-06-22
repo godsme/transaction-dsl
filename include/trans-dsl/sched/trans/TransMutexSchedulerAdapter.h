@@ -11,13 +11,15 @@
 #ifndef TRANSMUTEXSCHEDULERADAPTER_H_
 #define TRANSMUTEXSCHEDULERADAPTER_H_
 
-#include "trans-dsl/ext/mutex/concept/TransMutexScheduler.h"
+#include <trans-dsl/ext/mutex/concept/TransMutexScheduler.h>
+
+TSL_NS_BEGIN
 
 struct TransMutexSchedulerAdapter : TransMutexScheduler
 {
    TransMutexSchedulerAdapter();
 
-   OVERRIDE(Status lock(TransMutexId));
+   OVERRIDE(cub::Status lock(TransMutexId));
    OVERRIDE(void unlock(TransMutexId));
 
    void updateMutexScheduler(TransMutexScheduler&);
@@ -25,5 +27,7 @@ struct TransMutexSchedulerAdapter : TransMutexScheduler
 private:
    TransMutexScheduler* scheduler;
 };
+
+TSL_NS_END
 
 #endif /* TRANSMUTEXSCHEDULERADAPTER_H_ */

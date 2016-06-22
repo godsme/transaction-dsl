@@ -8,15 +8,17 @@
  *
  */ 
 
-#include "trans-dsl/ext/mutex/action/SchedLockAction.h"
-#include "trans-dsl/ext/mutex/def/TransMutexAvailMsg.h"
-#include "trans-dsl/ext/mutex/concept/TransMutexScheduler.h"
-#include "trans-dsl/sched/concept/TransactionContext.h"
-#include "trans-dsl/utils/ActionStatus.h"
+#include <cub/base/Assertions.h>
+#include <trans-dsl/ext/mutex/action/SchedLockAction.h>
+#include <trans-dsl/ext/mutex/def/TransMutexAvailMsg.h>
+#include <trans-dsl/ext/mutex/concept/TransMutexScheduler.h>
+#include <trans-dsl/sched/concept/TransactionContext.h>
+#include <trans-dsl/utils/ActionStatus.h>
+#include <event/concept/Event.h>
 
-#include "base/dci/Unknown.h"
-#include "base/utils/Assertions.h"
-#include "event/concept/Event.h"
+TSL_NS_BEGIN
+
+using namespace cub;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 SchedLockAction::SchedLockAction() : waiting(true)
@@ -26,8 +28,8 @@ SchedLockAction::SchedLockAction() : waiting(true)
 ///////////////////////////////////////////////////////////////////////////////////////////
 Status SchedLockAction::lock(TransactionContext& context)
 {
-   TransMutexScheduler* mutex = unknown_cast<TransMutexScheduler>(&context);
-   DCM_ASSERT_VALID_PTR(mutex);
+   TransMutexScheduler* mutex = dynamic_cast<TransMutexScheduler*>(&context);
+   CUB_ASSERT_VALID_PTR(mutex);
 
    ActionStatus status = mutex->lock(getMutexId());
    if(!status.isDone())
@@ -37,19 +39,19 @@ Status SchedLockAction::lock(TransactionContext& context)
 
    waiting = false;
 
-   return SUCCESS;
+   return TSL_SUCCESS;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 Status SchedLockAction::unlock(TransactionContext& context)
 {
-   TransMutexScheduler* mutex = unknown_cast<TransMutexScheduler>(&context);
-   DCM_ASSERT_VALID_PTR(mutex);
+   TransMutexScheduler* mutex = dynamic_cast<TransMutexScheduler*>(&context);
+   CUB_ASSERT_VALID_PTR(mutex);
 
    mutex->unlock(getMutexId());
    waiting = true;
 
-   return SUCCESS;
+   return CUB_SUCCESS;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -57,7 +59,7 @@ Status SchedLockAction::final(Status result, TransactionContext& context)
 {
    if(!ActionStatus(result).isWorking())
    {
-      DCM_ASSERT_SUCC_CALL(unlock(context));
+      CUB_ASSERT_SUCC_CALL(unlock(context));
    }
 
    return result;
@@ -79,12 +81,12 @@ Status SchedLockAction::exec(TransactionContext& context)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-Status SchedLockAction::tryExec(TransactionContext& context, const Event& event)
+Status SchedLockAction::tryExec(TransactionContext& context, const ev::Event& event)
 {
    if(event.matches(EV_MUTEX_UNLOCK))
    {
       TransMutexAvailMsg* msg = (TransMutexAvailMsg*)event.getMsg();
-      DCM_ASSERT_VALID_PTR(msg);
+      CUB_ASSERT_VALID_PTR(msg);
 
       if(msg->matches(getMutexId()))
       {
@@ -93,11 +95,11 @@ Status SchedLockAction::tryExec(TransactionContext& context, const Event& event)
       }
    }
 
-   return UNKNOWN_EVENT;
+   return TSL_UNKNOWN_EVENT;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-Status SchedLockAction::handleEvent(TransactionContext& context, const Event& event)
+Status SchedLockAction::handleEvent(TransactionContext& context, const ev::Event& event)
 {
    return waiting ? tryExec(context, event) : __FINAL(handleEvent(context, event));
 }
@@ -118,3 +120,6 @@ void   SchedLockAction::kill(TransactionContext& context, Status cause)
    ROLE(SchedAction).kill(context, cause);
    unlock(context);
 }
+
+TSL_NS_END
+

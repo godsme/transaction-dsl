@@ -11,14 +11,19 @@
 #ifndef RUNTIMECONTEXTINFO_H_
 #define RUNTIMECONTEXTINFO_H_
 
-#include <base/dci/InterfaceDef.h>
+#include <cub/dci/Role.h>
+#include <trans-dsl/tsl.h>
+
+TSL_NS_BEGIN
 
 struct RuntimeContext;
 
-DEF_INTERFACE(RuntimeContextInfo, 304231933)
+DEFINE_ROLE(RuntimeContextInfo)
 {
    ABSTRACT(void setRuntimeContext(RuntimeContext&));
    ABSTRACT(RuntimeContext* getRuntimeContext() const);
 };
+
+TSL_NS_END
 
 #endif /* RUNTIMECONTEXTINFO_H_ */

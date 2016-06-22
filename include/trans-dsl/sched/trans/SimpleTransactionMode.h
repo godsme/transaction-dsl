@@ -11,7 +11,9 @@
 #ifndef SIMPLETRANSACTIONMODE_H_
 #define SIMPLETRANSACTIONMODE_H_
 
-#include "trans-dsl/sched/concept/TransactionMode.h"
+#include <trans-dsl/sched/concept/TransactionMode.h>
+
+TSL_NS_BEGIN
 
 struct SimpleTransactionMode : TransactionMode
 {
@@ -26,5 +28,7 @@ protected:
 private:
    bool safeMode;
 };
+
+TSL_NS_END
 
 #endif /* SIMPLETRANSACTIONMODE_H_ */

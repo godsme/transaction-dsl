@@ -11,12 +11,16 @@
 #ifndef TRANSMUTEXAVAILNOTIFIER_H_
 #define TRANSMUTEXAVAILNOTIFIER_H_
 
-#include <base/dci/Role.h>
+#include <cub/dci/Role.h>
 #include <trans-dsl/ext/mutex/concept/TransMutextId.h>
+
+TSL_NS_BEGIN
 
 DEFINE_ROLE(TransMutexAvailNotifier)
 {
    ABSTRACT(void notifyMutexAvail(TransMutexId));
 };
+
+TSL_NS_END
 
 #endif /* TRANSMUTEXAVAILNOTIFIER_H_ */

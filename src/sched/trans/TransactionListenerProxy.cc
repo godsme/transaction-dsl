@@ -8,7 +8,9 @@
  *
  */ 
 
-#include "trans-dsl/sched/trans/TransactionListenerProxy.h"
+#include <trans-dsl/sched/trans/TransactionListenerProxy.h>
+
+TSL_NS_BEGIN
 
 namespace
 {
@@ -34,17 +36,17 @@ void TransactionListenerProxy::onActionStarted(const ActionId id)
    listener->onActionStarted(id);
 }
 
-void TransactionListenerProxy::onActionEventConsumed(const ActionId id, const Event& event)
+void TransactionListenerProxy::onActionEventConsumed(const ActionId id, const ev::Event& event)
 {
    listener->onActionEventConsumed(id, event);
 }
 
-void TransactionListenerProxy::onActionDone(const ActionId id, const Status result)
+void TransactionListenerProxy::onActionDone(const ActionId id, const cub::Status result)
 {
    listener->onActionDone(id, result);
 }
 
-void TransactionListenerProxy::onActionStartStopping(const ActionId id, const Status cause)
+void TransactionListenerProxy::onActionStartStopping(const ActionId id, const cub::Status cause)
 {
    listener->onActionStartStopping(id, cause);
 }
@@ -54,17 +56,17 @@ void TransactionListenerProxy::onActionStoppingStarted(const ActionId id)
    listener->onActionStoppingStarted(id);
 }
 
-void TransactionListenerProxy::onStoppingEventConsumed(const ActionId id, const Event& event)
+void TransactionListenerProxy::onStoppingEventConsumed(const ActionId id, const ev::Event& event)
 {
    listener->onStoppingEventConsumed(id, event);
 }
 
-void TransactionListenerProxy::onActionStopped(const ActionId id, const Status result)
+void TransactionListenerProxy::onActionStopped(const ActionId id, const cub::Status result)
 {
    listener->onActionStopped(id, result);
 }
 
-void TransactionListenerProxy::onActionKilled(const ActionId id, const Status cause)
+void TransactionListenerProxy::onActionKilled(const ActionId id, const cub::Status cause)
 {
    listener->onActionKilled(id, cause);
 }
@@ -73,3 +75,6 @@ void TransactionListenerProxy::updateTransactionListener(TransactionListener& li
 {
    this->listener = &listener;
 }
+
+TSL_NS_END
+

@@ -14,21 +14,23 @@
 #include "trans-dsl/sched/concept/SchedAction.h"
 #include "trans-dsl/utils/ActionStatus.h"
 
+TSL_NS_BEGIN
+
 struct SchedLoopAction : SchedAction
 {
    SchedLoopAction();
 
-   OVERRIDE(Status exec(TransactionContext&));
-   OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-   OVERRIDE(Status stop(TransactionContext&, const Status));
-   OVERRIDE(void kill(TransactionContext&, const Status));
+   OVERRIDE(cub::Status exec(TransactionContext&));
+   OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+   OVERRIDE(cub::Status stop(TransactionContext&, const cub::Status));
+   OVERRIDE(void kill(TransactionContext&, const cub::Status));
 
 private:
-   Status doRestart(TransactionContext&);
-   Status restart(TransactionContext&);
-   Status doHandleEvent(TransactionContext&, const Event&);
-   Status getFinalStatus(const ActionStatus status);
-   Status doExec(TransactionContext& context);
+   cub::Status doRestart(TransactionContext&);
+   cub::Status restart(TransactionContext&);
+   cub::Status doHandleEvent(TransactionContext&, const ev::Event&);
+   cub::Status getFinalStatus(const ActionStatus status);
+   cub::Status doExec(TransactionContext& context);
 
 private:
    enum
@@ -38,7 +40,7 @@ private:
       STOPPED
    } state;
 
-   Status stopCause;
+   cub::Status stopCause;
 
 private:
    ABSTRACT(bool shouldExecute(TransactionContext&));
@@ -49,12 +51,14 @@ private:
 
 struct LoopCondCheckAction: FinalAction
 {
-   OVERRIDE(Status exec(TransactionContext&));
-   OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-   OVERRIDE(void kill(TransactionContext&, const Status));
+   OVERRIDE(cub::Status exec(TransactionContext&));
+   OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+   OVERRIDE(void kill(TransactionContext&, const cub::Status));
 
 private:
    ABSTRACT(bool shouldExecute(TransactionContext&) const);
 };
+
+TSL_NS_END
 
 #endif /* SCHEDLOOPACTION_H_ */

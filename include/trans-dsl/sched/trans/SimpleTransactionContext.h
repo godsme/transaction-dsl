@@ -11,15 +11,15 @@
 #ifndef SIMPLETRANSACTIONCONTEXT_H_
 #define SIMPLETRANSACTIONCONTEXT_H_
 
-#include "trans-dsl/sched/trans/SimpleTransactionInfo.h"
-#include "trans-dsl/sched/trans/SimpleRuntimeContextInfo.h"
-#include "trans-dsl/utils/AdaptedTimerInfo.h"
-#include "trans-dsl/sched/trans/TransactionListenerProxy.h"
-#include "trans-dsl/sched/trans/SimpleTransactionMode.h"
-#include "trans-dsl/sched/concept/TransactionContext.h"
-#include "trans-dsl/sched/trans/TransMutexSchedulerAdapter.h"
+#include <trans-dsl/sched/trans/SimpleTransactionInfo.h>
+#include <trans-dsl/sched/trans/SimpleRuntimeContextInfo.h>
+#include <trans-dsl/utils/AdaptedTimerInfo.h>
+#include <trans-dsl/sched/trans/TransactionListenerProxy.h>
+#include <trans-dsl/sched/trans/SimpleTransactionMode.h>
+#include <trans-dsl/sched/concept/TransactionContext.h>
+#include <trans-dsl/sched/trans/TransMutexSchedulerAdapter.h>
 
-#include <base/dci/InterfaceDef.h>
+TSL_NS_BEGIN
 
 struct SimpleTransactionContext
          : protected SimpleTransactionInfo
@@ -40,13 +40,8 @@ private:
 
 private:
    IMPL_ROLE(RuntimeContextInfo);
-
-protected:
-   BEGIN_INTERFACE_TABLE()
-      HAS_INTERFACE(RuntimeContextInfo)
-      HAS_INTERFACE(TimerInfo)
-      HAS_INTERFACE(TransMutexScheduler)
-   END_INTERFACE_TABLE()
 };
+
+TSL_NS_END
 
 #endif /* SIMPLETRANSACTIONCONTEXT_H_ */

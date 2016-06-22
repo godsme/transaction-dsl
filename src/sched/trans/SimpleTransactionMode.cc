@@ -8,7 +8,9 @@
  *
  */ 
 
-#include "trans-dsl/sched/trans/SimpleTransactionMode.h"
+#include <trans-dsl/sched/trans/SimpleTransactionMode.h>
+
+TSL_NS_BEGIN
 
 /////////////////////////////////////////////////////////////////////
 SimpleTransactionMode::SimpleTransactionMode()
@@ -32,3 +34,6 @@ bool SimpleTransactionMode::inSafeMode() const
 {
    return safeMode;
 }
+
+TSL_NS_END
+

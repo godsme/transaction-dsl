@@ -11,12 +11,17 @@
 #ifndef TRANSACTIONMODE_H_
 #define TRANSACTIONMODE_H_
 
-#include <base/dci/Role.h>
+#include <cub/dci/Role.h>
+#include <trans-dsl/tsl.h>
+
+TSL_NS_BEGIN
 
 DEFINE_ROLE(TransactionMode)
 {
    ABSTRACT(void enterSafeMode());
    ABSTRACT(void leaveSafeMode());
 };
+
+TSL_NS_END
 
 #endif /* TRANSACTIONMODE_H_ */

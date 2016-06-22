@@ -12,26 +12,30 @@
 #include "trans-dsl/sched/concept/TransactionContext.h"
 #include "trans-dsl/sched/concept/TransactionInfo.h"
 
+TSL_NS_BEGIN
+
+using namespace cub;
+
 ///////////////////////////////////////////////////////////
-SchedLoopAction::SchedLoopAction() : state(IDLE), stopCause(SUCCESS)
+SchedLoopAction::SchedLoopAction() : state(IDLE), stopCause(TSL_SUCCESS)
 {
 }
 
 ///////////////////////////////////////////////////////////
 Status SchedLoopAction::restart(TransactionContext& context)
 {
-   if(state == STOPPED) return RESTART_REQUIRED;
+   if(state == STOPPED) return TSL_RESTART_REQUIRED;
 
    while(1)
    {
       ActionStatus status = doRestart(context);
-      if(status != RESTART_REQUIRED)
+      if(status != TSL_RESTART_REQUIRED)
       {
          return status;
       }
    }
 
-   return SUCCESS;
+   return TSL_SUCCESS;
 }
 
 ///////////////////////////////////////////////////////////
@@ -42,15 +46,15 @@ Status SchedLoopAction::doExec(TransactionContext& context)
       return restart(context);
    }
 
-   return SUCCESS;
+   return TSL_SUCCESS;
 }
 
 ///////////////////////////////////////////////////////////
 Status SchedLoopAction::getFinalStatus(const ActionStatus status)
 {
-   if(status == RESTART_REQUIRED)
+   if(status == TSL_RESTART_REQUIRED)
    {
-      return state == STOPPED ? stopCause : FATAL_BUG;
+      return state == STOPPED ? stopCause : TSL_FATAL_BUG;
    }
 
    if(!status.isWorking())
@@ -80,10 +84,10 @@ Status SchedLoopAction::doRestart(TransactionContext& context)
 }
 
 ///////////////////////////////////////////////////////////
-Status SchedLoopAction::doHandleEvent(TransactionContext& context, const Event& event)
+Status SchedLoopAction::doHandleEvent(TransactionContext& context, const ev::Event& event)
 {
    Status status = ROLE(SchedAction).handleEvent(context, event);
-   if(status == RESTART_REQUIRED)
+   if(status == TSL_RESTART_REQUIRED)
    {
       return restart(context);
    }
@@ -92,7 +96,7 @@ Status SchedLoopAction::doHandleEvent(TransactionContext& context, const Event& 
 }
 
 ///////////////////////////////////////////////////////////
-Status SchedLoopAction::handleEvent(TransactionContext& context, const Event& event)
+Status SchedLoopAction::handleEvent(TransactionContext& context, const ev::Event& event)
 {
    return getFinalStatus(doHandleEvent(context, event));
 }
@@ -108,7 +112,7 @@ Status SchedLoopAction::stop(TransactionContext& context, const Status cause)
       return getFinalStatus(ROLE(SchedAction).stop(context, cause));
    }
 
-   return SUCCESS;
+   return TSL_SUCCESS;
 }
 
 ///////////////////////////////////////////////////////////
@@ -126,20 +130,22 @@ Status LoopCondCheckAction::exec(TransactionContext& context)
 {
    if(shouldExecute(context))
    {
-      return RESTART_REQUIRED;
+      return TSL_RESTART_REQUIRED;
    }
 
    return context.getTransactionInfo().getStatus();
 }
 
 ///////////////////////////////////////////////////////////
-Status LoopCondCheckAction::handleEvent(TransactionContext&, const Event&)
+Status LoopCondCheckAction::handleEvent(TransactionContext&, const ev::Event&)
 {
-   return UNKNOWN_EVENT;
+   return TSL_UNKNOWN_EVENT;
 }
 
 ///////////////////////////////////////////////////////////
 void LoopCondCheckAction::kill(TransactionContext&, const Status)
 {
 }
+
+TSL_NS_END
 

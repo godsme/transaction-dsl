@@ -11,15 +11,19 @@
 #ifndef LINKEDACTIONTHREAD_H_
 #define LINKEDACTIONTHREAD_H_
 
-#include "trans-dsl/sched/action/ActionThread.h"
-#include <base/utils/ListElem.h>
+#include <cub/repo/list/ListElem.h>
+#include <trans-dsl/sched/action/ActionThread.h>
+
+TSL_NS_BEGIN
 
 struct LinkedActionThread
          : ActionThread
-         , ListElem<LinkedActionThread>
+         , cub::ListElem<LinkedActionThread>
 {
 private:
    USE_ROLE(SchedAction);
 };
+
+TSL_NS_END
 
 #endif /* LINKEDACTIONTHREAD_H_ */

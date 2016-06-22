@@ -8,7 +8,9 @@
  *
  */ 
 
-#include "trans-dsl/sched/trans/SimpleTransactionContext.h"
+#include <trans-dsl/sched/trans/SimpleTransactionContext.h>
+
+TSL_NS_BEGIN
 
 SimpleTransactionContext::SimpleTransactionContext(InstanceId iid)
   : SimpleTransactionInfo(iid)
@@ -21,3 +23,6 @@ SimpleTransactionContext::SimpleTransactionContext(RuntimeContext& runtimeContex
 {
 
 }
+
+TSL_NS_END
+

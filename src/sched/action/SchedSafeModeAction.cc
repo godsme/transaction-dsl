@@ -13,6 +13,10 @@
 #include "trans-dsl/sched/concept/TransactionContext.h"
 #include "trans-dsl/sched/concept/TransactionMode.h"
 
+TSL_NS_BEGIN
+
+using namespace cub;
+
 ///////////////////////////////////////////////////////////////////////////////////
 Status SchedSafeModeAction::final(TransactionContext& context, Status status)
 {
@@ -36,7 +40,7 @@ Status SchedSafeModeAction::exec(TransactionContext& context)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
-Status SchedSafeModeAction::handleEvent(TransactionContext& context, const Event& event)
+Status SchedSafeModeAction::handleEvent(TransactionContext& context, const ev::Event& event)
 {
    return FINAL(handleEvent(context, event));
 }
@@ -53,3 +57,5 @@ void SchedSafeModeAction::kill(TransactionContext& context, const Status cause)
    ROLE(SchedAction).kill(context, cause);
    context.getTransactionMode().leaveSafeMode();
 }
+
+TSL_NS_END

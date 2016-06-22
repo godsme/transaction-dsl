@@ -15,40 +15,44 @@
 #include "trans-dsl/sched/action/LinkedActionThread.h"
 #include "trans-dsl/utils/SimpleRuntimeContext.h"
 #include "trans-dsl/utils/ActionStatus.h"
-#include <base/utils/List.h>
+#include <cub/repo/list/List.h>
+
+TSL_NS_BEGIN
 
 struct SchedConcurrentAction : private SimpleRuntimeContext, SchedAction
 {
    SchedConcurrentAction();
 
-   OVERRIDE(Status exec(TransactionContext&));
-   OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-   OVERRIDE(Status stop(TransactionContext&, const Status));
-   OVERRIDE(void kill(TransactionContext&, const Status));
+   OVERRIDE(cub::Status exec(TransactionContext&));
+   OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+   OVERRIDE(cub::Status stop(TransactionContext&, const cub::Status));
+   OVERRIDE(void kill(TransactionContext&, const cub::Status));
 
    void addThread(LinkedActionThread&);
 
 private:
-   Status doExec(TransactionContext& context);
-   Status doHandleEvent(TransactionContext&, const Event&);
-   Status process(const ActionStatus status,
+   cub::Status doExec(TransactionContext& context);
+   cub::Status doHandleEvent(TransactionContext&, const ev::Event&);
+   cub::Status process(const ActionStatus status,
             TransactionContext& context);
-   Status getFinalStatus() const;
+   cub::Status getFinalStatus() const;
    bool hasWorkingThreads() const;
-   void doStop(TransactionContext& context, const Status cause);
+   void doStop(TransactionContext& context, const cub::Status cause);
 
 private:
-   typedef List<LinkedActionThread> Threads;
+   typedef cub::List<LinkedActionThread> Threads;
    typedef Threads::Iterator Thread;
 
    struct AutoSwitch;
 
 private:
-   Status doneCheck(const ActionStatus status, Thread& thread);
+   cub::Status doneCheck(const ActionStatus status, Thread& thread);
 
 private:
    Threads threads;
    bool stopping;
 };
+
+TSL_NS_END
 
 #endif /* SCHEDCONCURRENTACTION_H_ */

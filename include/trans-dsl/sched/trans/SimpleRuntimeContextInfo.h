@@ -11,7 +11,9 @@
 #ifndef SIMPLERUNTIMECONTEXTINFO_H_
 #define SIMPLERUNTIMECONTEXTINFO_H_
 
-#include "trans-dsl/sched/concept/RuntimeContextInfo.h"
+#include <trans-dsl/sched/concept/RuntimeContextInfo.h>
+
+TSL_NS_BEGIN
 
 struct SimpleRuntimeContextInfo : RuntimeContextInfo
 {
@@ -24,5 +26,7 @@ struct SimpleRuntimeContextInfo : RuntimeContextInfo
 private:
    RuntimeContext* runtimeContext;
 };
+
+TSL_NS_END
 
 #endif /* SIMPLERUNTIMECONTEXTINFO_H_ */

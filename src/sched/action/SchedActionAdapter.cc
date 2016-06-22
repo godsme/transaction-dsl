@@ -6,24 +6,26 @@
  */
 
 
-#include "trans-dsl/sched/action/SchedActionAdapter.h"
-#include "trans-dsl/sched/concept/TransactionContext.h"
-#include "trans-dsl/action/Action.h"
+#include <trans-dsl/sched/action/SchedActionAdapter.h>
+#include <trans-dsl/sched/concept/TransactionContext.h>
+#include <trans-dsl/action/Action.h>
+
+TSL_NS_BEGIN
 
 ////////////////////////////////////////////////////////////////
-Status SchedActionAdapter::exec(TransactionContext& context)
+cub::Status SchedActionAdapter::exec(TransactionContext& context)
 {
    return ROLE(Action).exec(context.ROLE(TransactionInfo));
 }
 
 ////////////////////////////////////////////////////////////////
-Status SchedActionAdapter::handleEvent(TransactionContext& context, const Event& event)
+cub::Status SchedActionAdapter::handleEvent(TransactionContext& context, const ev::Event& event)
 {
    return ROLE(Action).handleEvent(context.ROLE(TransactionInfo), event);
 }
 
 ////////////////////////////////////////////////////////////////
-Status SchedActionAdapter::stop(TransactionContext& context, const Status cause)
+cub::Status SchedActionAdapter::stop(TransactionContext& context, const cub::Status cause)
 {
    ROLE(Action).kill(context.ROLE(TransactionInfo), cause);
 
@@ -31,7 +33,10 @@ Status SchedActionAdapter::stop(TransactionContext& context, const Status cause)
 }
 
 ////////////////////////////////////////////////////////////////
-void SchedActionAdapter::kill(TransactionContext& context, const Status cause)
+void SchedActionAdapter::kill(TransactionContext& context, const cub::Status cause)
 {
    ROLE(Action).kill(context.ROLE(TransactionInfo), cause);
 }
+
+TSL_NS_END
+

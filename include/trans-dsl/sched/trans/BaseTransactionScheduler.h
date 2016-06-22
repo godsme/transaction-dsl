@@ -11,8 +11,10 @@
 #ifndef BASETRANSACTIONSCHEDULER_H_
 #define BASETRANSACTIONSCHEDULER_H_
 
-#include "trans-dsl/sched/trans/SimpleTransactionContext.h"
-#include "trans-dsl/sched/concept/TransactionScheduler.h"
+#include <trans-dsl/sched/trans/SimpleTransactionContext.h>
+#include <trans-dsl/sched/concept/TransactionScheduler.h>
+
+TSL_NS_BEGIN
 
 struct BaseTransactionScheduler
          : protected SimpleTransactionContext
@@ -24,14 +26,16 @@ struct BaseTransactionScheduler
    OVERRIDE(void updateInstanceId(InstanceId iid));
    OVERRIDE(void updateTimerInfo(const TimerInfo&));
    OVERRIDE(void updateTransactionListener(TransactionListener&));
-   OVERRIDE(void updateUserContext(Unknown*));
+   OVERRIDE(void updateUserContext(UserContext*));
    OVERRIDE(void updateMutexScheduler(TransMutexScheduler&));
 
-   OVERRIDE(Status stop(const Status));
+   OVERRIDE(cub::Status stop(const cub::Status));
 
 private:
-   ABSTRACT(Status actualStop(const Status));
+   ABSTRACT(cub::Status actualStop(const cub::Status));
    ABSTRACT(bool isWorking() const);
 };
+
+TSL_NS_END
 
 #endif /* BASETRANSACTIONSCHEDULER_H_ */

@@ -11,28 +11,33 @@
 #ifndef TRANSACTIONSCHEDULER_H_
 #define TRANSACTIONSCHEDULER_H_
 
-#include <base/dci/Role.h>
-#include <base/Status.h>
+#include <cub/base/Status.h>
+#include <cub/dci/Role.h>
+#include <trans-dsl/sched/concept/InstanceId.h>
+
+TSL_NS_BEGIN
 
 struct ActionThread;
 struct Event;
 struct TransactionListener;
 struct TimerInfo;
-struct Unknown;
 struct TransMutexScheduler;
+struct UserContext;
 
 DEFINE_ROLE(TransactionScheduler)
 {
-   ABSTRACT(Status start(ActionThread&));
-   ABSTRACT(Status handleEvent(const Event&));
-   ABSTRACT(Status stop(const Status));
-   ABSTRACT(void   kill(const Status));
+   ABSTRACT(cub::Status start(ActionThread&));
+   ABSTRACT(cub::Status handleEvent(const Event&));
+   ABSTRACT(cub::Status stop(const cub::Status));
+   ABSTRACT(void   kill(const cub::Status));
 
    ABSTRACT(void updateInstanceId(InstanceId iid));
    ABSTRACT(void updateTimerInfo(const TimerInfo&));
    ABSTRACT(void updateTransactionListener(TransactionListener&));
-   ABSTRACT(void updateUserContext(Unknown*));
+   ABSTRACT(void updateUserContext(UserContext*));
    ABSTRACT(void updateMutexScheduler(TransMutexScheduler&));
 };
+
+TSL_NS_END
 
 #endif /* TRANSACTIONSCHEDULER_H_ */

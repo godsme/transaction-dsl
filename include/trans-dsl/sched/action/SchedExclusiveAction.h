@@ -13,28 +13,32 @@
 
 #include "trans-dsl/sched/concept/SchedAction.h"
 #include "trans-dsl/sched/action/LinkedSchedAction.h"
-#include <base/utils/List.h>
+#include <cub/repo/list/List.h>
+
+TSL_NS_BEGIN
 
 struct SchedExclusiveAction : SchedAction
 {
    SchedExclusiveAction();
 
-   OVERRIDE(Status exec(TransactionContext&));
-   OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-   OVERRIDE(Status stop(TransactionContext&, const Status));
-   OVERRIDE(void   kill(TransactionContext&, const Status));
+   OVERRIDE(cub::Status exec(TransactionContext&));
+   OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+   OVERRIDE(cub::Status stop(TransactionContext&, const cub::Status));
+   OVERRIDE(void   kill(TransactionContext&, const cub::Status));
 
    void addAction(LinkedSchedAction&);
 
 private:
-   Status selectAction(TransactionContext&, const Event&);
+   cub::Status selectAction(TransactionContext&, const ev::Event&);
    void interruptOthers(TransactionContext&);
 
 private:
-   typedef List<LinkedSchedAction> Actions;
+   typedef cub::List<LinkedSchedAction> Actions;
 
    Actions actions;
    SchedAction* selectedAction;
 };
+
+TSL_NS_END
 
 #endif /* SCHEDEXCLUSIVEACTION_H_ */

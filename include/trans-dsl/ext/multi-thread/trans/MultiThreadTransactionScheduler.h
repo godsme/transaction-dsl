@@ -11,8 +11,10 @@
 #ifndef MULTITHREADTRANSACTIONSCHEDULER_H_
 #define MULTITHREADTRANSACTIONSCHEDULER_H_
 
-#include "trans-dsl/ext/multi-thread/trans/MultiThreadScheduler.h"
-#include "trans-dsl/sched/trans/BaseTransactionScheduler.h"
+#include <trans-dsl/ext/multi-thread/trans/MultiThreadScheduler.h>
+#include <trans-dsl/sched/trans/BaseTransactionScheduler.h>
+
+TSL_NS_BEGIN
 
 struct MultiThreadTransactionScheduler
    : private MultiThreadScheduler
@@ -20,21 +22,18 @@ struct MultiThreadTransactionScheduler
 {
    explicit MultiThreadTransactionScheduler(const InstanceId iid = 0);
 
-   OVERRIDE(Status start(ActionThread&));
-   OVERRIDE(Status handleEvent(const Event&));
-   OVERRIDE(void   kill(const Status));
+   OVERRIDE(cub::Status start(ActionThread&));
+   OVERRIDE(cub::Status handleEvent(const ev::Event&));
+   OVERRIDE(void   kill(const cub::Status));
 
 private:
-   OVERRIDE(Status actualStop(const Status));
+   OVERRIDE(cub::Status actualStop(const cub::Status));
    OVERRIDE(bool isWorking() const);
-
-private:
-   APPEND_INTERFACE_TABLE(BaseTransactionScheduler)
-      HAS_INTERFACE(MultiThreadContext)
-   END_INTERFACE_TABLE()
 
 private:
    IMPL_ROLE(TransactionContext);
 };
+
+TSL_NS_END
 
 #endif /* MULTITHREADTRANSACTIONSCHEDULER_H_ */

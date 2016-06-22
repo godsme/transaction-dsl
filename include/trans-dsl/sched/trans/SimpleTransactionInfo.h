@@ -11,7 +11,9 @@
 #ifndef SIMPLETRANSACTIONINFO_H_
 #define SIMPLETRANSACTIONINFO_H_
 
-#include "trans-dsl/sched/concept/TransactionInfo.h"
+#include <trans-dsl/sched/concept/TransactionInfo.h>
+
+TSL_NS_BEGIN
 
 struct RuntimeContextInfo;
 
@@ -20,18 +22,20 @@ struct SimpleTransactionInfo : TransactionInfo
    explicit SimpleTransactionInfo(InstanceId iid = 0);
 
    OVERRIDE(InstanceId getInstanceId() const);
-   OVERRIDE(Status getStatus() const);
-   OVERRIDE(Unknown* getUserContext() const);
+   OVERRIDE(cub::Status getStatus() const);
+   OVERRIDE(UserContext* getUserContext() const);
 
-   void updateUserContext(Unknown*);
+   void updateUserContext(UserContext*);
    void updateInstanceId(InstanceId iid);
 
 private:
    InstanceId iid;
-   Unknown*   userContext;
+   UserContext* userContext;
 
 private:
    USE_ROLE(RuntimeContextInfo);
 };
+
+TSL_NS_END
 
 #endif /* SIMPLETRANSACTIONINFO_H_ */

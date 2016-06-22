@@ -12,17 +12,21 @@
 #define LINKEDSCHEDACTION_H_
 
 #include "trans-dsl/sched/concept/SchedAction.h"
-#include <base/utils/ListElem.h>
+#include <cub/repo/list/ListElem.h>
 
-struct LinkedSchedAction : SchedAction, ListElem<LinkedSchedAction>
+TSL_NS_BEGIN
+
+struct LinkedSchedAction : SchedAction, cub::ListElem<LinkedSchedAction>
 {
-   OVERRIDE(Status exec(TransactionContext&));
-   OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-   OVERRIDE(Status stop(TransactionContext&, const Status));
-   OVERRIDE(void   kill(TransactionContext&, const Status));
+   OVERRIDE(cub::Status exec(TransactionContext&));
+   OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+   OVERRIDE(cub::Status stop(TransactionContext&, const cub::Status));
+   OVERRIDE(void        kill(TransactionContext&, const cub::Status));
 
 private:
    USE_ROLE(SchedAction);
 };
+
+TSL_NS_END
 
 #endif /* LINKEDSCHEDACTION_H_ */

@@ -6,20 +6,28 @@
  */
 
 
-#include "trans-dsl/sched/action/Finally.h"
-#include "trans-dsl/sched/concept/SchedAction.h"
+#include <trans-dsl/sched/action/Finally.h>
+#include <trans-dsl/sched/concept/SchedAction.h>
 
-Status Finally::exec(TransactionContext& context)
+TSL_NS_BEGIN
+
+//////////////////////////////////////////////////////////////////////////
+cub::Status Finally::exec(TransactionContext& context)
 {
    return ROLE(SchedAction).exec(context);
 }
 
-Status Finally::handleEvent(TransactionContext& context, const Event& event)
+//////////////////////////////////////////////////////////////////////////
+cub::Status Finally::handleEvent(TransactionContext& context, const ev::Event& event)
 {
    return ROLE(SchedAction).handleEvent(context, event);
 }
 
-void Finally::kill(TransactionContext& context, Status cause)
+//////////////////////////////////////////////////////////////////////////
+void Finally::kill(TransactionContext& context, cub::Status cause)
 {
    return ROLE(SchedAction).kill(context, cause);
 }
+
+TSL_NS_END
+
