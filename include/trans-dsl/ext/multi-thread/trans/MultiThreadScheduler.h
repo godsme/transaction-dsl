@@ -11,13 +11,17 @@
 #ifndef MULTITHREADSCHEDULER_H_
 #define MULTITHREADSCHEDULER_H_
 
-#include "trans-dsl/utils/ActionStatus.h"
-#include "trans-dsl/sched/def/ActionThreadDefs.h"
-#include "trans-dsl/ext/multi-thread/concept/MultiThreadContext.h"
-#include "trans-dsl/utils/SimpleRuntimeContext.h"
-#include <base/dci/Role.h>
+#include <trans-dsl/utils/ActionStatus.h>
+#include <trans-dsl/sched/def/ActionThreadDefs.h>
+#include <trans-dsl/ext/multi-thread/concept/MultiThreadContext.h>
+#include <trans-dsl/utils/SimpleRuntimeContext.h>
+#include <cub/dci/Role.h>
+#include <event/event.h>
 
-struct Event;
+FWD_DECL_EV(Event)
+
+TSL_NS_BEGIN
+
 struct TransactionContext;
 
 struct MultiThreadScheduler
@@ -26,31 +30,31 @@ struct MultiThreadScheduler
 {
    MultiThreadScheduler();
 
-   Status startMainThread(ActionThread&);
-   Status handleEvent(const Event&);
-   Status stop(const Status);
-   void   kill(const Status);
+   cub::Status startMainThread(ActionThread&);
+   cub::Status handleEvent(const ev::Event&);
+   cub::Status stop(const cub::Status);
+   void   kill(const cub::Status);
 
    bool isWorking() const;
 
 private:
-   OVERRIDE(Status startThread(const ActionThreadId, ActionThread&, Status& result));
-   OVERRIDE(Status killThread(const ActionThreadId, const Status));
-   OVERRIDE(Status stopThread(const ActionThreadId, const Status));
-   OVERRIDE(Status joinThread(const ActionThreadId, Status& result) const);
+   OVERRIDE(cub::Status startThread(const ActionThreadId, ActionThread&, cub::Status& result));
+   OVERRIDE(cub::Status killThread(const ActionThreadId, const cub::Status));
+   OVERRIDE(cub::Status stopThread(const ActionThreadId, const cub::Status));
+   OVERRIDE(cub::Status joinThread(const ActionThreadId, cub::Status& result) const);
 
 private:
-   Status getFinalStatus() const;
+   cub::Status getFinalStatus() const;
    ActionStatus getMainThreadStatus() const;
-   Status finalProcess(ActionStatus status);
-   void doStop(const Status cause);
-   Status doHandleEvent(const Event& event);
-   void broadcastActionDone(const ActionThreadId, const Status);
-   void notifyActionDone(const ActionThreadId tid, const ActionThreadId who, const Status result);
+   cub::Status finalProcess(ActionStatus status);
+   void doStop(const cub::Status cause);
+   cub::Status doHandleEvent(const ev::Event& event);
+   void broadcastActionDone(const ActionThreadId, const cub::Status);
+   void notifyActionDone(const ActionThreadId tid, const ActionThreadId who, const cub::Status result);
    void doneCheck(const ActionThreadId tid);
 
-   void handleEventOnThread(const ActionThreadId tid, const Event& event);
-   void doKillThread(const ActionThreadId tid, const Status cause);
+   void handleEventOnThread(const ActionThreadId tid, const ev::Event& event);
+   void doKillThread(const ActionThreadId tid, const cub::Status cause);
 
 private:
 
@@ -58,11 +62,11 @@ private:
    {
       NamedThread();
 
-      Status start(ActionThread& thread, MultiThreadScheduler& context);
-      Status handleEvent(MultiThreadScheduler& context, const Event&);
-      Status stop(MultiThreadScheduler& context, const Status cause);
-      Status kill(MultiThreadScheduler& context, const Status cause);
-      Status getWorkingStatus() const;
+      cub::Status start(ActionThread& thread, MultiThreadScheduler& context);
+      cub::Status handleEvent(MultiThreadScheduler& context, const ev::Event&);
+      cub::Status stop(MultiThreadScheduler& context, const cub::Status cause);
+      cub::Status kill(MultiThreadScheduler& context, const cub::Status cause);
+      cub::Status getWorkingStatus() const;
 
    private:
       ActionThread* thread;
@@ -75,5 +79,7 @@ private:
 private:
    USE_ROLE(TransactionContext);
 };
+
+TSL_NS_END
 
 #endif /* MULTITHREADSCHEDULER_H_ */

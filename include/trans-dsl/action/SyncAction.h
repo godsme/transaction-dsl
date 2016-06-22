@@ -11,14 +11,20 @@
 #ifndef SYNCACTION_H_
 #define SYNCACTION_H_
 
-#include "base/dci/Role.h"
-#include "base/Status.h"
+#include <trans-dsl/tsl.h>
+
+#include <cub/dci/Role.h>
+#include <cub/base/Status.h>
+
+TSL_NS_BEGIN
 
 struct TransactionInfo;
 
 DEFINE_ROLE(SyncAction)
 {
-   ABSTRACT(Status exec(const TransactionInfo&));
+	ABSTRACT(cub::Status exec(const TransactionInfo&));
 };
+
+TSL_NS_END
 
 #endif /* SYNCACTION_H_ */

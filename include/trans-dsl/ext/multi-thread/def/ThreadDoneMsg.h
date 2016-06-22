@@ -11,21 +11,25 @@
 #ifndef THREADDONEMSG_H_
 #define THREADDONEMSG_H_
 
-#include "trans-dsl/ext/multi-thread/concept/ActionThreadId.h"
-#include "event/concept/EventId.h"
-#include <base/Status.h>
+#include <trans-dsl/ext/multi-thread/concept/ActionThreadId.h>
+#include <event/concept/EventId.h>
+#include <cub/base/Status.h>
 
-const EventId EV_ACTION_THREAD_DONE = 0xFFFE;
+TSL_NS_BEGIN
+
+const ev::EventId EV_ACTION_THREAD_DONE = 0xFFFE;
 
 struct ThreadDoneMsg
 {
-   ThreadDoneMsg(ActionThreadId who, Status status)
+   ThreadDoneMsg(ActionThreadId who, cub::Status status)
      : who(who)
      , result(status)
    {}
 
    const ActionThreadId who;
-   const Status         result;
+   const cub::Status    result;
 };
+
+TSL_NS_END
 
 #endif /* THREADDONEMSG_H_ */

@@ -11,13 +11,13 @@
 #ifndef RUNTIMECONTEXT_H_
 #define RUNTIMECONTEXT_H_
 
-#include <base/dci/Role.h>
-#include <base/Status.h>
+#include <cub/dci/Role.h>
+#include <cub/base/Status.h>
 
 DEFINE_ROLE(RuntimeContext)
 {
-   ABSTRACT(void reportFailure(Status));
-   ABSTRACT(Status getStatus() const);
+   ABSTRACT(void reportFailure(cub::Status));
+   ABSTRACT(cub::Status getStatus() const);
 };
 
 #endif /* RUNTIMECONTEXT_H_ */

@@ -11,18 +11,20 @@
 #ifndef ACTIONTHREAD_H_
 #define ACTIONTHREAD_H_
 
-#include "trans-dsl/sched/concept/SchedAction.h"
-#include "trans-dsl/utils/SimpleRuntimeContext.h"
-#include "trans-dsl/utils/DeclState.h"
+#include <trans-dsl/sched/concept/SchedAction.h>
+#include <trans-dsl/utils/SimpleRuntimeContext.h>
+#include <trans-dsl/utils/DeclState.h>
+
+TSL_NS_BEGIN
 
 struct ActionThread : private SimpleRuntimeContext, SchedAction
 {
    ActionThread();
 
-   OVERRIDE(Status exec(TransactionContext&));
-   OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-   OVERRIDE(Status stop(TransactionContext&, const Status));
-   OVERRIDE(void   kill(TransactionContext&, const Status));
+   OVERRIDE(cub::Status exec(TransactionContext&));
+   OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+   OVERRIDE(cub::Status stop(TransactionContext&, const cub::Status));
+   OVERRIDE(void   kill(TransactionContext&, const cub::Status));
 
    using SimpleRuntimeContext::getStatus;
 
@@ -45,5 +47,7 @@ private:
 private:
    USE_ROLE(SchedAction);
 };
+
+TSL_NS_END
 
 #endif /* ACTIONTHREAD_H_ */

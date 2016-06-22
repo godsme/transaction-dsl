@@ -11,17 +11,25 @@
 #ifndef FINALACTION_H_
 #define FINALACTION_H_
 
-#include <base/dci/Role.h>
-#include <base/Status.h>
+#include <event/event.h>
+#include <trans-dsl/tsl.h>
+#include <trans-dsl/TslStatus.h>
+
+#include <cub/dci/Role.h>
+
+FWD_DECL_EV(Event);
+
+TSL_NS_BEGIN
 
 struct TransactionContext;
-struct Event;
 
 DEFINE_ROLE(FinalAction)
 {
-   ABSTRACT(Status exec(TransactionContext&));
-   ABSTRACT(Status handleEvent(TransactionContext&, const Event&));
-   ABSTRACT(void   kill(TransactionContext&, const Status));
+   ABSTRACT(cub::Status exec(TransactionContext&));
+   ABSTRACT(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+   ABSTRACT(void   kill(TransactionContext&, const cub::Status));
 };
+
+TSL_NS_END
 
 #endif /* FINALACTION_H_ */

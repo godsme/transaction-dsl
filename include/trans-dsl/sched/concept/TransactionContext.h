@@ -11,19 +11,23 @@
 #ifndef TRANSACTIONCONTEXT_H_
 #define TRANSACTIONCONTEXT_H_
 
-#include <base/dci/Role.h>
-#include <base/Status.h>
-#include <base/dci/Unknown.h>
+#include <trans-dsl/tsl.h>
+#include <cub/dci/Role.h>
+#include <cub/base/Status.h>
+
+TSL_NS_BEGIN
 
 struct TransactionInfo;
 struct TransactionListener;
 struct TransactionMode;
 
-struct TransactionContext : Unknown
+DEFINE_ROLE(TransactionContext)
 {
    HAS_ROLE(TransactionInfo);
    HAS_ROLE(TransactionListener);
    HAS_ROLE(TransactionMode);
 };
+
+TSL_NS_END
 
 #endif /* TRANSACTIONCONTEXT_H_ */

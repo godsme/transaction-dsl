@@ -11,7 +11,9 @@
 #ifndef SIMPLERUNTIMECONTEXTAUTOSWITCH_H_
 #define SIMPLERUNTIMECONTEXTAUTOSWITCH_H_
 
-#include "trans-dsl/utils/RuntimeContextAutoSwitch.h"
+#include <trans-dsl/utils/RuntimeContextAutoSwitch.h>
+
+TSL_NS_BEGIN
 
 struct SimpleRuntimeContextAutoSwitch : RuntimeContextAutoSwitch
 {
@@ -25,5 +27,7 @@ struct SimpleRuntimeContextAutoSwitch : RuntimeContextAutoSwitch
 private:
    RuntimeContext* parent;
 };
+
+TSL_NS_END
 
 #endif /* SIMPLERUNTIMECONTEXTAUTOSWITCH_H_ */

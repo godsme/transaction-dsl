@@ -14,28 +14,32 @@
 #include "trans-dsl/action/Action.h"
 #include "trans-dsl/utils/EventHandlerRegistry.h"
 
+TSL_NS_BEGIN
+
 struct SimpleAsyncAction: Action
 {
-   OVERRIDE(Status handleEvent(const TransactionInfo&, const Event&));
-   OVERRIDE(void kill(const TransactionInfo&, const Status));
+   OVERRIDE(cub::Status handleEvent(const TransactionInfo&, const ev::Event&));
+   OVERRIDE(void kill(const TransactionInfo&, const cub::Status));
 
    template<typename T>
-   Status waitOn(const EventId eventId, T* thisPointer,
-            Status (T::*handler)(const TransactionInfo&, const Event&), bool forever = false)
+   cub::Status waitOn(const ev::EventId eventId, T* thisPointer,
+		   cub::Status (T::*handler)(const TransactionInfo&, const ev::Event&), bool forever = false)
    {
       return registry.addHandler(eventId, thisPointer, handler, forever);
    }
 
-   Status waitUntouchEvent(const EventId eventId);
+   cub::Status waitUntouchEvent(const ev::EventId eventId);
 
 private:
    EventHandlerRegistry registry;
 
 public:
-   ABSTRACT(Status exec(const TransactionInfo&));
+   ABSTRACT(cub::Status exec(const TransactionInfo&));
 
 private:
-   DEFAULT(void, doKill(const TransactionInfo&, const Status));
+   DEFAULT(void, doKill(const TransactionInfo&, const cub::Status));
 };
+
+TSL_NS_END
 
 #endif /* SIMPLEASYNCACTION_H_ */

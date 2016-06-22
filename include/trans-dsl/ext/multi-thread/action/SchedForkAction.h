@@ -11,21 +11,26 @@
 #ifndef SCHEDFORKACTION_H_
 #define SCHEDFORKACTION_H_
 
-#include "trans-dsl/sched/concept/SchedAction.h"
-#include "trans-dsl/ext/multi-thread/concept/ActionThreadId.h"
+#include <trans-dsl/sched/concept/SchedAction.h>
+#include <trans-dsl/ext/multi-thread/concept/ActionThreadId.h>
+
+TSL_NS_BEGIN
 
 struct ActionThread;
 
 struct SchedForkAction : SchedAction
 {
-   OVERRIDE(Status exec(TransactionContext&));
-   OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-   OVERRIDE(Status stop(TransactionContext&, Status));
-   OVERRIDE(void   kill(TransactionContext&, Status));
+   OVERRIDE(cub::Status exec(TransactionContext&));
+   OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+   OVERRIDE(cub::Status stop(TransactionContext&, cub::Status));
+   OVERRIDE(void   kill(TransactionContext&, cub::Status));
 
 private:
    USE_ROLE(ActionThread);
+
    ABSTRACT(ActionThreadId getThreadId() const);
 };
+
+TSL_NS_END
 
 #endif /* SCHEDFORKACTION_H_ */

@@ -11,11 +11,13 @@
 #ifndef ACTIONSTATUS_H_
 #define ACTIONSTATUS_H_
 
-#include <base/Status.h>
+#include <trans-dsl/TslStatus.h>
+
+TSL_NS_BEGIN
 
 struct ActionStatus
 {
-   ActionStatus(Status status);
+   ActionStatus(cub::Status status);
 
    bool isWorking() const;
    bool isFailed() const;
@@ -23,10 +25,12 @@ struct ActionStatus
    bool eventAccepted() const;
    bool eventNotAccepted() const;
 
-   operator Status() const;
+   operator cub::Status() const;
 
 private:
-   Status status;
+   cub::Status status;
 };
+
+TSL_NS_END
 
 #endif /* ACTIONSTATUS_H_ */

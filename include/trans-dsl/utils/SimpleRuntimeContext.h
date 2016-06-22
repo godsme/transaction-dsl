@@ -11,21 +11,25 @@
 #ifndef SIMPLERUNTIMECONTEXT_H_
 #define SIMPLERUNTIMECONTEXT_H_
 
-#include "trans-dsl/sched/concept/RuntimeContext.h"
+#include <trans-dsl/sched/concept/RuntimeContext.h>
+
+TSL_NS_BEGIN
 
 struct SimpleRuntimeContext : RuntimeContext
 {
-   explicit SimpleRuntimeContext(Status parentStatus = SUCCESS);
+   explicit SimpleRuntimeContext(cub::Status parentStatus = TSL_SUCCESS);
 
-   OVERRIDE(void reportFailure(Status));
-   OVERRIDE(Status getStatus() const);
+   OVERRIDE(void reportFailure(cub::Status));
+   OVERRIDE(cub::Status getStatus() const);
 
 protected:
    RuntimeContext* parent;
-   Status objectStatus;
+   cub::Status objectStatus;
 
 private:
    virtual bool shouldReportParent() const { return true; }
 };
+
+TSL_NS_END
 
 #endif /* SIMPLERUNTIMECONTEXT_H_ */

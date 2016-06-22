@@ -12,6 +12,6 @@
 #define DECLSTATE_H_
 
 #define __DECL_STATE(S) struct S; \
-   Status goto##S##State(TransactionContext&, const Status)
+   cub::Status goto##S##State(TransactionContext&, const cub::Status)
 
 #endif /* DECLSTATE_H_ */

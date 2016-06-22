@@ -11,6 +11,10 @@
 #ifndef RUNTIMECONTEXTAUTOSWITCH_H_
 #define RUNTIMECONTEXTAUTOSWITCH_H_
 
+#include <trans-dsl/tsl.h>
+
+TSL_NS_BEGIN
+
 struct RuntimeContextInfo;
 struct RuntimeContext;
 struct TransactionContext;
@@ -28,5 +32,7 @@ private:
    RuntimeContext*& parentKeeper;
    RuntimeContextInfo* contextInfo;
 };
+
+TSL_NS_END
 
 #endif /* RUNTIMECONTEXTAUTOSWITCH_H_ */

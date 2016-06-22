@@ -11,42 +11,47 @@
 #ifndef GOFSTATE_H_
 #define GOFSTATE_H_
 
-#include <base/utils/Singleton.h>
-#include <base/Keywords.h>
-#include "trans-dsl/utils/ActionStatus.h"
+#include <cub/gof/Singleton.h>
+#include <cub/base/Keywords.h>
+#include <trans-dsl/utils/ActionStatus.h>
+
+FWD_DECL_EV(Event);
+
+TSL_NS_BEGIN
 
 struct TransactionContext;
-struct Event;
 
 template <typename T>
 struct GofState
 {
    virtual ~GofState() {}
 
-   virtual Status enter(T&, TransactionContext&, const ActionStatus status)
+   virtual cub::Status enter(T&, TransactionContext&, const ActionStatus status)
    {
       return status;
    }
 
-   virtual Status exec(T&, TransactionContext&)
+   virtual cub::Status exec(T&, TransactionContext&)
    {
-      return FATAL_BUG;
+      return TSL_FATAL_BUG;
    }
 
-   virtual Status handleEvent(T&, TransactionContext&, const Event&)
+   virtual cub::Status handleEvent(T&, TransactionContext&, const ev::Event&)
    {
-      return UNKNOWN_EVENT;
+      return TSL_UNKNOWN_EVENT;
    }
 
-   virtual Status stop(T&, TransactionContext&, const Status)
+   virtual cub::Status stop(T&, TransactionContext&, const cub::Status)
    {
-      return SUCCESS;
+      return TSL_SUCCESS;
    }
 
-   virtual void   kill(T&, TransactionContext&, const Status)
+   virtual void   kill(T&, TransactionContext&, const cub::Status)
    {
    }
 };
+
+TSL_NS_END
 
 #define __DEF_STATE_INTERFACE(object) \
      struct object::State : GofState<object>
@@ -72,10 +77,10 @@ struct object::S : object::State
 #define __GOTO_STATE(S) ____GOTO_STATE(S, status)
 
 #define __DEF_STATE(object, S) \
-Status object::goto##S##State(TransactionContext& context, const Status status) \
-{                                                                                  \
-   state = &S::getInstance();                                                       \
-   return state->enter(*this, context, status);                                    \
+Status object::goto##S##State(TransactionContext& context, const cub::Status status) \
+{                                                                                    \
+   state = &S::getInstance();                                                        \
+   return state->enter(*this, context, status);                                      \
 }
 
 #endif /* GOFSTATE_H_ */
