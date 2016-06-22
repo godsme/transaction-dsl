@@ -11,6 +11,10 @@
 #include "trans-dsl/sched/trans/SimpleTransactionScheduler.h"
 #include "trans-dsl/sched/action/ActionThread.h"
 
+TSL_NS_BEGIN
+
+using namespace cub;
+
 ///////////////////////////////////////////////////////////////////////////////
 SimpleTransactionScheduler::SimpleTransactionScheduler(InstanceId iid)
       : BaseTransactionScheduler(iid)
@@ -35,7 +39,7 @@ Status SimpleTransactionScheduler::start(ActionThread& thread)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-Status SimpleTransactionScheduler::handleEvent(const Event& event)
+Status SimpleTransactionScheduler::handleEvent(const ev::Event& event)
 {
    return thread->handleEvent(*this, event);
 }
@@ -57,3 +61,5 @@ void SimpleTransactionScheduler::kill(const Status cause)
 {
    thread->kill(*this, cause);
 }
+
+TSL_NS_END

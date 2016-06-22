@@ -16,6 +16,7 @@
 #include <cub/mem/Placement.h>
 
 #include <event/concept/EventId.h>
+#include <trans-dsl/tsl.h>
 
 FWD_DECL_EV(Event);
 

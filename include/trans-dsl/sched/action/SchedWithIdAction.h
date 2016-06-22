@@ -11,18 +11,20 @@
 #ifndef SCHEDWITHIDACTION_H_
 #define SCHEDWITHIDACTION_H_
 
-#include "trans-dsl/sched/concept/SchedAction.h"
-#include "trans-dsl/sched/concept/ActionId.h"
-#include "trans-dsl/utils/DeclState.h"
+#include <trans-dsl/sched/concept/SchedAction.h>
+#include <trans-dsl/sched/concept/ActionId.h>
+#include <trans-dsl/utils/DeclState.h>
+
+TSL_NS_BEGIN
 
 struct SchedWithIdAction : SchedAction
 {
    SchedWithIdAction();
 
-   OVERRIDE(Status exec(TransactionContext&));
-   OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-   OVERRIDE(Status stop(TransactionContext&, const Status));
-   OVERRIDE(void kill(TransactionContext&, const Status));
+   OVERRIDE(cub::Status exec(TransactionContext&));
+   OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+   OVERRIDE(cub::Status stop(TransactionContext&, const cub::Status));
+   OVERRIDE(void kill(TransactionContext&, const cub::Status));
 
 private:
    struct State;
@@ -38,5 +40,7 @@ private:
    ABSTRACT(ActionId getActionId() const);
    USE_ROLE(SchedAction);
 };
+
+TSL_NS_END
 
 #endif /* SCHEDWITHIDACTION_H_ */

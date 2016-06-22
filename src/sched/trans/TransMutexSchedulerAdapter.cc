@@ -9,6 +9,7 @@
  */ 
 
 #include <trans-dsl/sched/trans/TransMutexSchedulerAdapter.h>
+#include <trans-dsl/TslStatus.h>
 
 TSL_NS_BEGIN
 

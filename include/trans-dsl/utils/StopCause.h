@@ -11,17 +11,22 @@
 #ifndef STOPCAUSE_H_
 #define STOPCAUSE_H_
 
-#include <base/Status.h>
+#include <cub/base/Status.h>
+#include <trans-dsl/tsl.h>
+
+TSL_NS_BEGIN
 
 struct StopCause
 {
    StopCause();
-   StopCause(const Status cause);
+   StopCause(const cub::Status cause);
 
-   operator Status() const;
+   operator cub::Status() const;
 
 private:
-   Status cause;
+   cub::Status cause;
 };
+
+TSL_NS_END
 
 #endif /* STOPCAUSE_H_ */

@@ -5,10 +5,12 @@
  *      Author: arthur
  */
 
-#include "trans-dsl/sched/concept/Transaction.h"
-#include "trans-dsl/utils/ActionStatus.h"
+#include <trans-dsl/sched/concept/Transaction.h>
+#include <trans-dsl/utils/ActionStatus.h>
 
-Status Transaction::start(const Event& event)
+TSL_NS_BEGIN
+
+cub::Status Transaction::start(const ev::Event& event)
 {
    ActionStatus status = start();
    if(!status.isWorking())
@@ -19,4 +21,5 @@ Status Transaction::start(const Event& event)
    return handleEvent(event);
 }
 
+TSL_NS_END
 

@@ -11,15 +11,20 @@
 #ifndef ACTIONPATH_H_
 #define ACTIONPATH_H_
 
-#include <base/dci/ListBasedRole.h>
+#include <cub/dci/ListBasedRole.h>
+#include <trans-dsl/tsl.h>
+
+TSL_NS_BEGIN
 
 struct TransactionInfo;
 struct SchedAction;
 
-DEFINE_LIST_BASED_ROLE(ActionPath)
+DEFINE_ROLE(ActionPath) EXTENDS(CUB_NS::ListElem<ActionPath>)
 {
    ABSTRACT(bool shouldExecute(const TransactionInfo&));
    ABSTRACT(SchedAction& getAction());
 };
+
+TSL_NS_END
 
 #endif /* ACTIONPATH_H_ */

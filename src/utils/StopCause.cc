@@ -8,19 +8,26 @@
  *
  */ 
 
-#include "trans-dsl/utils/StopCause.h"
-#include "trans-dsl/utils/ActionStatus.h"
+#include <trans-dsl/utils/StopCause.h>
+#include <trans-dsl/utils/ActionStatus.h>
 
-StopCause::StopCause() : cause(FORCE_STOPPED)
+TSL_NS_BEGIN
+
+//////////////////////////////////////////////////////////////////////////
+StopCause::StopCause() : cause(TSL_FORCE_STOPPED)
 {
 }
 
-StopCause::StopCause(const Status cause)
-      : cause(ActionStatus(cause).isFailed() ? cause : FORCE_STOPPED)
+//////////////////////////////////////////////////////////////////////////
+StopCause::StopCause(const cub::Status cause)
+      : cause(ActionStatus(cause).isFailed() ? cause : TSL_FORCE_STOPPED)
 {
 }
 
-StopCause::operator Status() const
+//////////////////////////////////////////////////////////////////////////
+StopCause::operator cub::Status() const
 {
    return cause;
 }
+
+TSL_NS_END

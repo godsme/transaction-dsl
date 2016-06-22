@@ -11,6 +11,8 @@
 #ifndef TIMERINFO_H_
 #define TIMERINFO_H_
 
+#include <cub/base/BaseTypes.h>
+#include <cub/dci/Role.h>
 #include <trans-dsl/sched/concept/TimerId.h>
 
 TSL_NS_BEGIN

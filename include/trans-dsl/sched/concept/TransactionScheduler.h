@@ -15,10 +15,11 @@
 #include <cub/dci/Role.h>
 #include <trans-dsl/sched/concept/InstanceId.h>
 
+FWD_DECL_EV(Event)
+
 TSL_NS_BEGIN
 
 struct ActionThread;
-struct Event;
 struct TransactionListener;
 struct TimerInfo;
 struct TransMutexScheduler;
@@ -27,7 +28,7 @@ struct UserContext;
 DEFINE_ROLE(TransactionScheduler)
 {
    ABSTRACT(cub::Status start(ActionThread&));
-   ABSTRACT(cub::Status handleEvent(const Event&));
+   ABSTRACT(cub::Status handleEvent(const ev::Event&));
    ABSTRACT(cub::Status stop(const cub::Status));
    ABSTRACT(void   kill(const cub::Status));
 

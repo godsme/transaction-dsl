@@ -11,21 +11,25 @@
 #ifndef RELATIVETIMER_H_
 #define RELATIVETIMER_H_
 
-#include "trans-dsl/sched/concept/TimerId.h"
-#include <base/Status.h>
-#include <base/Keywords.h>
+#include <trans-dsl/sched/concept/TimerId.h>
+#include <cub/base/Keywords.h>
+#include <cub/base/Status.h>
+#include <event/event.h>
 
-struct Event;
+FWD_DECL_EV(Event);
+
+TSL_NS_BEGIN
+
 struct TimerInfo;
 
 struct RelativeTimer
 {
    RelativeTimer(const TimerId timerId);
 
-   Status start(const TimerInfo&);
+   cub::Status start(const TimerInfo&);
    void stop();
 
-   bool matches(const Event& event) const;
+   bool matches(const ev::Event& event) const;
 
    virtual ~RelativeTimer() {}
 
@@ -34,10 +38,12 @@ private:
    bool started;
 
 private:
-   ABSTRACT(bool isTimerEvent(const Event&) const);
-   ABSTRACT(Status actualStartTimer(const TimerId, WORD32 timerLen));
+   ABSTRACT(bool isTimerEvent(const ev::Event&) const);
+   ABSTRACT(cub::Status actualStartTimer(const TimerId, cub::U32 timerLen));
    ABSTRACT(void actualStopTimer(const TimerId));
-   ABSTRACT(bool actualMatches(const Event&, const TimerId) const);
+   ABSTRACT(bool actualMatches(const ev::Event&, const TimerId) const);
 };
+
+TSL_NS_END
 
 #endif /* RELATIVETIMER_H_ */

@@ -12,6 +12,7 @@
 #define SIMPLERUNTIMECONTEXT_H_
 
 #include <trans-dsl/sched/concept/RuntimeContext.h>
+#include <trans-dsl/TslStatus.h>
 
 TSL_NS_BEGIN
 

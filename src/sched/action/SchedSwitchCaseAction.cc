@@ -7,8 +7,12 @@
  */
 
 
-#include "trans-dsl/sched/action/SchedSwitchCaseAction.h"
-#include "trans-dsl/sched/concept/TransactionContext.h"
+#include <trans-dsl/sched/action/SchedSwitchCaseAction.h>
+#include <trans-dsl/sched/concept/TransactionContext.h>
+
+TSL_NS_BEGIN
+
+using namespace cub;
 
 ///////////////////////////////////////////////////////////////////////////////////
 SchedSwitchCaseAction::SchedSwitchCaseAction() :
@@ -40,22 +44,22 @@ SchedAction* SchedSwitchCaseAction::findMatchedAction(TransactionContext& contex
 Status SchedSwitchCaseAction::exec(TransactionContext& context)
 {
    selectedAction = findMatchedAction(context);
-   if(selectedAction == 0) return SUCCESS;
+   if(selectedAction == 0) return TSL_SUCCESS;
 
    return selectedAction->exec(context);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
-Status SchedSwitchCaseAction::handleEvent(TransactionContext& context, const Event& event)
+Status SchedSwitchCaseAction::handleEvent(TransactionContext& context, const ev::Event& event)
 {
-   if(selectedAction == 0) return FATAL_BUG;
+   if(selectedAction == 0) return TSL_FATAL_BUG;
    return selectedAction->handleEvent(context, event);
 }
 
 //////////////////////////////////////////////////////////////////////
 Status SchedSwitchCaseAction::stop(TransactionContext& context, const Status cause)
 {
-   if(selectedAction == 0) return SUCCESS;
+   if(selectedAction == 0) return TSL_SUCCESS;
    return selectedAction->stop(context, cause);
 }
 
@@ -65,3 +69,6 @@ void SchedSwitchCaseAction::kill(TransactionContext& context, const Status cause
    if(selectedAction == 0) return;
    selectedAction->kill(context, cause);
 }
+
+TSL_NS_END
+

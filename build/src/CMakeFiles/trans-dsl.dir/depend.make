@@ -461,7 +461,11 @@ src/CMakeFiles/trans-dsl.dir/sched/action/SchedSwitchCaseAction.cc.o: ../src/../
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedSwitchCaseAction.cc.o: ../src/../../cub/include/cub/base/Keywords.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedSwitchCaseAction.cc.o: ../src/../../cub/include/cub/base/Status.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedSwitchCaseAction.cc.o: ../src/../../cub/include/cub/cub.h
+src/CMakeFiles/trans-dsl.dir/sched/action/SchedSwitchCaseAction.cc.o: ../src/../../cub/include/cub/dci/ListBasedRole.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedSwitchCaseAction.cc.o: ../src/../../cub/include/cub/dci/Role.h
+src/CMakeFiles/trans-dsl.dir/sched/action/SchedSwitchCaseAction.cc.o: ../src/../../cub/include/cub/repo/list/List.h
+src/CMakeFiles/trans-dsl.dir/sched/action/SchedSwitchCaseAction.cc.o: ../src/../../cub/include/cub/repo/list/ListElem.h
+src/CMakeFiles/trans-dsl.dir/sched/action/SchedSwitchCaseAction.cc.o: ../src/../../cub/include/cub/repo/list/apr_ring.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedSwitchCaseAction.cc.o: ../src/../../event/include/event/event.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedSwitchCaseAction.cc.o: ../src/sched/action/SchedSwitchCaseAction.cc
 
@@ -496,13 +500,16 @@ src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../include/
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../include/trans-dsl/utils/ActionStatus.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../include/trans-dsl/utils/DeclState.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../include/trans-dsl/utils/RelativeTimer.h
+src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../src/../../cub/include/cub/base/Assertions.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../src/../../cub/include/cub/base/BaseTypes.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../src/../../cub/include/cub/base/Config.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../src/../../cub/include/cub/base/Default.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../src/../../cub/include/cub/base/Keywords.h
+src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../src/../../cub/include/cub/base/NullPtr.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../src/../../cub/include/cub/base/Status.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../src/../../cub/include/cub/cub.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../src/../../cub/include/cub/dci/Role.h
+src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../src/../../cub/include/cub/log/log.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../src/../../event/include/event/concept/Event.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../src/../../event/include/event/concept/EventId.h
 src/CMakeFiles/trans-dsl.dir/sched/action/SchedTimerProtAction.cc.o: ../src/../../event/include/event/event.h
@@ -579,15 +586,24 @@ src/CMakeFiles/trans-dsl.dir/sched/concept/Transaction.cc.o: ../include/trans-ds
 src/CMakeFiles/trans-dsl.dir/sched/concept/Transaction.cc.o: ../include/trans-dsl/utils/ActionStatus.h
 src/CMakeFiles/trans-dsl.dir/sched/concept/Transaction.cc.o: ../include/trans-dsl/utils/StopCause.h
 src/CMakeFiles/trans-dsl.dir/sched/concept/Transaction.cc.o: ../src/../../cub/include/cub/base/BaseTypes.h
+src/CMakeFiles/trans-dsl.dir/sched/concept/Transaction.cc.o: ../src/../../cub/include/cub/base/Config.h
+src/CMakeFiles/trans-dsl.dir/sched/concept/Transaction.cc.o: ../src/../../cub/include/cub/base/Default.h
+src/CMakeFiles/trans-dsl.dir/sched/concept/Transaction.cc.o: ../src/../../cub/include/cub/base/Keywords.h
 src/CMakeFiles/trans-dsl.dir/sched/concept/Transaction.cc.o: ../src/../../cub/include/cub/base/Status.h
 src/CMakeFiles/trans-dsl.dir/sched/concept/Transaction.cc.o: ../src/../../cub/include/cub/cub.h
+src/CMakeFiles/trans-dsl.dir/sched/concept/Transaction.cc.o: ../src/../../cub/include/cub/dci/Role.h
+src/CMakeFiles/trans-dsl.dir/sched/concept/Transaction.cc.o: ../src/../../event/include/event/event.h
 src/CMakeFiles/trans-dsl.dir/sched/concept/Transaction.cc.o: ../src/sched/concept/Transaction.cc
 
+src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../include/trans-dsl/TslStatus.h
 src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../include/trans-dsl/sched/concept/TimerId.h
 src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../include/trans-dsl/sched/port/PlatformSpecifiedRelativeTimer.h
 src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../include/trans-dsl/tsl.h
 src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../include/trans-dsl/utils/RelativeTimer.h
 src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../src/../../cub/include/cub/base/BaseTypes.h
+src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../src/../../cub/include/cub/base/Config.h
+src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../src/../../cub/include/cub/base/Default.h
+src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../src/../../cub/include/cub/base/Keywords.h
 src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../src/../../cub/include/cub/base/Status.h
 src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../src/../../cub/include/cub/cub.h
 src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../src/../../event/include/event/concept/Event.h
@@ -595,6 +611,7 @@ src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../
 src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../src/../../event/include/event/event.h
 src/CMakeFiles/trans-dsl.dir/sched/port/PlatformSpecifiedRelativeTimer.cc.o: ../src/sched/port/PlatformSpecifiedRelativeTimer.cc
 
+src/CMakeFiles/trans-dsl.dir/sched/trans/BaseTransactionScheduler.cc.o: ../include/trans-dsl/TslStatus.h
 src/CMakeFiles/trans-dsl.dir/sched/trans/BaseTransactionScheduler.cc.o: ../include/trans-dsl/ext/mutex/concept/TransMutexScheduler.h
 src/CMakeFiles/trans-dsl.dir/sched/trans/BaseTransactionScheduler.cc.o: ../include/trans-dsl/ext/mutex/concept/TransMutextId.h
 src/CMakeFiles/trans-dsl.dir/sched/trans/BaseTransactionScheduler.cc.o: ../include/trans-dsl/sched/concept/ActionId.h
@@ -639,6 +656,7 @@ src/CMakeFiles/trans-dsl.dir/sched/trans/SchedTransaction.cc.o: ../src/../../cub
 src/CMakeFiles/trans-dsl.dir/sched/trans/SchedTransaction.cc.o: ../src/../../cub/include/cub/base/Status.h
 src/CMakeFiles/trans-dsl.dir/sched/trans/SchedTransaction.cc.o: ../src/../../cub/include/cub/cub.h
 src/CMakeFiles/trans-dsl.dir/sched/trans/SchedTransaction.cc.o: ../src/../../cub/include/cub/dci/Role.h
+src/CMakeFiles/trans-dsl.dir/sched/trans/SchedTransaction.cc.o: ../src/../../event/include/event/event.h
 src/CMakeFiles/trans-dsl.dir/sched/trans/SchedTransaction.cc.o: ../src/sched/trans/SchedTransaction.cc
 
 src/CMakeFiles/trans-dsl.dir/sched/trans/SimpleRuntimeContextInfo.cc.o: ../include/trans-dsl/sched/concept/RuntimeContextInfo.h
@@ -746,6 +764,7 @@ src/CMakeFiles/trans-dsl.dir/sched/trans/SimpleTransactionScheduler.cc.o: ../src
 src/CMakeFiles/trans-dsl.dir/sched/trans/SimpleTransactionScheduler.cc.o: ../src/../../event/include/event/event.h
 src/CMakeFiles/trans-dsl.dir/sched/trans/SimpleTransactionScheduler.cc.o: ../src/sched/trans/SimpleTransactionScheduler.cc
 
+src/CMakeFiles/trans-dsl.dir/sched/trans/TransMutexSchedulerAdapter.cc.o: ../include/trans-dsl/TslStatus.h
 src/CMakeFiles/trans-dsl.dir/sched/trans/TransMutexSchedulerAdapter.cc.o: ../include/trans-dsl/ext/mutex/concept/TransMutexScheduler.h
 src/CMakeFiles/trans-dsl.dir/sched/trans/TransMutexSchedulerAdapter.cc.o: ../include/trans-dsl/ext/mutex/concept/TransMutextId.h
 src/CMakeFiles/trans-dsl.dir/sched/trans/TransMutexSchedulerAdapter.cc.o: ../include/trans-dsl/sched/trans/TransMutexSchedulerAdapter.h
@@ -800,8 +819,16 @@ src/CMakeFiles/trans-dsl.dir/utils/AdaptedTimerInfo.cc.o: ../include/trans-dsl/s
 src/CMakeFiles/trans-dsl.dir/utils/AdaptedTimerInfo.cc.o: ../include/trans-dsl/sched/concept/TimerInfo.h
 src/CMakeFiles/trans-dsl.dir/utils/AdaptedTimerInfo.cc.o: ../include/trans-dsl/tsl.h
 src/CMakeFiles/trans-dsl.dir/utils/AdaptedTimerInfo.cc.o: ../include/trans-dsl/utils/AdaptedTimerInfo.h
+src/CMakeFiles/trans-dsl.dir/utils/AdaptedTimerInfo.cc.o: ../src/../../cub/include/cub/base/BaseTypes.h
+src/CMakeFiles/trans-dsl.dir/utils/AdaptedTimerInfo.cc.o: ../src/../../cub/include/cub/base/Config.h
+src/CMakeFiles/trans-dsl.dir/utils/AdaptedTimerInfo.cc.o: ../src/../../cub/include/cub/base/Default.h
+src/CMakeFiles/trans-dsl.dir/utils/AdaptedTimerInfo.cc.o: ../src/../../cub/include/cub/base/Keywords.h
+src/CMakeFiles/trans-dsl.dir/utils/AdaptedTimerInfo.cc.o: ../src/../../cub/include/cub/cub.h
+src/CMakeFiles/trans-dsl.dir/utils/AdaptedTimerInfo.cc.o: ../src/../../cub/include/cub/dci/Role.h
 src/CMakeFiles/trans-dsl.dir/utils/AdaptedTimerInfo.cc.o: ../src/utils/AdaptedTimerInfo.cc
 
+src/CMakeFiles/trans-dsl.dir/utils/EventHandlerRegistry.cc.o: ../include/trans-dsl/TslStatus.h
+src/CMakeFiles/trans-dsl.dir/utils/EventHandlerRegistry.cc.o: ../include/trans-dsl/tsl.h
 src/CMakeFiles/trans-dsl.dir/utils/EventHandlerRegistry.cc.o: ../include/trans-dsl/utils/EventHandlerRegistry.h
 src/CMakeFiles/trans-dsl.dir/utils/EventHandlerRegistry.cc.o: ../src/../../cub/include/cub/base/BaseTypes.h
 src/CMakeFiles/trans-dsl.dir/utils/EventHandlerRegistry.cc.o: ../src/../../cub/include/cub/base/Config.h
@@ -822,9 +849,17 @@ src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../include/trans-dsl/sche
 src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../include/trans-dsl/tsl.h
 src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../include/trans-dsl/utils/ActionStatus.h
 src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../include/trans-dsl/utils/RelativeTimer.h
+src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../src/../../cub/include/cub/base/Assertions.h
 src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../src/../../cub/include/cub/base/BaseTypes.h
+src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../src/../../cub/include/cub/base/Config.h
+src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../src/../../cub/include/cub/base/Default.h
+src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../src/../../cub/include/cub/base/Keywords.h
+src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../src/../../cub/include/cub/base/NullPtr.h
 src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../src/../../cub/include/cub/base/Status.h
 src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../src/../../cub/include/cub/cub.h
+src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../src/../../cub/include/cub/dci/Role.h
+src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../src/../../cub/include/cub/log/log.h
+src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../src/../../event/include/event/event.h
 src/CMakeFiles/trans-dsl.dir/utils/RelativeTimer.cc.o: ../src/utils/RelativeTimer.cc
 
 src/CMakeFiles/trans-dsl.dir/utils/RuntimeContextAutoSwitch.cc.o: ../include/trans-dsl/sched/concept/RuntimeContextInfo.h

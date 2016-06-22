@@ -5,31 +5,39 @@
  *      Author: arthur
  */
 
-#include "trans-dsl/utils/RelativeTimer.h"
-#include "trans-dsl/utils/ActionStatus.h"
-#include "trans-dsl/sched/concept/TimerInfo.h"
-#include "base/utils/Assertions.h"
+#include <trans-dsl/utils/RelativeTimer.h>
+#include <trans-dsl/utils/ActionStatus.h>
+#include <trans-dsl/sched/concept/TimerInfo.h>
 
+#include <cub/base/Assertions.h>
+
+TSL_NS_BEGIN
+
+using namespace cub;
+
+/////////////////////////////////////////////////////////////////
 RelativeTimer::RelativeTimer(const TimerId timerId)
    : timerId(timerId)
    , started(false)
 {
 }
 
+/////////////////////////////////////////////////////////////////
 Status RelativeTimer::start(const TimerInfo& info)
 {
    stop();
 
-   WORD32 len = info.getTimerLen(timerId);
-   DCM_ASSERT_TRUE(len > 0);
+   U32 len = info.getTimerLen(timerId);
+   CUB_ASSERT_TRUE(len > 0);
 
-   DCM_ASSERT_SUCC_CALL(actualStartTimer(timerId, len));
+   CUB_ASSERT_SUCC_CALL(actualStartTimer(timerId, len));
 
    started = true;
 
-   return SUCCESS;
+   return TSL_SUCCESS;
 }
 
+/////////////////////////////////////////////////////////////////
 void RelativeTimer::stop()
 {
    if(!started) return;
@@ -37,9 +45,12 @@ void RelativeTimer::stop()
    actualStopTimer(timerId);
 }
 
-bool RelativeTimer::matches(const Event& event) const
+/////////////////////////////////////////////////////////////////
+bool RelativeTimer::matches(const ev::Event& event) const
 {
    if(!started || !isTimerEvent(event)) return false;
 
    return actualMatches(event, timerId);
 }
+
+TSL_NS_END

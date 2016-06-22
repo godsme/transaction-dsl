@@ -8,9 +8,12 @@
  *
  */ 
 
+#include <trans-dsl/TslStatus.h>
 #include "trans-dsl/utils/EventHandlerRegistry.h"
 #include "event/concept/Event.h"
 #include <new>
+
+TSL_NS_BEGIN
 
 using namespace cub;
 using namespace ev;
@@ -195,3 +198,6 @@ void EventHandlerRegistry::reset()
       handlers[i].reset();
    }
 }
+
+TSL_NS_END
+

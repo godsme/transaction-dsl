@@ -8,11 +8,15 @@
  *
  */ 
 
-#include "trans-dsl/sched/action/SchedWithIdAction.h"
-#include "trans-dsl/utils/GofState.h"
-#include "trans-dsl/sched/concept/TransactionContext.h"
-#include "trans-dsl/sched/concept/TransactionListener.h"
-#include "event/concept/Event.h"
+#include <trans-dsl/sched/action/SchedWithIdAction.h>
+#include <trans-dsl/utils/GofState.h>
+#include <trans-dsl/sched/concept/TransactionContext.h>
+#include <trans-dsl/sched/concept/TransactionListener.h>
+#include <event/concept/Event.h>
+
+TSL_NS_BEGIN
+
+using namespace cub;
 
 __DECL_STATE_INTERFACE(SchedWithIdAction);
 
@@ -39,7 +43,7 @@ __DEF_STATE_CLASS(SchedWithIdAction, Idle)
 ///////////////////////////////////////////////////////////////////////
 __DEF_STATE_CLASS(SchedWithIdAction, Working)
 {
-   OVERRIDE(Status handleEvent(SchedWithIdAction& __THIS__, TransactionContext& context, const Event& event))
+   OVERRIDE(Status handleEvent(SchedWithIdAction& __THIS__, TransactionContext& context, const ev::Event& event))
    {
       ActionStatus status = __THIS__.ROLE(SchedAction).handleEvent(context, event);
       if(event.isConsumed())
@@ -79,13 +83,13 @@ __DEF_STATE_CLASS(SchedWithIdAction, Working)
       context.ROLE(TransactionListener).onActionKilled(__THIS__.getActionId(), cause);
       __THIS__.ROLE(SchedAction).kill(context, cause);
 
-      __THIS__.____GOTO_STATE(Done, SUCCESS);
+      __THIS__.____GOTO_STATE(Done, TSL_SUCCESS);
    }
 };
 
 __DEF_STATE_CLASS(SchedWithIdAction, Stopping)
 {
-   OVERRIDE(Status handleEvent(SchedWithIdAction& __THIS__, TransactionContext& context, const Event& event))
+   OVERRIDE(Status handleEvent(SchedWithIdAction& __THIS__, TransactionContext& context, const ev::Event& event))
    {
       ActionStatus status = __THIS__.ROLE(SchedAction).handleEvent(context, event);
       if(event.isConsumed())
@@ -108,7 +112,7 @@ __DEF_STATE_CLASS(SchedWithIdAction, Stopping)
       context.ROLE(TransactionListener).onActionKilled(__THIS__.getActionId(), cause);
       __THIS__.ROLE(SchedAction).kill(context, cause);
 
-      __THIS__.____GOTO_STATE(Done, SUCCESS);
+      __THIS__.____GOTO_STATE(Done, TSL_SUCCESS);
    }
 };
 
@@ -137,7 +141,7 @@ Status SchedWithIdAction::exec(TransactionContext& context)
 }
 
 ///////////////////////////////////////////////////////////////////////
-Status SchedWithIdAction::handleEvent(TransactionContext& context, const Event& event)
+Status SchedWithIdAction::handleEvent(TransactionContext& context, const ev::Event& event)
 {
    return state->handleEvent(*this, context, event);
 }
@@ -153,3 +157,6 @@ void SchedWithIdAction::kill(TransactionContext& context, const Status cause)
 {
    state->kill(*this, context, cause);
 }
+
+TSL_NS_END
+

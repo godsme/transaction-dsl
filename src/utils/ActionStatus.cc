@@ -24,7 +24,7 @@ bool ActionStatus::isWorking() const
 
 bool ActionStatus::isFailed() const
 {
-   return IS_FAILED_STATUS(status);
+   return __CUB_FAILED(status);
 }
 
 bool ActionStatus::eventAccepted() const

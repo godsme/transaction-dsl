@@ -6,15 +6,18 @@
  */
 
 
+#include <cub/base/Assertions.h>
 #include "trans-dsl/sched/action/SchedTimerProtAction.h"
 #include "trans-dsl/sched/concept/TimerInfo.h"
 #include "trans-dsl/utils/ActionStatus.h"
 #include "trans-dsl/utils/RelativeTimer.h"
 #include "trans-dsl/sched/concept/TransactionContext.h"
-#include "base/dci/Unknown.h"
-#include "base/utils/Assertions.h"
 #include "trans-dsl/sched/concept/TransactionInfo.h"
 #include "event/concept/Event.h"
+
+TSL_NS_BEGIN
+
+using namespace cub;
 
 namespace details
 {
@@ -51,8 +54,8 @@ namespace details
    //////////////////////////////////////////////////////////////////////////////////
    Status TimerProtAction ::startTimer(TransactionContext& context)
    {
-      TimerInfo* timerInfo = unknown_cast<TimerInfo>(&context);
-      DCM_ASSERT_VALID_PTR(timerInfo);
+      TimerInfo* timerInfo = dynamic_cast<TimerInfo*>(&context);
+      CUB_ASSERT_VALID_PTR(timerInfo);
 
       return ROLE(RelativeTimer).start(*timerInfo);
    }
@@ -65,21 +68,21 @@ namespace details
       {
          ROLE(TimerProtActionState).start();
 
-         DCM_ASSERT_SUCC_CALL(startTimer(context));
+         CUB_ASSERT_SUCC_CALL(startTimer(context));
       }
 
       return status;
    }
 
    //////////////////////////////////////////////////////////////////////////////////
-   Status TimerProtAction ::handleEvent(TransactionContext& context, const Event& event)
+   Status TimerProtAction ::handleEvent(TransactionContext& context, const ev::Event& event)
    {
       if(ROLE(RelativeTimer).matches(event))
       {
          ROLE(RelativeTimer).stop();
          event.consume();
 
-         return ActionStatus(getTimeoutStatus()).isWorking() ? TIMEDOUT : getTimeoutStatus();
+         return ActionStatus(getTimeoutStatus()).isWorking() ? TSL_TIMEDOUT : getTimeoutStatus();
       }
 
       ActionStatus status = ROLE(SchedAction).handleEvent(context, event);
@@ -105,7 +108,7 @@ namespace details
 
       if(status.isWorking())
       {
-         return SUCCESS;
+         return TSL_SUCCESS;
       }
 
       return status;
@@ -123,19 +126,19 @@ namespace details
    {
       if(ROLE(TimerProtActionState).isDone())
       {
-         return SUCCESS;
+         return TSL_SUCCESS;
       }
 
       if(ROLE(TimerProtActionState).isStopping())
       {
-         return CONTINUE;
+         return TSL_CONTINUE;
       }
 
       return ROLE(SchedAction).stop(context, context.ROLE(TransactionInfo).getStatus());
    }
 
    //////////////////////////////////////////////////////////////////////////////////
-   Status TimerProtFinalAction::handleEvent(TransactionContext& context, const Event& event)
+   Status TimerProtFinalAction::handleEvent(TransactionContext& context, const ev::Event& event)
    {
       return ROLE(SchedAction).handleEvent(context, event);
    }
@@ -146,3 +149,6 @@ namespace details
       ROLE(SchedAction).kill(context, cause);
    }
 }
+
+TSL_NS_END
+

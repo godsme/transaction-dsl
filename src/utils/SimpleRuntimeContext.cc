@@ -10,6 +10,8 @@
 
 TSL_NS_BEGIN
 
+using namespace cub;
+
 ////////////////////////////////////////////////////////////////
 SimpleRuntimeContext::SimpleRuntimeContext(Status parentStatus)
   : parent(0)

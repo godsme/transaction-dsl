@@ -11,17 +11,21 @@
 #ifndef PLATFORMSPECIFIEDRELATIVETIMER_H_
 #define PLATFORMSPECIFIEDRELATIVETIMER_H_
 
-#include "trans-dsl/utils/RelativeTimer.h"
+#include <trans-dsl/utils/RelativeTimer.h>
+
+TSL_NS_BEGIN
 
 struct PlatformSpecifiedRelativeTimer : RelativeTimer
 {
    PlatformSpecifiedRelativeTimer(const TimerId timerId);
 
 private:
-   OVERRIDE(bool isTimerEvent(const Event&) const);
-   OVERRIDE(Status actualStartTimer(const TimerId, WORD32 timerLen));
+   OVERRIDE(bool isTimerEvent(const ev::Event&) const);
+   OVERRIDE(cub::Status actualStartTimer(const TimerId, cub::U32 timerLen));
    OVERRIDE(void actualStopTimer(const TimerId));
-   OVERRIDE(bool actualMatches(const Event&, const TimerId) const);
+   OVERRIDE(bool actualMatches(const ev::Event&, const TimerId) const);
 };
+
+TSL_NS_END
 
 #endif /* PLATFORMSPECIFIEDRELATIVETIMER_H_ */

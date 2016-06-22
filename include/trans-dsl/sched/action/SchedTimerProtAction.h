@@ -11,8 +11,10 @@
 #ifndef SCHEDTIMERPROTACTION_H_
 #define SCHEDTIMERPROTACTION_H_
 
-#include "trans-dsl/sched/concept/SchedAction.h"
-#include "trans-dsl/utils/DeclState.h"
+#include <trans-dsl/sched/concept/SchedAction.h>
+#include <trans-dsl/utils/DeclState.h>
+
+TSL_NS_BEGIN
 
 struct RelativeTimer;
 
@@ -23,7 +25,7 @@ namespace details
       TimerProtActionState();
 
       void start();
-      void stop(const Status status);
+      void stop(const cub::Status status);
 
       bool isStopping() const;
       bool isDone() const;
@@ -39,32 +41,34 @@ namespace details
 
    struct TimerProtAction : SchedAction
    {
-      OVERRIDE(Status exec(TransactionContext&));
-      OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-      OVERRIDE(Status stop(TransactionContext&, const Status));
-      OVERRIDE(void   kill(TransactionContext&, const Status));
+      OVERRIDE(cub::Status exec(TransactionContext&));
+      OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+      OVERRIDE(cub::Status stop(TransactionContext&, const cub::Status));
+      OVERRIDE(void   kill(TransactionContext&, const cub::Status));
 
    private:
-      Status startTimer(TransactionContext&);
+      cub::Status startTimer(TransactionContext&);
 
    private:
       USE_ROLE(RelativeTimer);
       USE_ROLE(SchedAction);
       USE_ROLE(TimerProtActionState);
 
-      ABSTRACT(Status getTimeoutStatus() const);
+      ABSTRACT(cub::Status getTimeoutStatus() const);
    };
 
    struct TimerProtFinalAction : FinalAction
    {
-      OVERRIDE(Status exec(TransactionContext&));
-      OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-      OVERRIDE(void   kill(TransactionContext&, const Status));
+      OVERRIDE(cub::Status exec(TransactionContext&));
+      OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+      OVERRIDE(void   kill(TransactionContext&, const cub::Status));
 
    private:
       USE_ROLE(SchedAction);
       USE_ROLE(TimerProtActionState);
    };
 }
+
+TSL_NS_END
 
 #endif /* SCHEDTIMERPROTACTION_H_ */

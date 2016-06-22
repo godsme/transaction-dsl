@@ -9,6 +9,7 @@
  */ 
 
 #include <trans-dsl/sched/trans/BaseTransactionScheduler.h>
+#include <trans-dsl/TslStatus.h>
 
 TSL_NS_BEGIN
 
