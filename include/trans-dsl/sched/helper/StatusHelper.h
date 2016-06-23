@@ -11,8 +11,8 @@
 #ifndef STATUSHELPER_H_
 #define STATUSHELPER_H_
 
-#include "trans-dsl/sched/helper/SwitchCaseHelper.h"
-#include "trans-dsl/sched/concept/TransactionInfo.h"
+#include <trans-dsl/sched/helper/SwitchCaseHelper.h>
+#include <trans-dsl/sched/concept/TransactionInfo.h>
 
 TSL_NS_BEGIN
 

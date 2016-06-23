@@ -23,10 +23,10 @@
 
 /////////////////////////////////////////////////////////////////////////////////
 #define __concurrent(...) \
-       details::CONCURRENT__< __VA_ARGS__ >
+       TSL_NS::details::CONCURRENT__< __VA_ARGS__ >
 
 #define __void_concurrent(...) \
-       details::VOID_CONCURRENT__< __VA_ARGS__ >
+       TSL_NS::details::VOID_CONCURRENT__< __VA_ARGS__ >
 
 /////////////////////////////////////////////////////////////////////////////////
 

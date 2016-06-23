@@ -57,7 +57,7 @@ TSL_NS_END
 #define __case(...) \
        TSL_NS::details::CASE__< __VA_ARGS__ >
 
-#define __optional(...) details::OPTIONAL__< __VA_ARGS__ >
+#define __optional(...) TSL_NS::details::OPTIONAL__< __VA_ARGS__ >
 
 //////////////////////////////////////////////////////////////////
 
