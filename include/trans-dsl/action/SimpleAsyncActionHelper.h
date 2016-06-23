@@ -11,8 +11,10 @@
 #ifndef SIMPLEASYNCACTIONHELPER_H_
 #define SIMPLEASYNCACTIONHELPER_H_
 
-#include "trans-dsl/action/SimpleAsyncAction.h"
-#include "trans-dsl/utils/WaitOn.h"
+#include <trans-dsl/action/SimpleAsyncAction.h>
+#include <trans-dsl/utils/WaitOn.h>
+
+TSL_NS_BEGIN
 
 /////////////////////////////////////////////////////////////
 namespace details
@@ -25,22 +27,24 @@ namespace details
    };
 }
 
+TSL_NS_END
+
 #define DEF_SIMPLE_ASYNC_ACTION(action) \
-   struct action : details::GenericSimpleAsyncAction<action>
+   struct action : TSL_NS::details::GenericSimpleAsyncAction<action>
 
 /////////////////////////////////////////////////////////////
 #define __ACTION_REAL_HANLDER(handler) actual_##handler
 
 #define ACTION_SIMPLE_EVENT_HANDLER_DECL(handler, EventType) \
-   Status handler(const TransactionInfo&, const Event&); \
-   Status __ACTION_REAL_HANLDER(handler)(const TransactionInfo&, const EventType&)
+   cub::Status handler(const TransactionInfo&, const ev::Event&); \
+   cub::Status __ACTION_REAL_HANLDER(handler)(const TransactionInfo&, const EventType&)
 
 #define ACTION_SIMPLE_EVENT_HANDLER_DEF(ActionClass, handler, EventType) \
-   Status ActionClass::handler(const TransactionInfo& trans, const Event& event) \
+   cub::Status ActionClass::handler(const TransactionInfo& trans, const ev::Event& event) \
    { \
       return __ACTION_REAL_HANLDER(handler)(trans, *((const EventType*)event.getMsg())); \
    } \
-   Status ActionClass::__ACTION_REAL_HANLDER(handler)(const TransactionInfo& trans, const EventType& event)
+   cub::Status ActionClass::__ACTION_REAL_HANLDER(handler)(const TransactionInfo& trans, const EventType& event)
 
 #endif /* SIMPLEASYNCACTIONHELPER_H_ */
 

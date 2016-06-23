@@ -5,7 +5,7 @@
  *      Author: arthur
  */
 
-#include "trans-dsl/sched/action/SchedSequentialAction.h"
+#include <trans-dsl/sched/action/SchedSequentialAction.h>
 
 TSL_NS_BEGIN
 

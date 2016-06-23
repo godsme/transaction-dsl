@@ -17,7 +17,7 @@
 TSL_NS_BEGIN
 
 struct MultiThreadTransactionScheduler
-   : private MultiThreadScheduler
+   : MultiThreadScheduler
    , BaseTransactionScheduler
 {
    explicit MultiThreadTransactionScheduler(const InstanceId iid = 0);

@@ -5,13 +5,11 @@
  *      Author: arthur
  */
 
-#include "trans-dsl/sched/action/Procedure.h"
-#include "trans-dsl/sched/concept/TransactionContext.h"
-#include "trans-dsl/utils/GofState.h"
-#include "trans-dsl/utils/RuntimeContextAutoSwitch.h"
-#include "trans-dsl/utils/ActionStatus.h"
-
-#include <iostream>
+#include <trans-dsl/sched/action/Procedure.h>
+#include <trans-dsl/sched/concept/TransactionContext.h>
+#include <trans-dsl/utils/GofState.h>
+#include <trans-dsl/utils/RuntimeContextAutoSwitch.h>
+#include <trans-dsl/utils/ActionStatus.h>
 
 TSL_NS_BEGIN
 

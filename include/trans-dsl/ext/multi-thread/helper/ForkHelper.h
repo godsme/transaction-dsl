@@ -36,7 +36,7 @@ namespace details
 TSL_NS_END
 
 /////////////////////////////////////////////////////////
-#define __fork(...) details::FORK__< __VA_ARGS__ >
+#define __fork(...) TSL_NS::details::FORK__< __VA_ARGS__ >
 /////////////////////////////////////////////////////////
 
 #endif /* FORKHELPER_H_ */

@@ -42,7 +42,7 @@ TSL_NS_END
 
 ///////////////////////////////////////////////////////////////////////
 #define __prot_transaction(...) \
-        TSL_NS::details::TRANSACTION__< TSL_NS::details::PROTECTED_PROC__<__VA_ARGS__ > >
+    TSL_NS::details::TRANSACTION__< TSL_NS::details::PROTECTED_PROC__<__VA_ARGS__ > >
 
 #define __def_prot_transaction(...) \
      typedef __prot_transaction(__VA_ARGS__)

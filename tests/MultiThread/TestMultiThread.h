@@ -3,12 +3,35 @@
 #include "event/impl/SimpleEventInfo.h"
 #include "event/concept/Event.h"
 
-DEF_FAILED_STATUS(ERROR1,           10);
-DEF_FAILED_STATUS(ERROR2,           11);
-DEF_FAILED_STATUS(ERROR3,           12);
-DEF_FAILED_STATUS(ERROR4,           13);
-DEF_FAILED_STATUS(E_CANCELED,       14);
-DEF_FAILED_STATUS(E_REESTAB,        15);
+using namespace cub;
+using namespace tsl;
+using namespace ev;
+
+namespace cub
+{
+  extern void log_error(const char* file, unsigned int line, const char* fmt, ...)
+  {
+  }
+}
+
+enum : Status
+{
+    ERROR1 = failStatus(200),
+    ERROR2,
+    ERROR3,
+    ERROR4,
+    E_CANCELED,
+    E_REESTAB
+};
+
+
+struct MyContext : private SimpleRuntimeContext, SimpleTransactionContext
+{
+   MyContext() : SimpleTransactionContext((RuntimeContext&)*this)
+   {
+   }
+};
+
 
 FIXTURE(mt1)
 {
@@ -22,49 +45,49 @@ FIXTURE(mt1)
 
    SETUP()
    {
-      ASSERT_EQ(CONTINUE, trans.start());
+      ASSERT_EQ(TSL_CONTINUE, trans.start());
    }
 
    // @test(id="event-1")
-   TEST("after recv event-1, should return CONTINUE")
+   TEST("after recv event-1, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.handleEvent(SimpleEventInfo(1)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(SimpleEventInfo(1)));
    }
 
    // @test(id="event-2")
-   TEST("after recv event-2, should return CONTINUE")
+   TEST("after recv event-2, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.handleEvent(SimpleEventInfo(2)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(SimpleEventInfo(2)));
    }
 
    // @test(id="event-1-2", depends="event-1")
-   TEST("after recv event-1, if recv event-2, should return CONTINUE")
+   TEST("after recv event-1, if recv event-2, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.handleEvent(SimpleEventInfo(2)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(SimpleEventInfo(2)));
    }
 
    // @test(id="event-2-1", depends="event-2")
-   TEST("after recv event-2, if recv event-1, should return CONTINUE")
+   TEST("after recv event-2, if recv event-1, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.handleEvent(SimpleEventInfo(1)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(SimpleEventInfo(1)));
    }
 
    // @test(depends="event-1-2")
-   TEST("after recv event-1-2, if recv event-3, should return SUCCESS")
+   TEST("after recv event-1-2, if recv event-3, should return TSL_SUCCESS")
    {
-      ASSERT_EQ(SUCCESS, trans.handleEvent(SimpleEventInfo(3)));
+      ASSERT_EQ(TSL_SUCCESS, trans.handleEvent(SimpleEventInfo(3)));
    }
 
    // @test(depends="event-2-1")
-   TEST("after recv event-2-1, if recv event-3, should return SUCCESS")
+   TEST("after recv event-2-1, if recv event-3, should return TSL_SUCCESS")
    {
-      ASSERT_EQ(SUCCESS, trans.handleEvent(SimpleEventInfo(3)));
+      ASSERT_EQ(TSL_SUCCESS, trans.handleEvent(SimpleEventInfo(3)));
    }
 
    // @test(depends="event-2")
-   TEST("after recv event-2, if recv event-3, should return UNKNOWN_EVENT")
+   TEST("after recv event-2, if recv event-3, should return TSL_UNKNOWN_EVENT")
    {
-      ASSERT_EQ(UNKNOWN_EVENT, trans.handleEvent(SimpleEventInfo(3)));
+      ASSERT_EQ(TSL_UNKNOWN_EVENT, trans.handleEvent(SimpleEventInfo(3)));
    }
 };
 
@@ -79,7 +102,7 @@ FIXTURE(mt2)
 
    SETUP()
    {
-      ASSERT_EQ(CONTINUE, trans.start());
+      ASSERT_EQ(TSL_CONTINUE, trans.start());
    }
 
    TEST("after recv event-1, should return ERROR1")
@@ -87,9 +110,9 @@ FIXTURE(mt2)
       ASSERT_EQ(ERROR1, trans.handleEvent(SimpleEventInfo(1)));
    }
 
-   TEST("after recv event-2, should return UNKNOWN_EVENT")
+   TEST("after recv event-2, should return TSL_UNKNOWN_EVENT")
    {
-      ASSERT_EQ(UNKNOWN_EVENT, trans.handleEvent(SimpleEventInfo(2)));
+      ASSERT_EQ(TSL_UNKNOWN_EVENT, trans.handleEvent(SimpleEventInfo(2)));
    }
 };
 
@@ -105,54 +128,54 @@ FIXTURE(mt3)
 
    SETUP()
    {
-      ASSERT_EQ(CONTINUE, trans.start());
+      ASSERT_EQ(TSL_CONTINUE, trans.start());
    }
 
    // @test(id="event-1")
-   TEST("after recv event-1, should return CONTINUE")
+   TEST("after recv event-1, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.handleEvent(SimpleEventInfo(1)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(SimpleEventInfo(1)));
    }
 
    // @test(id="event-2")
-   TEST("after recv event-2, should return CONTINUE")
+   TEST("after recv event-2, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.handleEvent(SimpleEventInfo(2)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(SimpleEventInfo(2)));
    }
 
-   TEST("after recv event-3, should return UNKNOWN_EVENT")
+   TEST("after recv event-3, should return TSL_UNKNOWN_EVENT")
    {
-      ASSERT_EQ(UNKNOWN_EVENT, trans.handleEvent(SimpleEventInfo(3)));
+      ASSERT_EQ(TSL_UNKNOWN_EVENT, trans.handleEvent(SimpleEventInfo(3)));
    }
 
    // @test(id="event-1-2", depends="event-1")
-   TEST("after recv event-1, if recv event-2, should return CONTINUE")
+   TEST("after recv event-1, if recv event-2, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.handleEvent(SimpleEventInfo(2)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(SimpleEventInfo(2)));
    }
 
    // @test(id="event-2-1", depends="event-2")
-   TEST("after recv event-2, if recv event-1, should return CONTINUE")
+   TEST("after recv event-2, if recv event-1, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.handleEvent(SimpleEventInfo(1)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(SimpleEventInfo(1)));
    }
 
    // @test(depends="event-1")
-   TEST("after recv event-1, if recv event-3, should return UNKNOWN_EVENT")
+   TEST("after recv event-1, if recv event-3, should return TSL_UNKNOWN_EVENT")
    {
-      ASSERT_EQ(UNKNOWN_EVENT, trans.handleEvent(SimpleEventInfo(3)));
+      ASSERT_EQ(TSL_UNKNOWN_EVENT, trans.handleEvent(SimpleEventInfo(3)));
    }
 
    // @test(depends="event-1-2")
-   TEST("after recv event-1-2, if recv event-3, should return SUCCESS")
+   TEST("after recv event-1-2, if recv event-3, should return TSL_SUCCESS")
    {
-      ASSERT_EQ(SUCCESS, trans.handleEvent(SimpleEventInfo(3)));
+      ASSERT_EQ(TSL_SUCCESS, trans.handleEvent(SimpleEventInfo(3)));
    }
 
    // @test(depends="event-2-1")
-   TEST("after recv event-2-1, if recv event-3, should return SUCCESS")
+   TEST("after recv event-2-1, if recv event-3, should return TSL_SUCCESS")
    {
-      ASSERT_EQ(SUCCESS, trans.handleEvent(SimpleEventInfo(3)));
+      ASSERT_EQ(TSL_SUCCESS, trans.handleEvent(SimpleEventInfo(3)));
    }
 };
 
@@ -168,41 +191,41 @@ FIXTURE(mt4)
 
    SETUP()
    {
-      ASSERT_EQ(CONTINUE, trans.start());
+      ASSERT_EQ(TSL_CONTINUE, trans.start());
    }
 
    // @test(id="event-2")
-   TEST("after recv event-2, should return CONTINUE")
+   TEST("after recv event-2, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.handleEvent(SimpleEventInfo(2)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(SimpleEventInfo(2)));
    }
 
-   TEST("after recv event-1, should return UNKNOWN_EVENT")
+   TEST("after recv event-1, should return TSL_UNKNOWN_EVENT")
    {
-      ASSERT_EQ(UNKNOWN_EVENT, trans.handleEvent(SimpleEventInfo(1)));
+      ASSERT_EQ(TSL_UNKNOWN_EVENT, trans.handleEvent(SimpleEventInfo(1)));
    }
 
-   TEST("after recv event-3, should return UNKNOWN_EVENT")
+   TEST("after recv event-3, should return TSL_UNKNOWN_EVENT")
    {
-      ASSERT_EQ(UNKNOWN_EVENT, trans.handleEvent(SimpleEventInfo(3)));
+      ASSERT_EQ(TSL_UNKNOWN_EVENT, trans.handleEvent(SimpleEventInfo(3)));
    }
 
    // @test(id="event-2-1", depends="event-2")
-   TEST("after recv event-2, if recv event-1, should return CONTINUE")
+   TEST("after recv event-2, if recv event-1, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.handleEvent(SimpleEventInfo(1)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(SimpleEventInfo(1)));
    }
 
    // @test(depends="event-2")
-   TEST("after recv event-2, if recv event-3, should return UNKNOWN_EVENT")
+   TEST("after recv event-2, if recv event-3, should return TSL_UNKNOWN_EVENT")
    {
-      ASSERT_EQ(UNKNOWN_EVENT, trans.handleEvent(SimpleEventInfo(3)));
+      ASSERT_EQ(TSL_UNKNOWN_EVENT, trans.handleEvent(SimpleEventInfo(3)));
    }
 
    // @test(depends="event-2-1")
-   TEST("after recv event-2-1, if recv event-3, should return SUCCESS")
+   TEST("after recv event-2-1, if recv event-3, should return TSL_SUCCESS")
    {
-      ASSERT_EQ(SUCCESS, trans.handleEvent(SimpleEventInfo(3)));
+      ASSERT_EQ(TSL_SUCCESS, trans.handleEvent(SimpleEventInfo(3)));
    }
 };
 
@@ -245,7 +268,7 @@ FIXTURE(mt7)
 
    TEST("should return last error")
    {
-      ASSERT_EQ(SUCCESS, trans.start());
+      ASSERT_EQ(TSL_SUCCESS, trans.start());
    }
 };
 
@@ -581,7 +604,7 @@ FIXTURE(Attach)
 
    struct MyTimerInfo : TimerInfo
    {
-      WORD32 getTimerLen(const TimerId) const
+      U32 getTimerLen(const TimerId) const
       {
          return 10;
       }
@@ -591,38 +614,38 @@ FIXTURE(Attach)
    {
       x2hod.updateTimerInfo(timerInfo);
 
-      ASSERT_EQ(CONTINUE, x2hod.start());
+      ASSERT_EQ(TSL_CONTINUE, x2hod.start());
    }
 
    // @test(id="x2-hod-req")
-   TEST("after recv X2_HOD_REQ, should return CONTINUE")
+   TEST("after recv X2_HOD_REQ, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, x2hod.handleEvent(EVENT(X2_HO_REQ)));
+      ASSERT_EQ(TSL_CONTINUE, x2hod.handleEvent(EVENT(X2_HO_REQ)));
    }
 
    // @test(depends="x2-hod-req")
-   TEST("after recv X2_HO_REQ, if BRS timeout, should return TIMEDOUT")
+   TEST("after recv X2_HO_REQ, if BRS timeout, should return TSL_TIMEDOUT")
    {
-      ASSERT_EQ(TIMEDOUT, x2hod.handleEvent(TIMER_EVENT(BRS_TIMER)));
+      ASSERT_EQ(TSL_TIMEDOUT, x2hod.handleEvent(TIMER_EVENT(BRS_TIMER)));
    }
 
    // @test(id="brs-setup", depends="x2-hod-req")
-   TEST("after recv X2_HO_REQ, if recv BRS_SETUP_TUNNEL_ACK, should return CONTINUE")
+   TEST("after recv X2_HO_REQ, if recv BRS_SETUP_TUNNEL_ACK, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, x2hod.handleEvent(EVENT(BRS_SETUP_TUNNEL_ACK)));
+      ASSERT_EQ(TSL_CONTINUE, x2hod.handleEvent(EVENT(BRS_SETUP_TUNNEL_ACK)));
    }
 
    // @test(id="rnlu-bb-setup", depends="brs-setup")
-   TEST("after tunnel setup, if recv BB_CFG_ACK, should return CONTINUE")
+   TEST("after tunnel setup, if recv BB_CFG_ACK, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, x2hod.handleEvent(EVENT(BB_CFG_ACK)));
-      ASSERT_EQ(CONTINUE, x2hod.handleEvent(EVENT(RNLU_CFG_ACK)));
+      ASSERT_EQ(TSL_CONTINUE, x2hod.handleEvent(EVENT(BB_CFG_ACK)));
+      ASSERT_EQ(TSL_CONTINUE, x2hod.handleEvent(EVENT(RNLU_CFG_ACK)));
    }
 
    // @test(depends="rnlu-bb-setup")
-   TEST("after rnlu & bb setup, if recv X1_RECFG_TIMER, should return TIMEDOUT")
+   TEST("after rnlu & bb setup, if recv X1_RECFG_TIMER, should return TSL_TIMEDOUT")
    {
-      ASSERT_EQ(TIMEDOUT, x2hod.handleEvent(TIMER_EVENT(X1_RECFG_TIMER)));
+      ASSERT_EQ(TSL_TIMEDOUT, x2hod.handleEvent(TIMER_EVENT(X1_RECFG_TIMER)));
    }
 
    // @test(depends="rnlu-bb-setup")
@@ -632,21 +655,21 @@ FIXTURE(Attach)
    }
 
    // @test(id="recfg", depends="rnlu-bb-setup")
-   TEST("after rnlu & bb setup, if recv X1_RECFG_CMP, should return CONTINUE")
+   TEST("after rnlu & bb setup, if recv X1_RECFG_CMP, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, x2hod.handleEvent(EVENT(EV_X1_RECFG_CMP)));
+      ASSERT_EQ(TSL_CONTINUE, x2hod.handleEvent(EVENT(EV_X1_RECFG_CMP)));
    }
 
    // @test(id="reestab", depends="rnlu-bb-setup")
-   TEST("after rnlu & bb setup, if recv X1_RECFG_CMP, should return CONTINUE")
+   TEST("after rnlu & bb setup, if recv X1_RECFG_CMP, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, x2hod.handleEvent(EVENT(EV_X1_RRC_REESTAB_REQ)));
+      ASSERT_EQ(TSL_CONTINUE, x2hod.handleEvent(EVENT(EV_X1_RRC_REESTAB_REQ)));
    }
 
    // @test(depends="reestab")
-   TEST("after reestab, if recv S1_PATH_SWITCH_ACK, should return CONTINUE")
+   TEST("after reestab, if recv S1_PATH_SWITCH_ACK, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, x2hod.handleEvent(EVENT(S1_PATH_SWITCH_ACK)));
+      ASSERT_EQ(TSL_CONTINUE, x2hod.handleEvent(EVENT(S1_PATH_SWITCH_ACK)));
    }
 
    // @test(depends="recfg")
@@ -671,13 +694,13 @@ FIXTURE(Status)
 
    SETUP()
    {
-      ASSERT_EQ(CONTINUE, trans.start());
+      ASSERT_EQ(TSL_CONTINUE, trans.start());
    }
 
    // @test(id="event-1")
-   TEST("after start, if recv event-1, should return CONTINUE")
+   TEST("after start, if recv event-1, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.handleEvent(EVENT(1)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(EVENT(1)));
    }
 
    // @test(depends="event-1")
@@ -687,9 +710,9 @@ FIXTURE(Status)
    }
 
    // @test(depends="event-1")
-   TEST("after recv event-1, if recv event-2, should return UNKNOWN_EVENT")
+   TEST("after recv event-1, if recv event-2, should return TSL_UNKNOWN_EVENT")
    {
-      ASSERT_EQ(UNKNOWN_EVENT, trans.handleEvent(EVENT(2)));
+      ASSERT_EQ(TSL_UNKNOWN_EVENT, trans.handleEvent(EVENT(2)));
    }
 };
 
@@ -708,13 +731,13 @@ FIXTURE(Status1)
 
    SETUP()
    {
-      ASSERT_EQ(CONTINUE, trans.start());
+      ASSERT_EQ(TSL_CONTINUE, trans.start());
    }
 
    // @test(id="event-2")
-   TEST("after start, if recv event-2, should return CONTINUE")
+   TEST("after start, if recv event-2, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.handleEvent(EVENT(2)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(EVENT(2)));
    }
 
    // @test(depends="event-2")
@@ -732,12 +755,12 @@ FIXTURE(peek)
 
    SETUP()
    {
-      ASSERT_EQ(CONTINUE, trans.start());
+      ASSERT_EQ(TSL_CONTINUE, trans.start());
    }
 
-   TEST("after start, if recv event-1, should return SUCCESS")
+   TEST("after start, if recv event-1, should return TSL_SUCCESS")
    {
-      ASSERT_EQ(SUCCESS, trans.handleEvent(EVENT(1)));
+      ASSERT_EQ(TSL_SUCCESS, trans.handleEvent(EVENT(1)));
    }
 };
 
@@ -756,7 +779,7 @@ FIXTURE(safe_mode)
 
    SETUP()
    {
-      ASSERT_EQ(CONTINUE, trans.start());
+      ASSERT_EQ(TSL_CONTINUE, trans.start());
    }
 
    TEST("after start, if stop, should return stop cause")
@@ -765,22 +788,22 @@ FIXTURE(safe_mode)
    }
 
    // @test(id="ev-1")
-   TEST("after started, if recv event-1, should return CONTINUE")
+   TEST("after started, if recv event-1, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.handleEvent(EVENT(1)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(EVENT(1)));
    }
 
    // @test(id="stop", depends="ev-1")
-   TEST("after recv event-1, if stop, should return CONTINUE")
+   TEST("after recv event-1, if stop, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.stop(ERROR1));
+      ASSERT_EQ(TSL_CONTINUE, trans.stop(ERROR1));
    }
 
    // @test(id="safe", depends="stop")
-   TEST("after stop, is recv event-2, event-3, should return CONTINUE")
+   TEST("after stop, is recv event-2, event-3, should return TSL_CONTINUE")
    {
-      ASSERT_EQ(CONTINUE, trans.handleEvent(EVENT(2)));
-      ASSERT_EQ(CONTINUE, trans.handleEvent(EVENT(3)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(EVENT(2)));
+      ASSERT_EQ(TSL_CONTINUE, trans.handleEvent(EVENT(3)));
    }
 
    // @test(depends="safe")
@@ -790,9 +813,9 @@ FIXTURE(safe_mode)
    }
 
    // @test(depends="safe")
-   TEST("after safe mode, if recv event-4, should return SUCCESS")
+   TEST("after safe mode, if recv event-4, should return TSL_SUCCESS")
    {
-      ASSERT_EQ(SUCCESS, trans.handleEvent(EVENT(4)));
+      ASSERT_EQ(TSL_SUCCESS, trans.handleEvent(EVENT(4)));
    }
 };
 

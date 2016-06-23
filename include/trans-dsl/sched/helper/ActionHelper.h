@@ -11,16 +11,16 @@
 #ifndef ACTIONHELPER_H_
 #define ACTIONHELPER_H_
 
-#include "trans-dsl/sched/action/SchedActionAdapter.h"
-#include "trans-dsl/action/SyncActionAdapter.h"
+#include <trans-dsl/sched/action/SchedActionAdapter.h>
+#include <trans-dsl/action/SyncActionAdapter.h>
+
+TSL_NS_BEGIN
 
 namespace details
 {
    template<typename T_ACTION>
    struct ACTION__: tsl::SchedActionAdapter
    {
-       typedef tsl::Action Action;
-
        IMPL_ROLE_WITH_VAR(Action, T_ACTION);
    };
 
@@ -32,8 +32,6 @@ namespace details
    template<typename T_SYNC_ACTION>
    struct GenericSyncAtionAdpater: tsl::SyncActionAdapter
    {
-       typedef tsl::SyncAction SyncAction;
-
    private:
        IMPL_ROLE_WITH_VAR(SyncAction, T_SYNC_ACTION);
    };
@@ -44,12 +42,14 @@ namespace details
    };
 }
 
+TSL_NS_END
+
 ////////////////////////////////////////////////////////////////////////
 #define __asyn(action, ...) \
-       details::ASYN__< action __VA_ARGS__ >
+       TSL_NS::details::ASYN__< action __VA_ARGS__ >
 
 #define __sync(action, ...) \
-       details::SYNC__< action __VA_ARGS__ >
+       TSL_NS::details::SYNC__< action __VA_ARGS__ >
 
 ////////////////////////////////////////////////////////////////////////
 #define __ind(...)  __sync(__VA_ARGS__)

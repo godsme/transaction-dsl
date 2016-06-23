@@ -11,7 +11,7 @@
 #ifndef THROWHELPER_H_
 #define THROWHELPER_H_
 
-#include "trans-dsl/sched/action/SchedThrowAction.h"
+#include <trans-dsl/sched/action/SchedThrowAction.h>
 
 TSL_NS_BEGIN
 
@@ -31,9 +31,9 @@ namespace details
 TSL_NS_END
 
 ////////////////////////////////////////////////////////////////
-#define __throw(...) tsl::details::THROW__< __VA_ARGS__ >
+#define __throw(...) TSL_NS::details::THROW__< __VA_ARGS__ >
 
-#define __nop() __throw(SUCCESS)
+#define __nop() __throw(TSL_SUCCESS)
 
 ////////////////////////////////////////////////////////////////
 

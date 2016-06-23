@@ -27,6 +27,7 @@ namespace details
       {
          return IS_PROTECTED;
       }
+
       IMPL_ROLE_WITH_VAR(SchedAction, T_ACTION);
       IMPL_ROLE_WITH_VAR(FinalAction, T_FINAL_ACTION);
    };

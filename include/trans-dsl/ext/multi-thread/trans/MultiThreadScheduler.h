@@ -26,7 +26,7 @@ struct TransactionContext;
 
 struct MultiThreadScheduler
     : protected SimpleRuntimeContext
-    , protected MultiThreadContext
+    , MultiThreadContext
 {
    MultiThreadScheduler();
 

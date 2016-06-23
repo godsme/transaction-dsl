@@ -6,7 +6,7 @@
  */
 
 #include <trans-dsl/utils/SimpleRuntimeContext.h>
-#include "trans-dsl/utils/ActionStatus.h"
+#include <trans-dsl/utils/ActionStatus.h>
 
 TSL_NS_BEGIN
 
@@ -28,6 +28,7 @@ void SimpleRuntimeContext::reportFailure(Status failure)
    }
 
    objectStatus = failure;
+
 
    if(shouldReportParent() && parent != 0)
    {

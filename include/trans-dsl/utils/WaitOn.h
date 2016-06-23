@@ -14,8 +14,8 @@
 /////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////
 #define __WAIT_EVENT(...) do { \
-   Status ___wait_on_status__ = __VA_ARGS__; \
-   if( ___wait_on_status__ != SUCCESS) return ___wait_on_status__; \
+   cub::Status ___wait_on_status__ = __VA_ARGS__; \
+   if( ___wait_on_status__ != TSL_SUCCESS) return ___wait_on_status__; \
 } while(0)
 
 #define __WAIT_ON(eventId, handler, forever) \

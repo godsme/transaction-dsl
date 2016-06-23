@@ -21,7 +21,7 @@ namespace cub
 
 enum : Status
 {
-    ERROR1 = succStatus(200),
+    ERROR1 = failStatus(200),
     ERROR2,
     ERROR3,
     ERROR4
@@ -62,7 +62,7 @@ FIXTURE(proc1)
    TEST("should be able to stop")
    {
       ASSERT_EQ(TSL_CONTINUE, proc.stop(context, ERROR1));
-      ASSERT_EQ(ERROR1,  proc.handleEvent(context, SimpleEventInfo(3)));
+      ASSERT_EQ(ERROR1, proc.handleEvent(context, SimpleEventInfo(3)));
    }
 };
 
