@@ -12,6 +12,7 @@
 #include <trans-dsl/utils/ActionStatus.h>
 
 #include <cub/base/Assertions.h>
+#include <cub/dci/Unknown.h>
 #include <event/concept/Event.h>
 
 TSL_NS_BEGIN
@@ -97,7 +98,7 @@ cub::Status SchedJoinAction::handleEvent(TransactionContext&, const ev::Event& e
 cub::Status SchedJoinAction::join(const ActionThreadId threadId,
          TransactionContext& context)
 {
-   MultiThreadContext* mt = dynamic_cast<MultiThreadContext*>(&context);
+   MultiThreadContext* mt = com::unknown_cast<MultiThreadContext>(&context);
    CUB_ASSERT_VALID_PTR(mt);
 
    cub::Status result = TSL_SUCCESS;

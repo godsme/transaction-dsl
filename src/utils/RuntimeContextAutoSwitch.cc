@@ -5,6 +5,7 @@
  *      Author: arthur
  */
 
+#include <cub/dci/Unknown.h>
 #include <trans-dsl/utils/RuntimeContextAutoSwitch.h>
 #include <trans-dsl/sched/concept/TransactionContext.h>
 #include <trans-dsl/sched/concept/RuntimeContextInfo.h>
@@ -17,7 +18,7 @@ RuntimeContextAutoSwitch::RuntimeContextAutoSwitch
    , RuntimeContext*& parentKeeper
    , TransactionContext& context)
    : parentKeeper(parentKeeper)
-   , contextInfo(dynamic_cast<RuntimeContextInfo*>(&context))
+   , contextInfo(com::unknown_cast<RuntimeContextInfo>(&context))
 {
    if(contextInfo == 0)
    {

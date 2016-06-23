@@ -9,15 +9,15 @@
 #include <trans-dsl/ext/multi-thread/concept/MultiThreadContext.h>
 #include <trans-dsl/sched/concept/TransactionContext.h>
 #include <trans-dsl/utils/ActionStatus.h>
-
 #include <cub/base/Assertions.h>
+#include <cub/dci/Unknown.h>
 
 TSL_NS_BEGIN
 
 //////////////////////////////////////////////////////////////////////////////////
 cub::Status SchedForkAction::exec(TransactionContext& context)
 {
-   MultiThreadContext* mt = dynamic_cast<MultiThreadContext*>(&context);
+   MultiThreadContext* mt = com::unknown_cast<MultiThreadContext>(&context);
    CUB_ASSERT_VALID_PTR(mt);
 
    cub::Status result = TSL_SUCCESS;

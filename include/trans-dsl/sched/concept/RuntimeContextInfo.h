@@ -11,6 +11,7 @@
 #ifndef RUNTIMECONTEXTINFO_H_
 #define RUNTIMECONTEXTINFO_H_
 
+#include <cub/dci/InterfaceDef.h>
 #include <cub/dci/Role.h>
 #include <trans-dsl/tsl.h>
 
@@ -18,7 +19,7 @@ TSL_NS_BEGIN
 
 struct RuntimeContext;
 
-DEFINE_ROLE(RuntimeContextInfo)
+UNKNOWN_INTERFACE(RuntimeContextInfo, 973432232)
 {
    ABSTRACT(void setRuntimeContext(RuntimeContext&));
    ABSTRACT(RuntimeContext* getRuntimeContext() const);

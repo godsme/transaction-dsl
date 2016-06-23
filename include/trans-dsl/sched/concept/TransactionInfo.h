@@ -14,6 +14,7 @@
 #include <trans-dsl/sched/concept/InstanceId.h>
 #include <cub/base/Status.h>
 #include <cub/dci/Role.h>
+#include <cub/dci/Unknown.h>
 
 TSL_NS_BEGIN
 
@@ -28,7 +29,7 @@ DEFINE_ROLE(TransactionInfo)
    template <typename ROLE>
    ROLE* toRole() const
    {
-      return dynamic_cast<ROLE*>(getUserContext());
+      return com::unknown_cast<ROLE>(getUserContext());
    }
 };
 

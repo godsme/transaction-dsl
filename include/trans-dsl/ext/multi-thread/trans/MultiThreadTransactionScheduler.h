@@ -32,6 +32,10 @@ private:
 
 private:
    IMPL_ROLE(TransactionContext);
+
+   APPEND_INTERFACE_TABLE(BaseTransactionScheduler)
+      __HAS_INTERFACE(MultiThreadContext)
+   END_INTERFACE_TABLE()
 };
 
 TSL_NS_END

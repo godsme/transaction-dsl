@@ -28,7 +28,7 @@ SchedLockAction::SchedLockAction() : waiting(true)
 ///////////////////////////////////////////////////////////////////////////////////////////
 Status SchedLockAction::lock(TransactionContext& context)
 {
-   TransMutexScheduler* mutex = dynamic_cast<TransMutexScheduler*>(&context);
+   TransMutexScheduler* mutex = com::unknown_cast<TransMutexScheduler>(&context);
    CUB_ASSERT_VALID_PTR(mutex);
 
    ActionStatus status = mutex->lock(getMutexId());
@@ -45,7 +45,7 @@ Status SchedLockAction::lock(TransactionContext& context)
 ///////////////////////////////////////////////////////////////////////////////////////////
 Status SchedLockAction::unlock(TransactionContext& context)
 {
-   TransMutexScheduler* mutex = dynamic_cast<TransMutexScheduler*>(&context);
+   TransMutexScheduler* mutex = com::unknown_cast<TransMutexScheduler>(&context);
    CUB_ASSERT_VALID_PTR(mutex);
 
    mutex->unlock(getMutexId());

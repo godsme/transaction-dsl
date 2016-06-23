@@ -12,12 +12,13 @@
 #define TRANSMUTEXSCHEDULER_H_
 
 #include <cub/base/Status.h>
+#include <cub/dci/InterfaceDef.h>
 #include <cub/dci/Role.h>
 #include <trans-dsl/ext/mutex/concept/TransMutextId.h>
 
 TSL_NS_BEGIN
 
-DEFINE_ROLE(TransMutexScheduler)
+UNKNOWN_INTERFACE(TransMutexScheduler, 34427421)
 {
    ABSTRACT(cub::Status lock(TransMutexId));
    ABSTRACT(void unlock(TransMutexId));

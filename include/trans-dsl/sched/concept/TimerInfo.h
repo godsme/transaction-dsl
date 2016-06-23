@@ -12,12 +12,13 @@
 #define TIMERINFO_H_
 
 #include <cub/base/BaseTypes.h>
+#include <cub/dci/InterfaceDef.h>
 #include <cub/dci/Role.h>
 #include <trans-dsl/sched/concept/TimerId.h>
 
 TSL_NS_BEGIN
 
-DEFINE_ROLE(TimerInfo)
+UNKNOWN_INTERFACE(TimerInfo, 32302582)
 {
    ABSTRACT(cub::U32 getTimerLen(const TimerId) const);
 };

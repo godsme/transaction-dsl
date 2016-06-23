@@ -1,1 +1,0 @@
-/Users/darwin/project/cpp/transaction-dsl/build/src/CMakeFiles/trans-dsl.dir

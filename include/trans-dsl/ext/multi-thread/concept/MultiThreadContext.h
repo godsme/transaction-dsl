@@ -15,12 +15,13 @@
 
 #include <cub/dci/Role.h>
 #include <cub/base/Status.h>
+#include <cub/dci/InterfaceDef.h>
 
 TSL_NS_BEGIN
 
 struct ActionThread;
 
-DEFINE_ROLE(MultiThreadContext)
+UNKNOWN_INTERFACE(MultiThreadContext, 304232040)
 {
    ABSTRACT(cub::Status startThread(const ActionThreadId, ActionThread&, cub::Status& result));
    ABSTRACT(cub::Status killThread(const ActionThreadId, const cub::Status));
