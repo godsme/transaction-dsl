@@ -7,6 +7,8 @@
 #include "trans-dsl/ext/mutex/def/TransMutexAvailMsg.h"
 #include <event/impl/ConsecutiveEventInfo.h>
 
+#include <iostream>
+
 using namespace ev;
 using namespace tsl;
 using namespace cub;

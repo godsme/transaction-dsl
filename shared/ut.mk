@@ -22,7 +22,7 @@ extra-srcs=
 #CC=g++ -std=c++0x -fpermissive
 CC=c++ -std=c++0x -g -O2 -Wall -Wno-invalid-offsetof -Wunused-variable -Wno-unused-result -Wunused-function
 LINK=$(CC) -g -fPIC -shared 
-LD=$(CC) -g -Wl,--no-undefined -Wno-invalid-offsetof
+LD=$(CC) -g 
 
 TESTSUITE=$(suite-name)Test
 

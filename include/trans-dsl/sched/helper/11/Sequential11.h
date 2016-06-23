@@ -11,9 +11,9 @@
 #ifndef SEQUENTIAL11_H_
 #define SEQUENTIAL11_H_
 
-#include "trans-dsl/sched/action/SchedSequentialAction.h"
-#include "trans-dsl/sched/helper/LinkedHelper.h"
-#include "trans-dsl/sched/helper/VoidHelper.h"
+#include <trans-dsl/sched/action/SchedSequentialAction.h>
+#include <trans-dsl/sched/helper/LinkedHelper.h>
+#include <trans-dsl/sched/helper/VoidHelper.h>
 
 TSL_NS_BEGIN
 
@@ -35,7 +35,7 @@ namespace details
    };
 
    template <>
-   struct GenericSequential<> : tsl::SchedSequentialAction
+   struct GenericSequential<> : SchedSequentialAction
    {
    protected:
       void init() {}
@@ -67,7 +67,7 @@ namespace details
    };
 
    template <>
-   struct VoidGenericSequential<> : tsl::SchedSequentialAction
+   struct VoidGenericSequential<> : SchedSequentialAction
    {
    protected:
       void init() {}

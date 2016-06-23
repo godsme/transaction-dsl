@@ -17,7 +17,7 @@
 TSL_NS_BEGIN
 
 struct BaseTransactionScheduler
-         : protected SimpleTransactionContext
+         : SimpleTransactionContext
          , TransactionScheduler
 {
    explicit BaseTransactionScheduler(InstanceId iid = 0);

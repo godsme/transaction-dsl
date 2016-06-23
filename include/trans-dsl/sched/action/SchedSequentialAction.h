@@ -12,9 +12,9 @@
 #define SCHEDSEQUENTIALACTION_H_
 
 #include <cub/repo/list/List.h>
-#include "trans-dsl/sched/concept/SchedAction.h"
-#include "trans-dsl/sched/action/LinkedSchedAction.h"
-#include "trans-dsl/utils/ActionStatus.h"
+#include <trans-dsl/sched/concept/SchedAction.h>
+#include <trans-dsl/sched/action/LinkedSchedAction.h>
+#include <trans-dsl/utils/ActionStatus.h>
 
 TSL_NS_BEGIN
 

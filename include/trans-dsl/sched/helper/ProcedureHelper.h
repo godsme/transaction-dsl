@@ -53,13 +53,13 @@ TSL_NS_END
 
 /////////////////////////////////////////////////////////////////////////////
 #define __procedure(...) \
-       tsl::details::PROCEDURE__< __VA_ARGS__ >
+       TSL_NS::details::PROCEDURE__< __VA_ARGS__ >
 
 #define __prot_procedure(...) \
-       tsl::details::PROTECTED_PROC__< __VA_ARGS__ >
+       TSL_NS::details::PROTECTED_PROC__< __VA_ARGS__ >
 
 #define __finally(...) \
-       tsl::details::FINALLY__<__VA_ARGS__ >
+       TSL_NS::details::FINALLY__<__VA_ARGS__ >
 
 /////////////////////////////////////////////////////////////////////////////
 

@@ -11,18 +11,15 @@
 #ifndef VOIDHELPER_H_
 #define VOIDHELPER_H_
 
-#include "trans-dsl/sched/action/SchedVoidAction.h"
+#include <trans-dsl/sched/action/SchedVoidAction.h>
 
 TSL_NS_BEGIN
 
 namespace details
 {
    template <typename T_ACTION>
-   struct VOID__ : tsl::SchedVoidAction
+   struct VOID__ : SchedVoidAction
    {
-       typedef tsl::SchedAction SchedAction;
-
-   private:
        IMPL_ROLE_WITH_VAR(SchedAction, T_ACTION);
    };
 }

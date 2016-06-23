@@ -27,7 +27,7 @@ struct SimpleTransactionContext
          , protected AdaptedTimerInfo
          , protected TransactionListenerProxy
          , protected SimpleTransactionMode
-         , protected TransMutexSchedulerAdapter
+         , TransMutexSchedulerAdapter
          , TransactionContext
 {
     explicit SimpleTransactionContext(InstanceId iid = 0);

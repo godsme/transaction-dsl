@@ -11,6 +11,8 @@
 #include "trans-dsl/utils/RuntimeContextAutoSwitch.h"
 #include "trans-dsl/utils/ActionStatus.h"
 
+#include <iostream>
+
 TSL_NS_BEGIN
 
 using namespace cub;
