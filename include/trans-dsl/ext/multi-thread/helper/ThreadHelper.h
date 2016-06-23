@@ -13,6 +13,8 @@
 
 #include "trans-dsl/sched/action/ActionThread.h"
 
+TSL_NS_BEGIN
+
 namespace details
 {
    template<typename T_ACTION>
@@ -22,5 +24,7 @@ namespace details
       IMPL_ROLE_WITH_VAR(SchedAction, T_ACTION);
    };
 };
+
+TSL_NS_END
 
 #endif /* THREADHELPER_H_ */

@@ -13,6 +13,8 @@
 
 #include "trans-dsl/ext/multi-thread/action/SchedJoinAction.h"
 
+TSL_NS_BEGIN
+
 namespace details
 {
    template <ActionThreadId... T_TIDS> struct ThreadAdder;
@@ -41,5 +43,7 @@ namespace details
        }
    };
 }
+
+TSL_NS_END
 
 #endif /* JOIN11_H_ */

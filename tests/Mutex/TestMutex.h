@@ -7,6 +7,17 @@
 #include "trans-dsl/ext/mutex/def/TransMutexAvailMsg.h"
 #include <event/impl/ConsecutiveEventInfo.h>
 
+using namespace ev;
+using namespace tsl;
+using namespace cub;
+
+namespace cub
+{
+  extern void log_error(const char* file, unsigned int line, const char* fmt, ...)
+  {
+  }
+}
+
 #define EVENT(n) SimpleEventInfo(n)
 
 struct SimpleMutexAvailNotifier
@@ -23,7 +34,7 @@ struct SimpleMutexAvailNotifier
    }
 
 private:
-   BYTE mutexAvailSignal;
+   U8 mutexAvailSignal;
 };
 
 #define MUTEX_EVENT(n) ConsecutiveEventInfo(EV_MUTEX_UNLOCK, TransMutexAvailMsg(n))
@@ -58,27 +69,27 @@ FIXTURE(Mutex)
       trans1.updateMutexScheduler(sched);
       trans2.updateMutexScheduler(sched);
 
-      ASSERT_EQ(CONTINUE, trans1.start());
-      ASSERT_EQ(CONTINUE, trans2.start());
+      ASSERT_EQ(TSL_CONTINUE, trans1.start());
+      ASSERT_EQ(TSL_CONTINUE, trans2.start());
    }
 
    // @test(id="trans-1-lock")
    TEST("recv event-1, event-4")
    {
-      ASSERT_EQ(CONTINUE, trans1.handleEvent(EVENT(1)));
-      ASSERT_EQ(CONTINUE, trans2.handleEvent(EVENT(4)));
+      ASSERT_EQ(TSL_CONTINUE, trans1.handleEvent(EVENT(1)));
+      ASSERT_EQ(TSL_CONTINUE, trans2.handleEvent(EVENT(4)));
    }
 
    // @test(depends="trans-1-lock")
    TEST("after trans1 gets the lock, trans2 should refuse event-5")
    {
-      ASSERT_EQ(UNKNOWN_EVENT, trans2.handleEvent(EVENT(5)));
+      ASSERT_EQ(TSL_UNKNOWN_EVENT, trans2.handleEvent(EVENT(5)));
    }
 
    // @test(id="trans-1-unlock", depends="trans-1-lock")
    TEST("after trans1 gets the lock, trans1 should accept event-2")
    {
-      ASSERT_EQ(CONTINUE, trans1.handleEvent(EVENT(2)));
+      ASSERT_EQ(TSL_CONTINUE, trans1.handleEvent(EVENT(2)));
    }
 
    // @test(depends="trans-1-unlock")
@@ -86,14 +97,14 @@ FIXTURE(Mutex)
    {
       ASSERT_TRUE(sched.mutexReleased(1));
 
-      ASSERT_EQ(CONTINUE, trans2.handleEvent(MUTEX_EVENT(1)));
-      ASSERT_EQ(CONTINUE, trans2.handleEvent(EVENT(5)));
+      ASSERT_EQ(TSL_CONTINUE, trans2.handleEvent(MUTEX_EVENT(1)));
+      ASSERT_EQ(TSL_CONTINUE, trans2.handleEvent(EVENT(5)));
    }
 
    // @test(depends="trans-1-unlock")
    TEST("after trans1 release the lock, trans1 should not accept mutex event")
    {
-      ASSERT_EQ(UNKNOWN_EVENT, trans1.handleEvent(MUTEX_EVENT(1)));
+      ASSERT_EQ(TSL_UNKNOWN_EVENT, trans1.handleEvent(MUTEX_EVENT(1)));
    }
 };
 

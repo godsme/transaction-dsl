@@ -11,9 +11,11 @@
 #ifndef MULTITHREADTRANSACTIONHELPER_H_
 #define MULTITHREADTRANSACTIONHELPER_H_
 
-#include "trans-dsl/ext/multi-thread/trans/MultiThreadTransaction.h"
-#include "trans-dsl/ext/multi-thread/helper/ThreadHelper.h"
-#include "trans-dsl/sched/helper/ProcedureHelper.h"
+#include <trans-dsl/ext/multi-thread/trans/MultiThreadTransaction.h>
+#include <trans-dsl/ext/multi-thread/helper/ThreadHelper.h>
+#include <trans-dsl/sched/helper/ProcedureHelper.h>
+
+TSL_NS_BEGIN
 
 namespace details
 {
@@ -29,9 +31,11 @@ namespace details
    };
 }
 
+TSL_NS_END
+
 ///////////////////////////////////////////////////////////////////////
 #define __mt_transaction(...) \
-     details::MULTI_THREAD_TRANSACTION__< details::PROCEDURE__< __VA_ARGS__ > >
+     TSL_NS::details::MULTI_THREAD_TRANSACTION__< TSL_NS::details::PROCEDURE__< __VA_ARGS__ > >
 
 #define __def_mt_transaction(...) \
      typedef __mt_transaction(__VA_ARGS__)
@@ -39,7 +43,7 @@ namespace details
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 #define __prot_mt_transaction(...) \
-     details::MULTI_THREAD_TRANSACTION__< details::PROTECTED_PROC__<__VA_ARGS__ > >
+     TSL_NS::details::MULTI_THREAD_TRANSACTION__< TSL_NS::details::PROTECTED_PROC__<__VA_ARGS__ > >
 
 #define __def_prot_mt_transaction(...) \
      typedef __prot_mt_transaction(__VA_ARGS__)

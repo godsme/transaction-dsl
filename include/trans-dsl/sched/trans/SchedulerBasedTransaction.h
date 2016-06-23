@@ -13,6 +13,8 @@
 
 #include "trans-dsl/sched/trans/SchedTransaction.h"
 
+TSL_NS_BEGIN
+
 template <typename T_SCHEDULER>
 struct SchedulerBasedTransaction : SchedTransaction
 {
@@ -30,5 +32,7 @@ private:
 private:
    USE_ROLE(ActionThread);
 };
+
+TSL_NS_END
 
 #endif /* SCHEDULERBASEDTRANSACTION_H_ */

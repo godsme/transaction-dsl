@@ -17,9 +17,11 @@
 namespace details
 {
    template<typename T_ACTION>
-   struct ACTION__: SchedActionAdapter
+   struct ACTION__: tsl::SchedActionAdapter
    {
-      IMPL_ROLE_WITH_VAR(Action, T_ACTION);
+       typedef tsl::Action Action;
+
+       IMPL_ROLE_WITH_VAR(Action, T_ACTION);
    };
 
    template <typename T_ASYN_ACTION>
@@ -28,10 +30,12 @@ namespace details
    };
 
    template<typename T_SYNC_ACTION>
-   struct GenericSyncAtionAdpater: SyncActionAdapter
+   struct GenericSyncAtionAdpater: tsl::SyncActionAdapter
    {
+       typedef tsl::SyncAction SyncAction;
+
    private:
-      IMPL_ROLE_WITH_VAR(SyncAction, T_SYNC_ACTION);
+       IMPL_ROLE_WITH_VAR(SyncAction, T_SYNC_ACTION);
    };
 
    template <typename T_SYNC_ACTION>

@@ -11,7 +11,9 @@
 #ifndef LINKEDHELPER_H_
 #define LINKEDHELPER_H_
 
-#include "trans-dsl/sched/action/LinkedSchedAction.h"
+#include <trans-dsl/sched/action/LinkedSchedAction.h>
+
+TSL_NS_BEGIN
 
 namespace details
 {
@@ -19,8 +21,10 @@ namespace details
    struct LINKED__ : LinkedSchedAction
    {
    private:
-      IMPL_ROLE_WITH_VAR(SchedAction, T_ACTION);
+       IMPL_ROLE_WITH_VAR(SchedAction, T_ACTION);
    };
 }
+
+TSL_NS_END
 
 #endif /* LINKEDHELPER_H_ */

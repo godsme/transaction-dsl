@@ -14,6 +14,10 @@
 #include "trans-dsl/sched/trans/SchedulerBasedTransaction.h"
 #include "trans-dsl/sched/trans/SimpleTransactionScheduler.h"
 
+TSL_NS_BEGIN
+
 typedef SchedulerBasedTransaction<SimpleTransactionScheduler> SimpleTransaction;
+
+TSL_NS_END
 
 #endif /* SIMPLETRANSACTION_H_ */

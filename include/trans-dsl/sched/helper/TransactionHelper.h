@@ -15,6 +15,8 @@
 #include "trans-dsl/sched/helper/ProcedureHelper.h"
 #include "trans-dsl/ext/multi-thread/helper/ThreadHelper.h"
 
+TSL_NS_BEGIN
+
 namespace details
 {
    template <typename T_ACTION>
@@ -29,16 +31,18 @@ namespace details
    };
 };
 
+TSL_NS_END
+
 ///////////////////////////////////////////////////////////////////////
 #define __transaction(...) \
-     details::TRANSACTION__< details::PROCEDURE__<__VA_ARGS__ > >
+     TSL_NS::details::TRANSACTION__< TSL_NS::details::PROCEDURE__<__VA_ARGS__ > >
 
 #define __def_transaction(...) \
      typedef __transaction(__VA_ARGS__)
 
 ///////////////////////////////////////////////////////////////////////
 #define __prot_transaction(...) \
-     details::TRANSACTION__< details::PROTECTED_PROC__<__VA_ARGS__ > >
+        TSL_NS::details::TRANSACTION__< TSL_NS::details::PROTECTED_PROC__<__VA_ARGS__ > >
 
 #define __def_prot_transaction(...) \
      typedef __prot_transaction(__VA_ARGS__)

@@ -13,6 +13,8 @@
 
 #include "trans-dsl/ext/mutex/action/SchedLockAction.h"
 
+TSL_NS_BEGIN
+
 namespace details
 {
    template<TransMutexId MUTEX_ID, typename T_ACTION>
@@ -28,8 +30,10 @@ namespace details
    };
 }
 
+TSL_NS_END
+
 /////////////////////////////////////////////////////////
-#define __lock(...) ::details::LOCK__< __VA_ARGS__ >
+#define __lock(...) TSL_NS::details::LOCK__< __VA_ARGS__ >
 /////////////////////////////////////////////////////////
 
 #endif /* LOCKHELPER_H_ */

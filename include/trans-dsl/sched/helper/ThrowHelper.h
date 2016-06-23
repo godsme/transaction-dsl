@@ -13,21 +13,25 @@
 
 #include "trans-dsl/sched/action/SchedThrowAction.h"
 
+TSL_NS_BEGIN
+
 namespace details
 {
-   template <Status V_STATUS = RESERVED_FAILURE>
+   template <cub::Status V_STATUS = TSL_RESERVED_FAILURE>
    struct THROW__ : SchedThrowAction
    {
    private:
-      OVERRIDE(Status getStatus() const)
+      OVERRIDE(cub::Status getStatus() const)
       {
          return V_STATUS;
       }
    };
 }
 
+TSL_NS_END
+
 ////////////////////////////////////////////////////////////////
-#define __throw(...) details::THROW__< __VA_ARGS__ >
+#define __throw(...) tsl::details::THROW__< __VA_ARGS__ >
 
 #define __nop() __throw(SUCCESS)
 

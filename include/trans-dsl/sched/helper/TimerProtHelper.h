@@ -15,10 +15,12 @@
 #include "trans-dsl/sched/port/PlatformSpecifiedRelativeTimer.h"
 #include "trans-dsl/sched/action/Procedure.h"
 
+TSL_NS_BEGIN
+
 namespace details
 {
 
-   template<TimerId TIMER_ID, typename T_ACTION, Status TIMEOUT_STATUS>
+   template<tsl::TimerId TIMER_ID, typename T_ACTION, cub::Status TIMEOUT_STATUS>
    struct SchedTimerProtAction
             : private TimerProtActionState
             , TimerProtAction
@@ -38,13 +40,13 @@ namespace details
 
       IMPL_ROLE_WITH_VAR(SchedAction, T_ACTION);
 
-      OVERRIDE(Status getTimeoutStatus() const)
+      OVERRIDE(cub::Status getTimeoutStatus() const)
       {
          return TIMEOUT_STATUS;
       }
    };
 
-   template<TimerId TIMER_ID, typename T_ACTION, Status TIMEOUT_STATUS = TIMEDOUT>
+   template<TimerId TIMER_ID, typename T_ACTION, cub::Status TIMEOUT_STATUS = TSL_TIMEDOUT>
    struct TIMER_PROT__: Procedure
    {
    private:
@@ -66,9 +68,11 @@ namespace details
    };
 }
 
+TSL_NS_END
+
 ///////////////////////////////////////////////////////////////////////
 #define __timer_prot(...) \
-      details::TIMER_PROT__< __VA_ARGS__ >
+      tsl::details::TIMER_PROT__< __VA_ARGS__ >
 
 ///////////////////////////////////////////////////////////////////////
 

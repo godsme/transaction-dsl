@@ -1,11 +1,11 @@
 
-PROJECT_HOME=$(HOME)/project/trans-dsl
-event-src=../../event/src
+PROJECT_HOME=$(HOME)/project/cpp/trans-dsl
+event-src=/../event/src
 
 include $(PROJECT_HOME)/shared/defs.mk
 
-TEST_GENERATOR=$(PYTHON) $(TESTNGPP_ROOT)/testngpp/generator/testngppgen.pyc 
-TEST_SUITE_GENERATOR=$(PYTHON) $(TESTNGPP_ROOT)/testngpp/generator/testng-suite-gen.pyc 
+TEST_GENERATOR=$(PYTHON) $(TESTNGPP_ROOT)/testngpp/generator/testngppgen.py
+TEST_SUITE_GENERATOR=$(PYTHON) $(TESTNGPP_ROOT)/testngpp/generator/testng-suite-gen.py
 
 testngpp-include-path=$(TESTNGPP_ROOT)/include
 mockcpp-include-path=$(MOCKCPP_ROOT)/include
@@ -20,8 +20,8 @@ project-home=$(PWD)/../..
 extra-srcs=
 
 #CC=g++ -std=c++0x -fpermissive
-CC=g++-4.8 -std=c++0x -g  -O2 -Wall -Wunused-variable -Wno-unused-result -Wunused-function
-LINK=$(CC) -g -fPIC -shared -Wl,--no-undefined -Wno-invalid-offsetof
+CC=c++ -std=c++0x -g -O2 -Wall -Wno-invalid-offsetof -Wunused-variable -Wno-unused-result -Wunused-function
+LINK=$(CC) -g -fPIC -shared 
 LD=$(CC) -g -Wl,--no-undefined -Wno-invalid-offsetof
 
 TESTSUITE=$(suite-name)Test

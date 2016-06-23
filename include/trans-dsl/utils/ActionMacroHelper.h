@@ -11,7 +11,7 @@
 #ifndef ACTIONMACROHELPER_H_
 #define ACTIONMACROHELPER_H_
 
-#include <base/utils/RepeatMacros.h>
+#include <cub/utils/RepeatMacros.h>
 #include <trans-dsl/utils/DummyAction.h>
 
 #define __ARG(n)              ACTION ## n

@@ -11,9 +11,11 @@
 #ifndef PROCEDUREHELPER_H_
 #define PROCEDUREHELPER_H_
 
-#include "trans-dsl/sched/action/Procedure.h"
-#include "trans-dsl/sched/action/NilFinalAction.h"
-#include "trans-dsl/sched/action/Finally.h"
+#include <trans-dsl/sched/action/Procedure.h>
+#include <trans-dsl/sched/action/NilFinalAction.h>
+#include <trans-dsl/sched/action/Finally.h>
+
+TSL_NS_BEGIN
 
 namespace details
 {
@@ -47,15 +49,17 @@ namespace details
    };
 }
 
+TSL_NS_END
+
 /////////////////////////////////////////////////////////////////////////////
 #define __procedure(...) \
-       details::PROCEDURE__< __VA_ARGS__ >
+       tsl::details::PROCEDURE__< __VA_ARGS__ >
 
 #define __prot_procedure(...) \
-       details::PROTECTED_PROC__< __VA_ARGS__ >
+       tsl::details::PROTECTED_PROC__< __VA_ARGS__ >
 
 #define __finally(...) \
-       details::FINALLY__<__VA_ARGS__ >
+       tsl::details::FINALLY__<__VA_ARGS__ >
 
 /////////////////////////////////////////////////////////////////////////////
 

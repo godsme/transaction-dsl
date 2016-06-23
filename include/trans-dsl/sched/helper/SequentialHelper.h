@@ -23,10 +23,10 @@
 
 /////////////////////////////////////////////////////////////////////////////////
 #define __sequential(...) \
-       details::SEQUENTIAL__< __VA_ARGS__ >
+       TSL_NS::details::SEQUENTIAL__< __VA_ARGS__ >
 
 #define __void_sequential(...) \
-       details::VOID_SEQUENTIAL__< __VA_ARGS__ >
+       TSL_NS::details::VOID_SEQUENTIAL__< __VA_ARGS__ >
 
 /////////////////////////////////////////////////////////////////////////////////
 

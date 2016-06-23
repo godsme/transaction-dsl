@@ -14,6 +14,8 @@
 #include "trans-dsl/sched/action/SchedSwitchCaseAction.h"
 #include <trans-dsl/utils/DummyAction.h>
 
+TSL_NS_BEGIN
+
 namespace details
 {
    template <typename ACTION_PATH1, typename ACTION_PATH2, typename ACTION_PATH3>
@@ -72,5 +74,7 @@ namespace details
    {
    };
 }
+
+TSL_NS_END
 
 #endif /* SWITCHCASE98_H_ */

@@ -549,6 +549,8 @@ cub/base/Uncloneable.h
 -
 
 ../src/../../cub/include/cub/log/log.h
+cub/cub.h
+-
 
 ../src/../../cub/include/cub/mem/Placement.h
 cub/cub.h

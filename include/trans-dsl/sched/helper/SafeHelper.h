@@ -13,6 +13,8 @@
 
 #include "trans-dsl/sched/action/SchedSafeAction.h"
 
+TSL_NS_BEGIN
+
 namespace details
 {
    template <typename T_ACTION>
@@ -23,7 +25,9 @@ namespace details
    };
 };
 
+TSL_NS_END
+
 ////////////////////////////////////////////////////////////////////
-#define __safe(...) details::SAFE__< __VA_ARGS__ >
+#define __safe(...) TSL_NS::details::SAFE__< __VA_ARGS__ >
 
 #endif /* UNSTOPHELPER_H_ */

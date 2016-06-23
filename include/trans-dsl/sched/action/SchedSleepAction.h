@@ -11,19 +11,23 @@
 #ifndef SCHEDSLEEPACTION_H_
 #define SCHEDSLEEPACTION_H_
 
-#include "trans-dsl/sched/concept/SchedAction.h"
+#include <trans-dsl/sched/concept/SchedAction.h>
+
+TSL_NS_BEGIN
 
 struct RelativeTimer;
 
 struct SchedSleepAction : SchedAction
 {
-   OVERRIDE(Status exec(TransactionContext&));
-   OVERRIDE(Status handleEvent(TransactionContext&, const Event&));
-   OVERRIDE(Status stop(TransactionContext&, const Status));
-   OVERRIDE(void kill(TransactionContext&, const Status));
+   OVERRIDE(cub::Status exec(TransactionContext&));
+   OVERRIDE(cub::Status handleEvent(TransactionContext&, const ev::Event&));
+   OVERRIDE(cub::Status stop(TransactionContext&, const cub::Status));
+   OVERRIDE(void kill(TransactionContext&, const cub::Status));
 
 private:
    USE_ROLE(RelativeTimer);
 };
+
+TSL_NS_END
 
 #endif /* SCHEDSLEEPACTION_H_ */

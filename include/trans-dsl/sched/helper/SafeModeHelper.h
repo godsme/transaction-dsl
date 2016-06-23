@@ -13,6 +13,8 @@
 
 #include "trans-dsl/sched/action/SchedSafeModeAction.h"
 
+TSL_NS_BEGIN
+
 namespace details
 {
    template <typename T_ACTION>
@@ -23,6 +25,8 @@ namespace details
    };
 }
 
-#define __safe_mode(...) details::SAFE_MODE__< __VA_ARGS__ >
+TSL_NS_END
+
+#define __safe_mode(...) TSL_NS::details::SAFE_MODE__< __VA_ARGS__ >
 
 #endif /* SAFEMODEHELPER_H_ */

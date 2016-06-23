@@ -13,6 +13,8 @@
 
 #include "trans-dsl/sched/action/SchedSwitchCaseAction.h"
 
+TSL_NS_BEGIN
+
 namespace details
 {
    template <typename... T_ACTION_PATHS> struct MultiPathCollection;
@@ -47,5 +49,7 @@ namespace details
        }
    };
 }
+
+TSL_NS_END
 
 #endif /* SWITCHCASE11_H_ */

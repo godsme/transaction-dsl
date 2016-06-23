@@ -1,7 +1,7 @@
 
 include-paths = $(project-home)/include \
                 . \
-                $(project-home)/../base/include \
+                $(project-home)/../cub/include \
                 $(project-home)/../event/include \
                 $(mockcpp-include-path) \
                 $(testngpp-include-path) \
@@ -10,7 +10,7 @@ include-paths = $(project-home)/include \
 
 INCLUDE=$(addprefix -I, $(abspath $(include-paths)))
            
-LIBS += -L$(mockcpp-lib-path) -lmockcpp -L$(testngpp-lib-path) -ltestngpp -ltestngpp-user
+LIBS += -L$(testngpp-lib-path) -ltestngpp -ltestngpp-user /usr/local/lib/libevent.a 
 
 $(suite-name)Test.cc :
 	@echo "generating $@ ..."
@@ -27,10 +27,10 @@ DEPS=$(SRCS:.cc=.d)
 
 $(suite-name)Test.so : $(suite-name)Test.cc $(OBJS)
 	@echo "linking $@ ..."
-	@$(LINK) -o $@ $^ -O3 $(INCLUDE) $(LIBS)
+	$(LINK) -O3 -o $@ $(LIBS) $^ $(INCLUDE)
 
 $(suite-name)Test : $(suite-name)Test.cc $(OBJS)
-	@$(LD) -o $@ $^ $(INCLUDE) $(LIBS) -ltestngpp-static-runner-lib -ltestngpp-utils-shared -ldl
+	$(LD) -o $@ $^ $(INCLUDE) $(LIBS) -ltestngpp-static-runner-lib -ltestngpp-utils-shared -ldl
 
 %.o : %.cc
 	@echo "compiling $^ ..."

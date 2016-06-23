@@ -15,6 +15,8 @@
 #include "trans-dsl/sched/helper/LinkedThreadHelper.h"
 #include "trans-dsl/sched/helper/VoidHelper.h"
 
+TSL_NS_BEGIN
+
 namespace details
 {
    template <typename... T_ACTIONS> struct GenericConcurrent;
@@ -33,7 +35,7 @@ namespace details
    };
 
    template <>
-   struct GenericConcurrent<> : SchedConcurrentAction
+   struct GenericConcurrent<> : tsl::SchedConcurrentAction
    {
    protected:
       void init()
@@ -67,7 +69,7 @@ namespace details
    };
 
    template <>
-   struct VoidGenericConcurrent<> : SchedConcurrentAction
+   struct VoidGenericConcurrent<> : tsl::SchedConcurrentAction
    {
    protected:
       void init() {}
@@ -82,5 +84,7 @@ namespace details
       }
    };
 }
+
+TSL_NS_END
 
 #endif /* CONCURRENT11_H_ */

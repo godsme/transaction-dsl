@@ -11,9 +11,15 @@
 #ifndef DUMMYACTION_H_
 #define DUMMYACTION_H_
 
+#include <trans-dsl/tsl.h>
+
+TSL_NS_BEGIN
+
 namespace details
 {
    struct DummyAction {};
 };
+
+TSL_NS_END
 
 #endif /* DUMMYACTION_H_ */

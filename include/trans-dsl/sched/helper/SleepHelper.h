@@ -11,8 +11,10 @@
 #ifndef SLEEPHELPER_H_
 #define SLEEPHELPER_H_
 
-#include "trans-dsl/sched/action/SchedSleepAction.h"
-#include "trans-dsl/sched/port/PlatformSpecifiedRelativeTimer.h"
+#include <trans-dsl/sched/action/SchedSleepAction.h>
+#include <trans-dsl/sched/port/PlatformSpecifiedRelativeTimer.h>
+
+TSL_NS_BEGIN
 
 namespace details
 {
@@ -32,9 +34,11 @@ namespace details
    };
 }
 
+TSL_NS_END
+
 ///////////////////////////////////////////////////////////////////
 #define __sleep(tid) \
-       details::SLEEP__<tid>
+       tsl::details::SLEEP__<tid>
 
 ///////////////////////////////////////////////////////////////////
 

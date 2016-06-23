@@ -11,9 +11,13 @@
 #ifndef LOOPHELPER_H_
 #define LOOPHELPER_H_
 
+#include <cub/mem/Placement.h>
 #include "trans-dsl/sched/action/SchedLoopAction.h"
 #include "trans-dsl/sched/concept/TransactionContext.h"
-#include <base/utils/Placement.h>
+
+using cub::Placement;
+
+TSL_NS_BEGIN
 
 namespace details
 {
@@ -49,7 +53,7 @@ namespace details
       typedef LoopProcedure<T_PRED, T_ACTION> Proc;
 
    private:
-      Placement<Proc> proc;
+      cub::Placement<Proc> proc;
       bool cons;
 
       OVERRIDE(void reset())
@@ -98,12 +102,14 @@ namespace details
    };
 }
 
+TSL_NS_END
+
 ///////////////////////////////////////////////////////////////
 #define __loop0(...) \
-       details::LOOP0__< __VA_ARGS__ >
+       TSL_NS::details::LOOP0__< __VA_ARGS__ >
 
 #define __loop1(...) \
-       details::LOOP1__< __VA_ARGS__ >
+       TSL_NS::details::LOOP1__< __VA_ARGS__ >
 
 ///////////////////////////////////////////////////////////////
 

@@ -15,6 +15,8 @@
 #include "trans-dsl/utils/ActionMacroHelper.h"
 #include "trans-dsl/sched/helper/LinkedHelper.h"
 
+TSL_NS_BEGIN
+
 ////////////////////////////////////////////////////////////////
 #define __EXCLUSIVE_ADD_ACTION(n)  addAction(action ## n);
 #define EXCLUSIVE_ADD_ACTION(n)    SIMPLE_REPEAT(n, __EXCLUSIVE_ADD_ACTION)
@@ -32,6 +34,7 @@ private:                                                           \
     DECL_MEMBERS(n)                                                \
 };                                                                 \
 }
+
 
 __EXCLUSIVE_PARTIAL_COLLECTION(5)
 __EXCLUSIVE_PARTIAL_COLLECTION(4)
@@ -55,8 +58,10 @@ __DEF_GENERIC_EXCLUSIVE_ACTION(5);
 
 /////////////////////////////////////////////////////////////////////////////////
 #define __exclusive(...) \
-       details::EXCLUSIVE__< __VA_ARGS__ >
+       tsl::details::EXCLUSIVE__< __VA_ARGS__ >
 
 /////////////////////////////////////////////////////////////////////////////////
+
+TSL_NS_END
 
 #endif /* EXCLUSIVEHELPER_H_ */

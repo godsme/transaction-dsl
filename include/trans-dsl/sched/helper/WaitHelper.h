@@ -11,23 +11,28 @@
 #ifndef WAITHELPER_H_
 #define WAITHELPER_H_
 
-#include "trans-dsl/sched/action/SchedWaitAction.h"
+#include <trans-dsl/sched/action/SchedWaitAction.h>
+
+TSL_NS_BEGIN
 
 namespace details
 {
-   template <EventId EVENT_ID>
+   template <ev::EventId EVENT_ID>
    struct WAIT__ : SchedWaitAction
    {
-      OVERRIDE(EventId getEventId() const)
+      OVERRIDE(ev::EventId getEventId() const)
       {
          return EVENT_ID;
       }
    };
 }
 
+TSL_NS_END
+
+
 ///////////////////////////////////////////////////////////
 #define __wait(...) \
-       details::WAIT__< __VA_ARGS__ >
+       TSL_NS::details::WAIT__< __VA_ARGS__ >
 
 ///////////////////////////////////////////////////////////
 

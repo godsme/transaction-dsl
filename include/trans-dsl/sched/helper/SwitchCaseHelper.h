@@ -11,13 +11,15 @@
 #ifndef SWITCHCASEHELPER_H_
 #define SWITCHCASEHELPER_H_
 
-#include "trans-dsl/sched/action/ActionPath.h"
+#include <trans-dsl/sched/action/ActionPath.h>
 
 #ifdef __GXX_EXPERIMENTAL_CXX0X__
-#include "trans-dsl/sched/helper/11/SwitchCase11.h"
+#include <trans-dsl/sched/helper/11/SwitchCase11.h>
 #else
-#include "trans-dsl/sched/helper/98/SwitchCase98.h"
+#include <trans-dsl/sched/helper/98/SwitchCase98.h>
 #endif
+
+TSL_NS_BEGIN
 
 namespace details
 {
@@ -46,12 +48,14 @@ namespace details
    };
 }
 
+TSL_NS_END
+
 //////////////////////////////////////////////////////////////////
 #define __switch(...) \
-       details::SWITCH__< __VA_ARGS__ >
+       TSL_NS::details::SWITCH__< __VA_ARGS__ >
 
 #define __case(...) \
-       details::CASE__< __VA_ARGS__ >
+       TSL_NS::details::CASE__< __VA_ARGS__ >
 
 #define __optional(...) details::OPTIONAL__< __VA_ARGS__ >
 

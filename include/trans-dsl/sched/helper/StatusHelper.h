@@ -14,6 +14,8 @@
 #include "trans-dsl/sched/helper/SwitchCaseHelper.h"
 #include "trans-dsl/sched/concept/TransactionInfo.h"
 
+TSL_NS_BEGIN
+
 namespace details
 {
    struct AnyFail
@@ -22,14 +24,14 @@ namespace details
       { return ActionStatus(info.getStatus()).isFailed(); }
    };
 
-   template <Status EXPECTED_STATUS>
+   template <cub::Status EXPECTED_STATUS>
    struct IsStatus
    {
       bool operator()(const TransactionInfo& info)
       { return info.getStatus() == EXPECTED_STATUS; }
    };
 
-   template <Status EXCEPT_FAILURE>
+   template <cub::Status EXCEPT_FAILURE>
    struct FailedExcept
    {
       bool operator()(const TransactionInfo& info)
@@ -43,15 +45,17 @@ namespace details
    };
 }
 
-///////////////////////////////////////////////////////////////////////////////////
-#define __is_status(status)            details::IsStatus<status>
-#define __is_failed_except(status)     details::FailedExcept<status>
+TSL_NS_END
 
-#define __otherwise(...)               __case(details::Whatever, __VA_ARGS__)
+///////////////////////////////////////////////////////////////////////////////////
+#define __is_status(status)            TSL_NS::details::IsStatus<status>
+#define __is_failed_except(status)     TSL_NS::details::FailedExcept<status>
+
+#define __otherwise(...)               __case(TSL_NS::details::Whatever, __VA_ARGS__)
 
 /////////////////////////////////////////////////////////////////////////
-#define __on_fail(action)              __optional(details::AnyFail, action)
-#define __on_succ(action)              __optional(__is_status(SUCCESS), action)
+#define __on_fail(action)              __optional(TSL_NS::details::AnyFail, action)
+#define __on_succ(action)              __optional(__is_status(TSL_SUCCESS), action)
 
 #define __on_status(status, ...)       __optional(__is_status(status), __VA_ARGS__)
 #define __on_fail_except(failure, ...) __optional(__is_failed_except(failure), __VA_ARGS__)

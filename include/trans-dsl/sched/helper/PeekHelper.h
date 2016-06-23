@@ -11,23 +11,27 @@
 #ifndef PEEKHELPER_H_
 #define PEEKHELPER_H_
 
-#include "trans-dsl/sched/action/SchedPeekAction.h"
+#include <trans-dsl/sched/action/SchedPeekAction.h>
+
+TSL_NS_BEGIN
 
 namespace details
 {
-   template <EventId EVENT_ID>
+   template <ev::EventId EVENT_ID>
    struct PEEK__ : SchedPeekAction
    {
-      OVERRIDE(EventId getEventId() const)
+      OVERRIDE(ev::EventId getEventId() const)
       {
          return EVENT_ID;
       }
    };
 }
 
+TSL_NS_END
+
 ////////////////////////////////////////////////////////////////////
 #define __peek(...) \
-       details::PEEK__< __VA_ARGS__ >
+       tsl::details::PEEK__< __VA_ARGS__ >
 
 ////////////////////////////////////////////////////////////////////
 

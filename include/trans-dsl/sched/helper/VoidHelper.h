@@ -13,18 +13,24 @@
 
 #include "trans-dsl/sched/action/SchedVoidAction.h"
 
+TSL_NS_BEGIN
+
 namespace details
 {
    template <typename T_ACTION>
-   struct VOID__ : SchedVoidAction
+   struct VOID__ : tsl::SchedVoidAction
    {
+       typedef tsl::SchedAction SchedAction;
+
    private:
-      IMPL_ROLE_WITH_VAR(SchedAction, T_ACTION);
+       IMPL_ROLE_WITH_VAR(SchedAction, T_ACTION);
    };
 }
 
+TSL_NS_END
+
 ////////////////////////////////////////////////////////////
-#define __void(...) details::VOID__< __VA_ARGS__ >
+#define __void(...) TSL_NS::details::VOID__< __VA_ARGS__ >
 
 ////////////////////////////////////////////////////////////
 

@@ -13,6 +13,8 @@
 
 #include "trans-dsl/sched/action/SchedWithIdAction.h"
 
+TSL_NS_BEGIN
+
 namespace details
 {
    template <ActionId I_ACTION_ID, typename T_ACTION>
@@ -28,8 +30,10 @@ namespace details
    };
 };
 
+TSL_NS_END
+
 ///////////////////////////////////////////////////////////////
-#define __with_id(...) details::WITH_ID__< __VA_ARGS__ >
+#define __with_id(...) TSL_NS::details::WITH_ID__< __VA_ARGS__ >
 
 ///////////////////////////////////////////////////////////////
 

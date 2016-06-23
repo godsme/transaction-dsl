@@ -15,6 +15,8 @@
 #include "trans-dsl/sched/helper/LinkedHelper.h"
 #include "trans-dsl/sched/helper/VoidHelper.h"
 
+TSL_NS_BEGIN
+
 namespace details
 {
    template <typename... T_ACTIONS> struct GenericSequential;
@@ -33,7 +35,7 @@ namespace details
    };
 
    template <>
-   struct GenericSequential<> : SchedSequentialAction
+   struct GenericSequential<> : tsl::SchedSequentialAction
    {
    protected:
       void init() {}
@@ -65,7 +67,7 @@ namespace details
    };
 
    template <>
-   struct VoidGenericSequential<> : SchedSequentialAction
+   struct VoidGenericSequential<> : tsl::SchedSequentialAction
    {
    protected:
       void init() {}
@@ -80,5 +82,7 @@ namespace details
       }
    };
 }
+
+TSL_NS_END
 
 #endif /* SEQUENTIAL11_H_ */

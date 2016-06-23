@@ -16,6 +16,8 @@
 #include "trans-dsl/sched/helper/VoidHelper.h"
 #include "trans-dsl/utils/ActionMacroHelper.h"
 
+TSL_NS_BEGIN
+
 ////////////////////////////////////////////////////////////////
 #define __PUSH_BACK_ACTION(n)  pushBackAction(action ## n);
 #define PUSH_BACK_ACTIONS(n) SIMPLE_REPEAT(n, __PUSH_BACK_ACTION)
@@ -81,7 +83,7 @@ __DEF_GENERIC_SEQUANTIAL_ACTION(30);
 
 
 ////////////////////////////////////////////////////////////////
-#define __VOID_MEMBER_DEF(n)  details::LINKED__< details::VOID__< __ARG(n) > > action ## n;
+#define __VOID_MEMBER_DEF(n)  tsl::details::LINKED__< tsl::details::VOID__< __ARG(n) > > action ## n;
 #define DECL_VOID_MEMBERS(n) SIMPLE_REPEAT(n, __VOID_MEMBER_DEF)
 
 ////////////////////////////////////////////////////////////////
@@ -143,5 +145,7 @@ namespace details {                               \
 
 /////////////////////////////////////////////////////////////////////////////////
 __DEF_VOID_SEQUANTIAL_ACTION(30);
+
+TSL_NS_END
 
 #endif /* SEQUENTIAL98_H_ */

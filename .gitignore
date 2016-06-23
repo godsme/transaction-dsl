@@ -3,6 +3,12 @@
 *.lo
 *.o
 *.obj
+*.d
+
+tests
+build
+
+*.xml
 
 # Precompiled Headers
 *.gch
