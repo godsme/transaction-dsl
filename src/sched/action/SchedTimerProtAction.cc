@@ -7,13 +7,13 @@
 
 
 #include <cub/base/Assertions.h>
-#include "trans-dsl/sched/action/SchedTimerProtAction.h"
-#include "trans-dsl/sched/concept/TimerInfo.h"
-#include "trans-dsl/utils/ActionStatus.h"
-#include "trans-dsl/utils/RelativeTimer.h"
-#include "trans-dsl/sched/concept/TransactionContext.h"
-#include "trans-dsl/sched/concept/TransactionInfo.h"
-#include "event/concept/Event.h"
+#include <trans-dsl/sched/action/SchedTimerProtAction.h>
+#include <trans-dsl/sched/concept/TimerInfo.h>
+#include <trans-dsl/utils/ActionStatus.h>
+#include <trans-dsl/utils/RelativeTimer.h>
+#include <trans-dsl/sched/concept/TransactionContext.h>
+#include <trans-dsl/sched/concept/TransactionInfo.h>
+#include <event/concept/Event.h>
 
 TSL_NS_BEGIN
 
@@ -21,7 +21,6 @@ using namespace cub;
 
 namespace details
 {
-
    TimerProtActionState::TimerProtActionState() : state(IDLE) {}
 
    void TimerProtActionState::start()

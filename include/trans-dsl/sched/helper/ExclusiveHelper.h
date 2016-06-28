@@ -11,9 +11,9 @@
 #ifndef EXCLUSIVEHELPER_H_
 #define EXCLUSIVEHELPER_H_
 
-#include "trans-dsl/sched/action/SchedExclusiveAction.h"
-#include "trans-dsl/utils/ActionMacroHelper.h"
-#include "trans-dsl/sched/helper/LinkedHelper.h"
+#include <trans-dsl/sched/action/SchedExclusiveAction.h>
+#include <trans-dsl/utils/ActionMacroHelper.h>
+#include <trans-dsl/sched/helper/LinkedHelper.h>
 
 TSL_NS_BEGIN
 
@@ -58,7 +58,7 @@ __DEF_GENERIC_EXCLUSIVE_ACTION(5);
 
 /////////////////////////////////////////////////////////////////////////////////
 #define __exclusive(...) \
-       tsl::details::EXCLUSIVE__< __VA_ARGS__ >
+       TSL_NS::details::EXCLUSIVE__< __VA_ARGS__ >
 
 /////////////////////////////////////////////////////////////////////////////////
 

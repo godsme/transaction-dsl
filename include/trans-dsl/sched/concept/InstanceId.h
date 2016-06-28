@@ -15,6 +15,7 @@
 
 TSL_NS_BEGIN
 
+// XXX: should be as wide as pointer.
 typedef unsigned long InstanceId;
 
 TSL_NS_END
