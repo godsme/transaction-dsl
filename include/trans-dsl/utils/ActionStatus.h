@@ -24,6 +24,7 @@ struct ActionStatus
    bool isDone() const;
    bool eventAccepted() const;
    bool eventNotAccepted() const;
+   bool isNothingChanged() const;
 
    operator cub::Status() const;
 
