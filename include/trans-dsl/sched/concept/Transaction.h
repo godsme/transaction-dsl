@@ -26,7 +26,7 @@ DEFINE_ROLE(Transaction)
    ABSTRACT(cub::Status stop(const StopCause& = StopCause()));
    ABSTRACT(void   kill(const StopCause& = StopCause()));
 
-   cub::Status start(const ev::Event&);
+   cub::Status startWithEvent(const ev::Event&);
 };
 
 TSL_NS_END
