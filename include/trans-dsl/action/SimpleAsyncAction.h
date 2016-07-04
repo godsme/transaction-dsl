@@ -11,8 +11,8 @@
 #ifndef SIMPLEASYNCACTION_H_
 #define SIMPLEASYNCACTION_H_
 
-#include "trans-dsl/action/Action.h"
-#include "trans-dsl/utils/EventHandlerRegistry.h"
+#include <trans-dsl/action/Action.h>
+#include <trans-dsl/utils/EventHandlerRegistry.h>
 
 TSL_NS_BEGIN
 
@@ -32,9 +32,6 @@ struct SimpleAsyncAction: Action
 
 private:
    EventHandlerRegistry registry;
-
-public:
-   ABSTRACT(cub::Status exec(const TransactionInfo&));
 
 private:
    DEFAULT(void, doKill(const TransactionInfo&, const cub::Status));

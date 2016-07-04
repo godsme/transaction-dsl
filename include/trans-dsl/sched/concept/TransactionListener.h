@@ -37,6 +37,8 @@ DEFINE_ROLE(TransactionListener)
    DEFAULT(void, onActionKilled(const ActionId, const cub::Status));
 };
 
+TransactionListener& getNilTransactionListener();
+
 TSL_NS_END
 
 #endif /* TRANSACTIONLISTENER_H_ */

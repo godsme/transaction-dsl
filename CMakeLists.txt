@@ -10,6 +10,6 @@ include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 add_subdirectory("src")
 
-install(DIRECTORY include/event DESTINATION include)
+install(DIRECTORY include/trans-dsl DESTINATION include)
 
 
