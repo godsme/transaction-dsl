@@ -11,6 +11,7 @@
 #ifndef SCHEDTRANSACTION_H_
 #define SCHEDTRANSACTION_H_
 
+#include <cub/dci/Unknown.h>
 #include <trans-dsl/sched/concept/Transaction.h>
 #include <trans-dsl/sched/concept/InstanceId.h>
 
@@ -33,7 +34,7 @@ struct SchedTransaction : Transaction
    void updateInstanceId(InstanceId iid);
    void updateTimerInfo(const TimerInfo&);
    void updateTransactionListener(TransactionListener&);
-   void updateUserContext(UserContext*);
+   void updateUserContext(com::Unknown*);
    void updateMutexScheduler(TransMutexScheduler&);
 
 private:

@@ -26,7 +26,7 @@ struct BaseTransactionScheduler
    OVERRIDE(void updateInstanceId(InstanceId iid));
    OVERRIDE(void updateTimerInfo(const TimerInfo&));
    OVERRIDE(void updateTransactionListener(TransactionListener&));
-   OVERRIDE(void updateUserContext(UserContext*));
+   OVERRIDE(void updateUserContext(com::Unknown*));
    OVERRIDE(void updateMutexScheduler(TransMutexScheduler&));
 
    OVERRIDE(cub::Status stop(const cub::Status));

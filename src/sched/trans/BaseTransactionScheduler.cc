@@ -54,7 +54,7 @@ void BaseTransactionScheduler::updateTransactionListener(TransactionListener& li
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
-void BaseTransactionScheduler::updateUserContext(UserContext* context)
+void BaseTransactionScheduler::updateUserContext(com::Unknown* context)
 {
    SimpleTransactionContext::updateUserContext(context);
 }

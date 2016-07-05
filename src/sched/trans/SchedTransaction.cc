@@ -57,7 +57,7 @@ void SchedTransaction::updateTransactionListener(TransactionListener& listener)
 }
 
 //////////////////////////////////////////////////////////////////////////////
-void SchedTransaction::updateUserContext(UserContext* context)
+void SchedTransaction::updateUserContext(com::Unknown* context)
 {
    ROLE(TransactionScheduler).updateUserContext(context);
 }

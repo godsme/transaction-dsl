@@ -18,13 +18,11 @@
 
 TSL_NS_BEGIN
 
-struct UserContext;
-
 DEFINE_ROLE(TransactionInfo)
 {
    ABSTRACT(InstanceId getInstanceId() const);
    ABSTRACT(cub::Status getStatus() const);
-   ABSTRACT(UserContext* getUserContext() const);
+   ABSTRACT(com::Unknown* getUserContext() const);
 
    template <typename ROLE>
    ROLE* toRole() const

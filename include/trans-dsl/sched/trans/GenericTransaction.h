@@ -24,6 +24,11 @@ struct GenericTransaction : TRANS
         return TRANS::start();
     }
 
+    com::Unknown* getUserContext() const
+    {
+        return context.getObject();
+    }
+
 private:
     InstanceId iid;
 
