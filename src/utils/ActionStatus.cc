@@ -51,7 +51,7 @@ ActionStatus::operator cub::Status() const
 ///////////////////////////////////////////////////////////////////
 bool ActionStatus::isNothingChanged() const
 {
-    return status == TSL_NOTHING_CHANGED || status == TSL_FORCE_STOPPED;
+    return status == TSL_NOTHING_CHANGED;
 }
 
 ///////////////////////////////////////////////////////////////////
