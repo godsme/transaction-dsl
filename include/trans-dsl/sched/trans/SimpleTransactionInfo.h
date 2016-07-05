@@ -29,8 +29,8 @@ struct SimpleTransactionInfo : TransactionInfo
    void updateInstanceId(InstanceId iid);
 
 private:
-   InstanceId iid;
-   com::Unknown* userContext;
+   InstanceId iid = 0;
+   com::Unknown* userContext = nullptr;
 
 private:
    USE_ROLE(RuntimeContextInfo);

@@ -5,6 +5,7 @@
  *      Author: arthur
  */
 
+#include <cub/log/log.h>
 #include <trans-dsl/sched/trans/SimpleTransactionInfo.h>
 #include "trans-dsl/sched/concept/RuntimeContext.h"
 #include "trans-dsl/sched/concept/RuntimeContextInfo.h"
@@ -15,7 +16,6 @@ TSL_NS_BEGIN
 /////////////////////////////////////////////////////////////////
 SimpleTransactionInfo::SimpleTransactionInfo(InstanceId iid)
   : iid(iid)
-  , userContext(0)
 {
 }
 
