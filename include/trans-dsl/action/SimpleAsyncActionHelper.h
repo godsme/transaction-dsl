@@ -36,11 +36,11 @@ TSL_NS_END
 #define __ACTION_REAL_HANLDER(handler) actual_##handler
 
 #define ACTION_SIMPLE_EVENT_HANDLER_DECL(handler, EventType) \
-   cub::Status handler(const TransactionInfo&, const ev::Event&); \
-   cub::Status __ACTION_REAL_HANLDER(handler)(const TransactionInfo&, const EventType&)
+   cub::Status handler(const TSL_NS::TransactionInfo&, const ev::Event&); \
+   cub::Status __ACTION_REAL_HANLDER(handler)(const TSL_NS::TransactionInfo&, const EventType&)
 
 #define ACTION_SIMPLE_EVENT_HANDLER_DEF(ActionClass, handler, EventType) \
-   cub::Status ActionClass::handler(const TransactionInfo& trans, const ev::Event& event) \
+   cub::Status ActionClass::handler(const TSL_NS::TransactionInfo& trans, const ev::Event& event) \
    { \
       return __ACTION_REAL_HANLDER(handler)(trans, *((const EventType*)event.getMsg())); \
    } \
