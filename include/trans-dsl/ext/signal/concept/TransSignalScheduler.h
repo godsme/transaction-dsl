@@ -1,7 +1,7 @@
 #ifndef HA466B077_02E9_4409_95A5_4599FE9B2B9A
 #define HA466B077_02E9_4409_95A5_4599FE9B2B9A
 
-#include <trans-dsl/Tsl.h>
+#include <trans-dsl/tsl.h>
 #include <cub/dci/InterfaceDef.h>
 #include <cub/dci/Role.h>
 #include <trans-dsl/ext/signal/concept/TransSignalId.h>
