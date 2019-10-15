@@ -23,14 +23,14 @@ struct SimpleTransactionInfo : TransactionInfo
 
    OVERRIDE(InstanceId getInstanceId() const);
    OVERRIDE(cub::Status getStatus() const);
-   OVERRIDE(com::Unknown* getUserContext() const);
+   OVERRIDE(Unknown* getUserContext() const);
 
-   void updateUserContext(com::Unknown*);
+   void updateUserContext(Unknown*);
    void updateInstanceId(InstanceId iid);
 
 private:
    InstanceId iid = 0;
-   com::Unknown* userContext = nullptr;
+   Unknown* userContext = nullptr;
 
 private:
    USE_ROLE(RuntimeContextInfo);

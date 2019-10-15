@@ -13,8 +13,8 @@
 
 #include <cub/base/Status.h>
 #include <cub/dci/Role.h>
-#include <cub/dci/Unknown.h>
 #include <trans-dsl/sched/concept/InstanceId.h>
+#include <trans-dsl/sched/concept/Unknow.h>
 
 FWD_DECL_EV(Event)
 
@@ -36,7 +36,7 @@ DEFINE_ROLE(TransactionScheduler)
    ABSTRACT(void updateInstanceId(InstanceId iid));
    ABSTRACT(void updateTimerInfo(const TimerInfo&));
    ABSTRACT(void updateTransactionListener(TransactionListener&));
-   ABSTRACT(void updateUserContext(com::Unknown*));
+   ABSTRACT(void updateUserContext(Unknown*));
    ABSTRACT(void updateMutexScheduler(TransMutexScheduler&));
 };
 

@@ -51,9 +51,8 @@ TSL_NS_END
 #define __sync(action, ...) \
        TSL_NS::details::SYNC__< action __VA_ARGS__ >
 
-////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 #define __ind(...)  __sync(__VA_ARGS__)
-#define __call(...) __sync(__VA_ARGS__)
 #define __req(...)  __asyn(__VA_ARGS__)
 #define __rsp(...)  __sync(__VA_ARGS__)
 

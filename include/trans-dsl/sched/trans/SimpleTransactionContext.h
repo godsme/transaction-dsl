@@ -42,11 +42,11 @@ private:
    IMPL_ROLE(RuntimeContextInfo);
 
 protected:
-   BEGIN_INTERFACE_TABLE()
-      __HAS_INTERFACE(RuntimeContextInfo)
-      __HAS_INTERFACE(TimerInfo)
-      __HAS_INTERFACE(TransMutexScheduler)
-   END_INTERFACE_TABLE()
+//   BEGIN_INTERFACE_TABLE()
+//      __HAS_INTERFACE(RuntimeContextInfo)
+//      __HAS_INTERFACE(TimerInfo)
+//      __HAS_INTERFACE(TransMutexScheduler)
+//   END_INTERFACE_TABLE()
 };
 
 TSL_NS_END

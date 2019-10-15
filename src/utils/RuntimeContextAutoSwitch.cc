@@ -18,7 +18,7 @@ RuntimeContextAutoSwitch::RuntimeContextAutoSwitch
    , RuntimeContext*& parentKeeper
    , TransactionContext& context)
    : parentKeeper(parentKeeper)
-   , contextInfo(com::unknown_cast<RuntimeContextInfo>(&context))
+   , contextInfo(dynamic_cast<RuntimeContextInfo*>(&context))
 {
    if(contextInfo == 0)
    {

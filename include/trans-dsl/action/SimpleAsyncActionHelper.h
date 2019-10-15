@@ -44,7 +44,7 @@ TSL_NS_END
    { \
       return __ACTION_REAL_HANLDER(handler)(trans, *((const EventType*)event.getMsg())); \
    } \
-   cub::Status ActionClass::__ACTION_REAL_HANLDER(handler)(const TransactionInfo& trans, const EventType& event)
+   cub::Status ActionClass::__ACTION_REAL_HANLDER(handler)(const TSL_NS::TransactionInfo& trans, const EventType& event)
 
 /////////////////////////////////////////////////////////////
 #define DEF_SIMPLE_REQ_ACTION(action, eventId, eventType)       \

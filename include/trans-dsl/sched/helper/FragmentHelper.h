@@ -27,7 +27,7 @@
 
 //////////////////////////////////////////////////////////////
 #define __action(action)   typename action
-#define __pred(pred)       typename pred
+#define __predicate(pred)  typename pred
 #define __action_id(id)    ActionId id
 #define __timer_id(id)     TimerId  id
 #define __thread_id(id)    ActionThreadId id
