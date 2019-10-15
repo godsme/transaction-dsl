@@ -84,7 +84,7 @@ namespace details
 
       bool shouldExecute(TransactionContext& context)
       {
-         return Parent::pred(context.getTransactionInfo());
+         return Parent::pred(context.ROLE(TransactionInfo));
       }
    };
 
