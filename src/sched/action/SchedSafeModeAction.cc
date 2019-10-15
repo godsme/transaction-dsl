@@ -22,7 +22,7 @@ Status SchedSafeModeAction::final(TransactionContext& context, Status status)
 {
    if(!ActionStatus(status).isWorking())
    {
-      context.getTransactionMode().leaveSafeMode();
+      context.ROLE(TransactionMode).leaveSafeMode();
    }
 
    return status;
@@ -34,7 +34,7 @@ Status SchedSafeModeAction::final(TransactionContext& context, Status status)
 ///////////////////////////////////////////////////////////////////////////////////
 Status SchedSafeModeAction::exec(TransactionContext& context)
 {
-   context.getTransactionMode().enterSafeMode();
+   context.ROLE(TransactionMode).enterSafeMode();
 
    return FINAL(exec(context));
 }
@@ -55,7 +55,7 @@ Status SchedSafeModeAction::stop(TransactionContext& context, const Status cause
 void SchedSafeModeAction::kill(TransactionContext& context, const Status cause)
 {
    ROLE(SchedAction).kill(context, cause);
-   context.getTransactionMode().leaveSafeMode();
+   context.ROLE(TransactionMode).leaveSafeMode();
 }
 
 TSL_NS_END

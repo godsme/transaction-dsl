@@ -31,7 +31,7 @@ SchedAction* SchedSwitchCaseAction::findMatchedAction(TransactionContext& contex
 {
    LIST_FOREACH(ActionPath, i, paths)
    {
-      if(i->shouldExecute(context.getTransactionInfo()))
+      if(i->shouldExecute(context.ROLE(TransactionInfo)))
       {
          return &(i->getAction());
       }

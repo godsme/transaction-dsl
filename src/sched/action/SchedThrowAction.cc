@@ -15,7 +15,7 @@ using namespace cub;
 
 Status SchedThrowAction::exec(TransactionContext& context)
 {
-   return getStatus() == TSL_RESERVED_FAILURE ? context.getTransactionInfo().getStatus() : getStatus();
+   return getStatus() == TSL_RESERVED_FAILURE ? context.ROLE(TransactionInfo).getStatus() : getStatus();
 }
 
 ////////////////////////////////////////////////////////////////////////
