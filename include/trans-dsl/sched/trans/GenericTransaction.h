@@ -2,9 +2,9 @@
 #define H41037034_2B25_4F59_BF43_5B607BAA5DD0
 
 #include <trans-dsl/sched/trans/SchedTransaction.h>
-#include <cub/dci/Unknown.h>
 #include <cub/log/log.h>
 #include <cub/mem/Placement.h>
+#include <trans-dsl/sched/concept/Unknow.h>
 
 TSL_NS_BEGIN
 
@@ -29,7 +29,7 @@ struct GenericTransaction : TRANS
         return TRANS::start();
     }
 
-    com::Unknown* getUserContext() const
+    Unknown* getUserContext() const
     {
         return context.getObject();
     }
