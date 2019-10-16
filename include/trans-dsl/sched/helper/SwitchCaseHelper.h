@@ -46,6 +46,13 @@ namespace details
       : SWITCH__< CASE__<PRED, T_ACTION> >
    {
    };
+
+   template <typename PRED>
+   struct NOT__ {
+      bool operator()(const TransactionInfo& info) {
+         return !PRED(info);
+      }
+   };
 }
 
 TSL_NS_END
@@ -59,6 +66,8 @@ TSL_NS_END
 
 #define __optional(...) TSL_NS::details::OPTIONAL__< __VA_ARGS__ >
 
+#define __not(pred) TSL_NS::details::NOT__<pred>
+   
 //////////////////////////////////////////////////////////////////
 
 #endif /* SWITCHCASEHELPER_H_ */
