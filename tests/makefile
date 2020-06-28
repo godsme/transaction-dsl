@@ -1,5 +1,5 @@
 
-include $(HOME)/project/cpp/trans-dsl/shared/defs.mk
+include $(HOME)/project/cpp/transaction-dsl/shared/defs.mk
 
 all-suites-paths=$(notdir $(patsubst %/, %, $(dir $(shell find . -name Makefile))))
 all-suites=$(shell find . -name *Test.so)

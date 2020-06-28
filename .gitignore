@@ -4,6 +4,15 @@
 *.o
 *.obj
 *.d
+.idea/*
+CMakeFiles/*
+src/CMakeFiles/*
+src/Makefile
+src/cmake_install.cmake
+cmake_install.cmake
+Makefile
+CMakeCache.txt
+install*
 
 tests
 build

@@ -1,5 +1,5 @@
 
-PROJECT_HOME=$(HOME)/project/cpp/trans-dsl
+PROJECT_HOME=$(HOME)/project/cpp/transaction-dsl
 event-src=/../event/src
 
 include $(PROJECT_HOME)/shared/defs.mk

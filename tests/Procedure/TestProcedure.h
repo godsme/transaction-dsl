@@ -7,6 +7,7 @@
 #include "event/concept/Event.h"
 #include "trans-dsl/utils/SimpleRuntimeContext.h"
 #include "trans-dsl/sched/trans/SimpleTransactionContext.h"
+#include <iostream>
 
 using namespace cub;
 using namespace tsl;
@@ -86,6 +87,21 @@ FIXTURE(proc2)
 
    SETUP()
    {
+	   __procedure
+	   ( __sequential
+	       ( __wait(1)
+	       , __wait(2)
+	       , __wait(3)
+	       , __wait(4)
+	       , __wait(5)
+               , __wait(6)
+	       , __throw(ERROR1))
+	   , __finally
+	       ( __sequential(__wait(3), __wait(4), __wait(5), __wait(6)))
+	   ) proc1;
+
+      std::cout << sizeof(proc1) << std::endl;
+
       ASSERT_EQ(TSL_CONTINUE, proc.exec(context));
       ASSERT_EQ(TSL_CONTINUE, proc.handleEvent(context, SimpleEventInfo(1)));
    }

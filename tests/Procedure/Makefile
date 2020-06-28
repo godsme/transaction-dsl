@@ -1,4 +1,4 @@
-include $(HOME)/project/cpp/trans-dsl/shared/ut.mk
+include $(HOME)/project/cpp/transaction-dsl/shared/ut.mk
 
 extra-srcs = sched/action/Procedure.cc \
              sched/action/Finally.cc \
@@ -31,4 +31,4 @@ extra-srcs = sched/action/Procedure.cc \
           
              
 
-include $(HOME)/project/cpp/trans-dsl/shared/rules.mk
+include $(HOME)/project/cpp/transaction-dsl/shared/rules.mk
